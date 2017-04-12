@@ -9,9 +9,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccessLayer
+namespace IngeniousCityBreakWeb
 {
-    class DependencyInjectionContainer
+    public class DependencyInjectionContainer
     {
         public UnityContainer unityContainer;
         private static DependencyInjectionContainer dependencyInjectionContainer;
@@ -38,6 +38,8 @@ namespace DataAccessLayer
         public void MapTypes(DependencyInjectionContainer dependencyInjectionContainer) {
             Register<IUserManager, UserManager>();
             Register<IDbRepository<ApplicationUser>, DbRepository < ApplicationUser >>();
+            Register<IUserDetailsManager, UserDetailsManager>();
+            Register<IDbRepository<UserDetails>, DbRepository<UserDetails>>();
         }
 
         public void Register<Interface, Implemantation>() where Implemantation: Interface {
