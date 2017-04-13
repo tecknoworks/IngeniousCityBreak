@@ -10,5 +10,10 @@ namespace Contracts
     public interface IUserDetailsManager
     {
        void  Create(UserDetailsDto userDetailsDto);
+
+        //13.04.2017
+       IEnumerable<UserDetailsDto> GetAll();
+
+        UserDetailsDto GetByIdUser(int id);
     }
 }

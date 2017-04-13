@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using BusinessLayer;
 using DataAccessLayer;
 
+
 namespace BusinessLogic
 {
     public class UserDetailsManager : IUserDetailsManager
@@ -22,6 +23,20 @@ namespace BusinessLogic
             var entity = Mapper.FromDto(userDetailsDto);
             UserDetailsRepository.Insert(entity);
             UserDetailsRepository.Save();
+        }
+
+        //13.04.2017
+        public IEnumerable<UserDetailsDto> GetAll() {
+           // var result = UserDetailsRepository.GetAll().ToUserDetailsDto();
+            var result = Mapper.ToUserDetailsDto(UserDetailsRepository.GetAll());
+            return result;
+        }
+
+        
+        public UserDetailsDto GetByIdUser(int id)
+        {
+            var result = Mapper.ToUserDetailsIdDto(UserDetailsRepository.GetById(id));
+            return result;
         }
     }
 }

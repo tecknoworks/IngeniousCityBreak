@@ -26,6 +26,6 @@ namespace DataAccessLayer
             base.OnModelCreating(modelBuilder);
         }
 
-        public DbSet<UserDetails> UserDetals { get; set; }
+        public DbSet<UserDetails> UserDetails { get; set; }
     }
 }

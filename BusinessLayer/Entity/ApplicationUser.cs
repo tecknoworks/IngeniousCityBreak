@@ -20,5 +20,8 @@ namespace BusinessLayer
         }
 
         public bool Active { get; set; }
+
+        //13.04.2017
+        public UserDetails UserDetails { get; set; }
     }
 }

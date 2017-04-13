@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer
 {
-    public class Mapper
+    public static class Mapper
     {
         public static UserDetails FromDto(UserDetailsDto dto)
         {
@@ -35,5 +35,25 @@ namespace BusinessLayer
 
             return res;
         }
+
+        //13.04.2017
+        public static IEnumerable<UserDetailsDto> ToUserDetailsDto(this IEnumerable<UserDetails> userDetails) {
+            var res = userDetails.Select(p => new UserDetailsDto(){
+                Id = p.Id,
+                Adress = p.Adress,
+                CardNumber = p.CardNumber 
+            });
+            return res;
+        }
+        public static UserDetailsDto ToUserDetailsIdDto(UserDetails userDetails)
+        {
+            var dto = new UserDetailsDto();
+            dto.Id = userDetails.Id;
+            dto.Adress = userDetails.Adress;
+            dto.CardNumber = userDetails.CardNumber;
+
+            return dto;
+        }
+
     }
 }
