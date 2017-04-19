@@ -11,6 +11,8 @@ namespace BusinessLayer
 {
     public class ApplicationUser : IdentityUser
     {
+        //public readonly string Id;
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -21,7 +23,6 @@ namespace BusinessLayer
 
         public bool Active { get; set; }
 
-        //13.04.2017
         public UserDetails UserDetails { get; set; }
     }
 }

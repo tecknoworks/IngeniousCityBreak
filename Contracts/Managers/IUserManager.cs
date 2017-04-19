@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BusinessLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,11 @@ namespace Contracts
 {
     public interface IUserManager
     {
-        string DoSomething();
+        void Create(UserDetailsDto userDetailsDto);
+
+        IEnumerable<UserDetailsDto> GetAll();
+
+        UserDetailsDto GetByIdUser(int id);
+        void AddUserDetails(ApplicationUser user);
     }
 }

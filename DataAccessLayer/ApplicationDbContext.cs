@@ -19,6 +19,7 @@ namespace DataAccessLayer
 
         public static ApplicationDbContext Create()
         {
+            //return StContext.GetInstance().GetContext();
             return new ApplicationDbContext();
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

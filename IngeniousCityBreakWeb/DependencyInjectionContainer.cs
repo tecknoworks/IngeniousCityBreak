@@ -38,7 +38,7 @@ namespace IngeniousCityBreakWeb
         public void MapTypes(DependencyInjectionContainer dependencyInjectionContainer) {
             Register<IUserManager, UserManager>();
             Register<IDbRepository<ApplicationUser>, DbRepository < ApplicationUser >>();
-            Register<IUserDetailsManager, UserDetailsManager>();
+          //  Register<IUserDetailsManager, UserDetailsManager>();
             Register<IDbRepository<UserDetails>, DbRepository<UserDetails>>();
             Register<IDbRepository<ApplicationUser>, DbRepository<ApplicationUser>>();
         }

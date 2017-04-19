@@ -16,18 +16,23 @@ using Microsoft.Owin.Security.OAuth;
 using IngeniousCityBreakWeb.Models;
 using IngeniousCityBreakWeb.Providers;
 using IngeniousCityBreakWeb.Results;
+using DataAccessLayer;
+using BusinessLayer;
+using Contracts;
 
 namespace IngeniousCityBreakWeb.Controllers
 {
     [Authorize]
     [RoutePrefix("api/Account")]
-    public class AccountController : ApiController
+    public class AccountController : BaseApiController
     {
         private const string LocalLoginProvider = "Local";
         private ApplicationUserManager _userManager;
+        private IUserManager _user;
 
         public AccountController()
         {
+            _user = this.DiContainer.Resolve<IUserManager>();
         }
 
         public AccountController(ApplicationUserManager userManager,
@@ -125,7 +130,7 @@ namespace IngeniousCityBreakWeb.Controllers
 
             IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword,
                 model.NewPassword);
-            
+
             if (!result.Succeeded)
             {
                 return GetErrorResult(result);
@@ -258,9 +263,9 @@ namespace IngeniousCityBreakWeb.Controllers
             if (hasRegistered)
             {
                 Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-                
-                 ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(UserManager,
-                    OAuthDefaults.AuthenticationType);
+
+                ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(UserManager,
+                   OAuthDefaults.AuthenticationType);
                 ClaimsIdentity cookieIdentity = await user.GenerateUserIdentityAsync(UserManager,
                     CookieAuthenticationDefaults.AuthenticationType);
 
@@ -328,9 +333,14 @@ namespace IngeniousCityBreakWeb.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
-
+            ApplicationUser user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
+            _user.AddUserDetails(user);
+
+            //IDbRepository<ApplicationUser> repo = new DbRepository<ApplicationUser>();
+            //var NEWuSER = repo.GetById(user.Id);
+            // NEWuSER.UserDetails = new UserDetails();
+            //  repo.Save();
 
             if (!result.Succeeded)
             {
@@ -368,7 +378,7 @@ namespace IngeniousCityBreakWeb.Controllers
             result = await UserManager.AddLoginAsync(user.Id, info.Login);
             if (!result.Succeeded)
             {
-                return GetErrorResult(result); 
+                return GetErrorResult(result);
             }
             return Ok();
         }

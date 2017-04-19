@@ -11,12 +11,12 @@ namespace IngeniousCityBreakWeb.Controllers
     public class UserDetailsController : BaseApiController
     {
         //13.04.2017
-        private IUserDetailsManager UserManager;
+        private IUserManager UserManager;
 
         //13.04.2017
         public UserDetailsController()
         {
-            this.UserManager = this.DiContainer.Resolve<IUserDetailsManager>();
+            this.UserManager = this.DiContainer.Resolve<IUserManager>();
         }
         /// <summary>
         /// Create user details
@@ -25,7 +25,7 @@ namespace IngeniousCityBreakWeb.Controllers
         /// <returns></returns>
         [HttpPost]
         public IHttpActionResult Create(UserDetailsDto usersDetailsDto) {
-            var manager = DiContainer.Resolve<IUserDetailsManager>();
+            var manager = DiContainer.Resolve<IUserManager>();
             manager.Create(usersDetailsDto);
             return Ok();
         }
