@@ -337,11 +337,6 @@ namespace IngeniousCityBreakWeb.Controllers
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
             _user.AddUserDetails(user);
 
-            //IDbRepository<ApplicationUser> repo = new DbRepository<ApplicationUser>();
-            //var NEWuSER = repo.GetById(user.Id);
-            // NEWuSER.UserDetails = new UserDetails();
-            //  repo.Save();
-
             if (!result.Succeeded)
             {
                 return GetErrorResult(result);
