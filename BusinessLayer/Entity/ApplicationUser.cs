@@ -11,7 +11,6 @@ namespace BusinessLayer
 {
     public class ApplicationUser : IdentityUser
     {
-        //public readonly string Id;
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {
