@@ -87,6 +87,9 @@
   <ItemGroup>
     <Compile Include="Dto\UserDetailsDto.cs" />
     <Compile Include="Entity\ApplicationUser.cs" />
+    <Compile Include="Entity\City.cs" />
+    <Compile Include="Entity\Country.cs" />
+    <Compile Include="Entity\TouristAttraction.cs" />
     <Compile Include="Entity\UserDetails.cs" />
     <Compile Include="Mappers\Mapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
