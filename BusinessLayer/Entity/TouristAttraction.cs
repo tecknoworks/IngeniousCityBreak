@@ -17,5 +17,6 @@ namespace BusinessLayer
         public float PriceAdult { get; set; }
         public DateTime Schedule { get; set; }
         public City City { get; set; }
+        public ICollection<Route> Routes { get; set; }
     }
 }

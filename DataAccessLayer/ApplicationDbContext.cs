@@ -28,5 +28,9 @@ namespace DataAccessLayer
         }
 
         public DbSet<UserDetails> UserDetails { get; set; }
+        public DbSet<Country> Country { get; set; }
+        public DbSet<City> City { get; set; }
+        public DbSet<TouristAttraction> TouristAttraction { get; set; }
+        public DbSet<Route> Route { get; set; }
     }
 }
