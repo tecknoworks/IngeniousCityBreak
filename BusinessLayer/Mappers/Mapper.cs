@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BusinessLayer.Dto;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,6 +25,8 @@ namespace BusinessLayer
             return res;
         }
 
+        
+
         public static UserDetailsDto ToDto(UserDetails entity)
         {
             var res = new UserDetailsDto()
@@ -35,6 +38,8 @@ namespace BusinessLayer
 
             return res;
         }
+
+        
 
         //13.04.2017
         public static IEnumerable<UserDetailsDto> ToUserDetailsDto(this IEnumerable<UserDetails> userDetails) {
@@ -53,6 +58,29 @@ namespace BusinessLayer
             dto.CardNumber = userDetails.CardNumber;
 
             return dto;
+        }
+
+        public static Country FromCountryDto(CountryDto dto)
+        {
+            var res = new Country()
+            {
+                Name = dto.Name
+            };
+            if (dto.IdCountry.HasValue)
+            {
+                res.IdCountry = dto.IdCountry.Value;
+            }
+            return res;
+        }
+
+        public static CountryDto ToCountryDto(Country entity)
+        {
+            var res = new CountryDto()
+            {
+                IdCountry = entity.IdCountry,
+                Name = entity.Name
+            };
+            return res;
         }
     }
 }
