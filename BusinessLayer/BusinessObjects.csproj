@@ -85,6 +85,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dto\CityDto.cs" />
+    <Compile Include="Dto\CountryDto.cs" />
+    <Compile Include="Dto\RouteDto.cs" />
+    <Compile Include="Dto\TouristAttractionDto.cs" />
     <Compile Include="Dto\UserDetailsDto.cs" />
     <Compile Include="Entity\ApplicationUser.cs" />
     <Compile Include="Entity\City.cs" />
