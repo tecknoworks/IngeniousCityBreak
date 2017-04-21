@@ -25,8 +25,6 @@ namespace BusinessLayer
             return res;
         }
 
-        
-
         public static UserDetailsDto ToDto(UserDetails entity)
         {
             var res = new UserDetailsDto()
@@ -38,8 +36,6 @@ namespace BusinessLayer
 
             return res;
         }
-
-        
 
         //13.04.2017
         public static IEnumerable<UserDetailsDto> ToUserDetailsDto(this IEnumerable<UserDetails> userDetails) {
@@ -60,27 +56,50 @@ namespace BusinessLayer
             return dto;
         }
 
-        public static Country FromCountryDto(CountryDto dto)
-        {
-            var res = new Country()
+        public static City FromCityDto(CityDto cityDto) {
+            var res = new City()
             {
-                Name = dto.Name
+                Name = cityDto.Name
             };
-            if (dto.IdCountry.HasValue)
+            if (cityDto.IdCity.HasValue)
             {
-                res.IdCountry = dto.IdCountry.Value;
+                res.IdCity = cityDto.IdCity.Value;
             }
             return res;
         }
 
-        public static CountryDto ToCountryDto(Country entity)
-        {
-            var res = new CountryDto()
-            {
-                IdCountry = entity.IdCountry,
-                Name = entity.Name
+        public static CityDto ToCityDto(City entity) {
+            var res = new CityDto() {
+                IdCity = entity.IdCity,
+                Name = entity.Name,
             };
             return res;
         }
+
+        public static TouristAttraction FromTouristAttractionDto(TouristAttractionDto dto) {
+            var res = new TouristAttraction()
+            {
+                Name = dto.Name,
+                PriceAdult = dto.PriceAdult,
+                PriceChild = dto.PriceChild,
+                Schedule = dto.Schedule
+            };
+            if (dto.IdTouristAttraction.HasValue) {
+                res.IdTouristAttraction = dto.IdTouristAttraction.Value;
+            }
+            return res;
+        }
+
+        public static TouristAttractionDto ToTouristAttractionDto(TouristAttraction entity) {
+            var res = new TouristAttractionDto() {
+                IdTouristAttraction = entity.IdTouristAttraction,
+                Name = entity.Name,
+                PriceAdult = entity.PriceAdult,
+                PriceChild = entity.PriceChild,
+                Schedule = entity.Schedule
+            };
+            return res;
+        }
+
     }
 }
