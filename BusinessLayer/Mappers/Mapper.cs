@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BusinessLayer.Dto;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -54,5 +55,51 @@ namespace BusinessLayer
 
             return dto;
         }
+
+        public static City FromCityDto(CityDto cityDto) {
+            var res = new City()
+            {
+                Name = cityDto.Name
+            };
+            if (cityDto.IdCity.HasValue)
+            {
+                res.IdCity = cityDto.IdCity.Value;
+            }
+            return res;
+        }
+
+        public static CityDto ToCityDto(City entity) {
+            var res = new CityDto() {
+                IdCity = entity.IdCity,
+                Name = entity.Name,
+            };
+            return res;
+        }
+
+        public static TouristAttraction FromTouristAttractionDto(TouristAttractionDto dto) {
+            var res = new TouristAttraction()
+            {
+                Name = dto.Name,
+                PriceAdult = dto.PriceAdult,
+                PriceChild = dto.PriceChild,
+                Schedule = dto.Schedule
+            };
+            if (dto.IdTouristAttraction.HasValue) {
+                res.IdTouristAttraction = dto.IdTouristAttraction.Value;
+            }
+            return res;
+        }
+
+        public static TouristAttractionDto ToTouristAttractionDto(TouristAttraction entity) {
+            var res = new TouristAttractionDto() {
+                IdTouristAttraction = entity.IdTouristAttraction,
+                Name = entity.Name,
+                PriceAdult = entity.PriceAdult,
+                PriceChild = entity.PriceChild,
+                Schedule = entity.Schedule
+            };
+            return res;
+        }
+
     }
 }
