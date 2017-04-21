@@ -38,11 +38,13 @@ namespace BusinessLayer
         }
 
         //13.04.2017
-        public static IEnumerable<UserDetailsDto> ToUserDetailsDto(this IEnumerable<UserDetails> userDetails) {
-            var res = userDetails.Select(p => new UserDetailsDto(){
+        public static IEnumerable<UserDetailsDto> ToUserDetailsDto(this IEnumerable<UserDetails> userDetails)
+        {
+            var res = userDetails.Select(p => new UserDetailsDto()
+            {
                 Id = p.Id,
                 Adress = p.Adress,
-                CardNumber = p.CardNumber 
+                CardNumber = p.CardNumber
             });
             return res;
         }
@@ -56,7 +58,8 @@ namespace BusinessLayer
             return dto;
         }
 
-        public static City FromCityDto(CityDto cityDto) {
+        public static City FromCityDto(CityDto cityDto)
+        {
             var res = new City()
             {
                 Name = cityDto.Name
@@ -68,15 +71,18 @@ namespace BusinessLayer
             return res;
         }
 
-        public static CityDto ToCityDto(City entity) {
-            var res = new CityDto() {
+        public static CityDto ToCityDto(City entity)
+        {
+            var res = new CityDto()
+            {
                 IdCity = entity.IdCity,
                 Name = entity.Name,
             };
             return res;
         }
 
-        public static TouristAttraction FromTouristAttractionDto(TouristAttractionDto dto) {
+        public static TouristAttraction FromTouristAttractionDto(TouristAttractionDto dto)
+        {
             var res = new TouristAttraction()
             {
                 Name = dto.Name,
@@ -84,14 +90,17 @@ namespace BusinessLayer
                 PriceChild = dto.PriceChild,
                 Schedule = dto.Schedule
             };
-            if (dto.IdTouristAttraction.HasValue) {
+            if (dto.IdTouristAttraction.HasValue)
+            {
                 res.IdTouristAttraction = dto.IdTouristAttraction.Value;
             }
             return res;
         }
 
-        public static TouristAttractionDto ToTouristAttractionDto(TouristAttraction entity) {
-            var res = new TouristAttractionDto() {
+        public static TouristAttractionDto ToTouristAttractionDto(TouristAttraction entity)
+        {
+            var res = new TouristAttractionDto()
+            {
                 IdTouristAttraction = entity.IdTouristAttraction,
                 Name = entity.Name,
                 PriceAdult = entity.PriceAdult,
@@ -101,5 +110,30 @@ namespace BusinessLayer
             return res;
         }
 
-    }
+        public static Country FromCountryDto( CountryDto dto)
+        {
+            var res = new Country()
+            {
+                Name = dto.Name
+
+            };
+            if (dto.IdCountry.HasValue)
+            {
+                res.IdCountry = dto.IdCountry.Value;
+            }
+            return res;
+        }
+
+        public static CountryDto ToCountryDto(Country entity)
+        {
+            var res = new CountryDto()
+            {
+                IdCountry = entity.IdCountry,
+                Name = entity.Name
+
+        };
+            return res;
+        }
+
+    } 
 }
