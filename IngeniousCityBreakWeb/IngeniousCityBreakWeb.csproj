@@ -255,6 +255,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TouristAttractionController.cs" />
     <Compile Include="Controllers\UserDetailsController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="DependencyInjectionContainer.cs" />
@@ -538,6 +539,7 @@
     <Folder Include="!Docs\" />
     <Folder Include="App_Data\" />
     <Folder Include="Views\BaseApi\" />
+    <Folder Include="Views\TouristAttraction\" />
     <Folder Include="Views\UserDetails\" />
   </ItemGroup>
   <ItemGroup>

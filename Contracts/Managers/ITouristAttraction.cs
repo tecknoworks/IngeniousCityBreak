@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Contracts
 {
-    public interface ITuristAttraction
+    public interface ITouristAttraction
     {
         void Insert(TouristAttractionDto turistAttractionDto);
 

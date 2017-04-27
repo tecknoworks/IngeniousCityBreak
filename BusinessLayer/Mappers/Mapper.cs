@@ -135,5 +135,44 @@ namespace BusinessLayer
             return res;
         }
 
+        //27.04.2017
+        public static TouristAttraction FromTouristAttractionDto(TouristAttractionDto dto, TouristAttraction entity)
+        {
+            entity.Name = dto.Name;
+            entity.PriceChild = dto.PriceChild;
+            entity.PriceAdult = dto.PriceAdult;
+            entity.Schedule = dto.Schedule;
+            entity.Image = "/Content/Theme/img/" + dto.Image;
+            return entity;
+        }
+
+        public static TouristAttractionDto ToDroneDto(TouristAttraction entity)
+        {
+            var dto = new TouristAttractionDto();
+            dto.IdTouristAttraction = entity.IdTouristAttraction;
+            dto.Name = entity.Name;
+            dto.PriceChild = entity.PriceChild;
+            dto.PriceAdult = entity.PriceAdult;
+            dto.Schedule = entity.Schedule;
+            dto.Image = "/Content/Theme/img/" + entity.Image;
+            return dto;
+        }
+
+        public static IEnumerable<TouristAttractionDto> ToTouristAttractionDtos(this IEnumerable<TouristAttraction> entities)
+        {
+            var results = entities.Select(it =>
+            new TouristAttractionDto()
+            {
+                IdTouristAttraction = it.IdTouristAttraction,
+                Name = it.Name,
+                PriceChild = it.PriceChild,
+                PriceAdult = it.PriceAdult,
+                Schedule = it.Schedule,
+                Image = "/Content/Theme/img/" + it.Image
+            });
+
+            return results;
+        }
+
     } 
 }

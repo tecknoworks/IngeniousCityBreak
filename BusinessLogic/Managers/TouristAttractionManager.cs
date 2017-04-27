@@ -1,5 +1,6 @@
 ﻿using BusinessLayer;
 using BusinessLayer.Dto;
+using Contracts;
 using DataAccessLayer;
 using System;
 using System.Collections.Generic;
@@ -9,28 +10,28 @@ using System.Threading.Tasks;
 
 namespace BusinessLogic
 {
-    public class TouristAttractionManager : TouristAttraction
+    public class TouristAttractionManager : ITouristAttraction
     {
-        private IDbRepository<TouristAttraction> _touristAttractionRepository { get; set; }
+        private IDbRepository<BusinessLayer.TouristAttraction> _touristAttractionRepository { get; set; }
         //protected IDbRepository<UserDetails> UserDetailsRepository { get; set; }
 
-        public TouristAttractionManager(IDbRepository<TouristAttraction> touristAttractionRepository)
+        public TouristAttractionManager(IDbRepository<BusinessLayer.TouristAttraction> touristAttractionRepository)
         {
             _touristAttractionRepository = touristAttractionRepository;
         }
 
         public void Insert(TouristAttractionDto touristAttractionDto)
         {
-            //var entity = Mapper.FromDto(touristAttractionDto);
-            //UserDetailsRepository.Insert(entity);
-            //UserDetailsRepository.Save();
+            TouristAttraction ent = new TouristAttraction();
+            TouristAttraction rez = Mapper.FromTouristAttractionDto(touristAttractionDto, ent);
+            _touristAttractionRepository.Insert(rez);
+            _touristAttractionRepository.Save();
         }
-        //public IEnumerable<UserDetailsDto> GetAll()
-        //{
-        //    var result = UserDetailsRepository.GetAll().ToUserDetailsDto();
-        //    var result = Mapper.ToUserDetailsDto(UserDetailsRepository.GetAll());
-        //    return result;
-        //}
+        public IEnumerable<TouristAttractionDto> GetAll()
+        {
+            var result = _touristAttractionRepository.GetAll().ToTouristAttractionDtos();
+            return result;
+        }
 
     }
 }

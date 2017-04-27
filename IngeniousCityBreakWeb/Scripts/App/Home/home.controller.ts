@@ -26,6 +26,7 @@
     }
 }
 
+
 class HomeModel {
     public Display: string;
     public Edit: string;
