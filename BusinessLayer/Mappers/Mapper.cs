@@ -110,7 +110,7 @@ namespace BusinessLayer
             return res;
         }
 
-        public static Country FromCountryDto(CountryDto dto)
+        public static Country FromCountryDto( CountryDto dto)
         {
             var res = new Country()
             {
@@ -131,7 +131,7 @@ namespace BusinessLayer
                 IdCountry = entity.IdCountry,
                 Name = entity.Name
 
-            };
+        };
             return res;
         }
 
@@ -142,10 +142,10 @@ namespace BusinessLayer
             entity.PriceChild = dto.PriceChild;
             entity.PriceAdult = dto.PriceAdult;
             entity.Schedule = dto.Schedule;
-            entity.Image = dto.Image;
+            entity.Image = "/Content/Theme/img/" + dto.Image;
+			entity.Image=dto.Image;
             return entity;
         }
-
 
 
         public static IEnumerable<TouristAttractionDto> ToTouristAttractionDtos(this IEnumerable<TouristAttraction> entities)
@@ -171,8 +171,7 @@ namespace BusinessLayer
             dto.PriceAdult = touristAttraction.PriceAdult;
             dto.PriceChild = touristAttraction.PriceChild;
             dto.Schedule = touristAttraction.Schedule;
-            dto.Image = touristAttraction.Image;
-            return dto;
+            dto.Image = "/Content/Theme/img/" + touristAttraction.Image;dto.Image =  touristAttraction.Image;            return dto;
         }
 
     }
