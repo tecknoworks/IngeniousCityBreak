@@ -110,7 +110,7 @@ namespace BusinessLayer
             return res;
         }
 
-        public static Country FromCountryDto( CountryDto dto)
+        public static Country FromCountryDto(CountryDto dto)
         {
             var res = new Country()
             {
@@ -131,7 +131,7 @@ namespace BusinessLayer
                 IdCountry = entity.IdCountry,
                 Name = entity.Name
 
-        };
+            };
             return res;
         }
 
@@ -142,21 +142,11 @@ namespace BusinessLayer
             entity.PriceChild = dto.PriceChild;
             entity.PriceAdult = dto.PriceAdult;
             entity.Schedule = dto.Schedule;
-            entity.Image = "/Content/Theme/img/" + dto.Image;
+            entity.Image = dto.Image;
             return entity;
         }
 
-        public static TouristAttractionDto ToDroneDto(TouristAttraction entity)
-        {
-            var dto = new TouristAttractionDto();
-            dto.IdTouristAttraction = entity.IdTouristAttraction;
-            dto.Name = entity.Name;
-            dto.PriceChild = entity.PriceChild;
-            dto.PriceAdult = entity.PriceAdult;
-            dto.Schedule = entity.Schedule;
-            dto.Image = "/Content/Theme/img/" + entity.Image;
-            return dto;
-        }
+
 
         public static IEnumerable<TouristAttractionDto> ToTouristAttractionDtos(this IEnumerable<TouristAttraction> entities)
         {
@@ -168,7 +158,7 @@ namespace BusinessLayer
                 PriceChild = it.PriceChild,
                 PriceAdult = it.PriceAdult,
                 Schedule = it.Schedule,
-                Image = "/Content/Theme/img/" + it.Image
+                Image = it.Image
             });
 
             return results;
@@ -181,9 +171,9 @@ namespace BusinessLayer
             dto.PriceAdult = touristAttraction.PriceAdult;
             dto.PriceChild = touristAttraction.PriceChild;
             dto.Schedule = touristAttraction.Schedule;
-            dto.Image = "/Content/Theme/img/" + touristAttraction.Image;
+            dto.Image = touristAttraction.Image;
             return dto;
         }
 
-    } 
+    }
 }
