@@ -174,5 +174,16 @@ namespace BusinessLayer
             return results;
         }
 
+        public static TouristAttractionDto ToTouristAttractionDtosId(TouristAttraction touristAttraction)
+        {
+            var dto = new TouristAttractionDto();
+            dto.IdTouristAttraction = touristAttraction.IdTouristAttraction;
+            dto.PriceAdult = touristAttraction.PriceAdult;
+            dto.PriceChild = touristAttraction.PriceChild;
+            dto.Schedule = touristAttraction.Schedule;
+            dto.Image = "/Content/Theme/img/" + touristAttraction.Image;
+            return dto;
+        }
+
     } 
 }

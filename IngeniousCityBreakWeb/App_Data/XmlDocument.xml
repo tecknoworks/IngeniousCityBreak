@@ -494,6 +494,13 @@
             </summary>
             <returns>All tourist ttractions</returns>
         </member>
+        <member name="M:IngeniousCityBreakWeb.Controllers.TouristAttractionController.GetTouristAttractionId(System.Int32)">
+            <summary>
+            Get tourist attractions by Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="M:IngeniousCityBreakWeb.Controllers.UserDetailsController.Create(BusinessLayer.UserDetailsDto)">
             <summary>
             Create user details

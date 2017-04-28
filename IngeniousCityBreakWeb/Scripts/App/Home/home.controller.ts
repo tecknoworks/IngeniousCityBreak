@@ -18,8 +18,10 @@
                 //this.Model.Display = 
             }
         });
+        //----------------------------------------
     }
 
+   
     public DoSomething(): void {
         this.Model.Display = "Changed";
         this.Model.Edit = "Changed";
@@ -33,4 +35,7 @@ class HomeModel {
 }
 
 class HomeDto {
+    //public Name : string;
+    //public PriceChild : number;
+    //public PriceAdult: number;
 }

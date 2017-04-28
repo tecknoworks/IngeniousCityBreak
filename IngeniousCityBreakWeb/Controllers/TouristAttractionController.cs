@@ -41,5 +41,17 @@ namespace IngeniousCityBreakWeb.Controllers
             var result = iTouristAttractions.GetAll();
             return result;
         }
+
+        /// <summary>
+        /// Get tourist attractions by Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [System.Web.Http.HttpGet]
+        public IEnumerable<TouristAttractionDto> GetTouristAttractionId(int id)
+        {
+            var result = iTouristAttractions.GetByIdTouristAttraction(id);
+            yield return result;
+        }
     }
 }

@@ -13,6 +13,7 @@ var HomeController = (function () {
                 //this.Model.Display = 
             }
         });
+        //----------------------------------------
     }
     HomeController.prototype.DoSomething = function () {
         this.Model.Display = "Changed";
@@ -30,3 +31,4 @@ var HomeDto = (function () {
     }
     return HomeDto;
 }());
+//# sourceMappingURL=home.controller.js.map

@@ -33,5 +33,11 @@ namespace BusinessLogic
             return result;
         }
 
+        public TouristAttractionDto GetByIdTouristAttraction(int id)
+        {
+            var result = Mapper.ToTouristAttractionDtosId(_touristAttractionRepository.GetById(id));
+            return result;
+        }
+
     }
 }

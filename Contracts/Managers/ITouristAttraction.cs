@@ -12,5 +12,7 @@ namespace Contracts
         void Insert(TouristAttractionDto turistAttractionDto);
 
         IEnumerable<TouristAttractionDto> GetAll();
+
+        TouristAttractionDto GetByIdTouristAttraction(int id);
     }
 }
