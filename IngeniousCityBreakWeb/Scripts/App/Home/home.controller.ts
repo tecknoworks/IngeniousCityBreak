@@ -40,6 +40,7 @@ class HomeController {
 
         this.Model.Display = "Can't change";
         this.Model.Edit = "Do change";
+
         $.ajax({
             method: "GET",
             url: "/api/TouristAttraction",

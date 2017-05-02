@@ -142,9 +142,10 @@ namespace BusinessLayer
             entity.PriceChild = dto.PriceChild;
             entity.PriceAdult = dto.PriceAdult;
             entity.Schedule = dto.Schedule;
-            entity.Image =  dto.Image;
+			entity.Image=dto.Image;
             return entity;
         }
+
 
         public static IEnumerable<TouristAttractionDto> ToTouristAttractionDtos(this IEnumerable<TouristAttraction> entities)
         {
@@ -173,5 +174,5 @@ namespace BusinessLayer
             return dto;
         }
 
-    } 
+    }
 }
