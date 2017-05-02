@@ -53,5 +53,6 @@ namespace IngeniousCityBreakWeb.Controllers
             var result = iTouristAttractions.GetByIdTouristAttraction(id);
             yield return result;
         }
+       
     }
 }

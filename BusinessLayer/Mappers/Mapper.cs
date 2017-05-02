@@ -142,7 +142,6 @@ namespace BusinessLayer
             entity.PriceChild = dto.PriceChild;
             entity.PriceAdult = dto.PriceAdult;
             entity.Schedule = dto.Schedule;
-            entity.Image = "/Content/Theme/img/" + dto.Image;
 			entity.Image=dto.Image;
             return entity;
         }
@@ -171,7 +170,8 @@ namespace BusinessLayer
             dto.PriceAdult = touristAttraction.PriceAdult;
             dto.PriceChild = touristAttraction.PriceChild;
             dto.Schedule = touristAttraction.Schedule;
-            dto.Image = "/Content/Theme/img/" + touristAttraction.Image;dto.Image =  touristAttraction.Image;            return dto;
+            dto.Image =  touristAttraction.Image;
+            return dto;
         }
 
     }
