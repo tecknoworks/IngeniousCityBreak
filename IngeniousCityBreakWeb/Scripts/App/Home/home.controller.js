@@ -5,6 +5,7 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var HomeModel = (function () {
     function HomeModel() {
+        this.TouristAttractionList = new Array();
     }
     return HomeModel;
 }());
@@ -29,30 +30,27 @@ var TouristAttractionModel = (function (_super) {
     return TouristAttractionModel;
 }(TouristAttractionDto));
 var HomeController = (function () {
-    function HomeController($window) {
+    function HomeController($window, $http) {
+        var self = this;
+        this.httpService = $http;
         this.windowService = $window;
         this.Model = new HomeModel();
         this.Model.Display = "Can't change";
         this.Model.Edit = "Do change";
-        $.ajax({
-            method: "GET",
-            url: "/api/TouristAttraction",
-            contentType: "application/json",
-            dataType: "json",
-            success: function (data) {
-                var modelList = new Array();
-                for (var i = 0; i < data.length; i++) {
-                    var model = new TouristAttractionModel();
-                    model.FromDto(data[i]);
-                    modelList.push(model);
-                }
+        this.httpService.get("/api/TouristAttraction")
+            .then(function (response) {
+            var data = response.data;
+            for (var i = 0; i < data.length; i++) {
+                var model = new TouristAttractionModel();
+                model.FromDto(data[i]);
+                self.Model.TouristAttractionList.push(model);
             }
         });
         this.Initialize();
     }
     HomeController.prototype.DoSomething = function () {
-        this.Model.Display = "Changed";
-        this.Model.Edit = "Changed";
+        //this.Model.Display = "Changed";
+        //this.Model.Edit = "Changed";
     };
     HomeController.prototype.Initialize = function () {
         var _this = this;

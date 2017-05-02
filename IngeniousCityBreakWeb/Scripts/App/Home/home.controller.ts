@@ -1,6 +1,10 @@
 ﻿class HomeModel {
     public Display: string;
     public Edit: string;
+    public TouristAttractionList: Array<TouristAttractionModel>;
+    constructor() {
+        this.TouristAttractionList = new Array<TouristAttractionModel>();
+    }
 }
 
 class TouristAttractionDto {
@@ -33,7 +37,10 @@ class TouristAttractionModel extends TouristAttractionDto {
 class HomeController {
     public Model: HomeModel;
     protected windowService: ng.IWindowService
-    constructor($window: ng.IWindowService) {
+    protected httpService: ng.IHttpService;
+    constructor($window: ng.IWindowService, $http: ng.IHttpService) {
+        var self = this;
+        this.httpService = $http;
         this.windowService = $window;
 
         this.Model = new HomeModel();
@@ -41,29 +48,23 @@ class HomeController {
         this.Model.Display = "Can't change";
         this.Model.Edit = "Do change";
 
-        $.ajax({
-            method: "GET",
-            url: "/api/TouristAttraction",
-            contentType: "application/json",
-            dataType: "json",
-            success: (data: Array<TouristAttractionDto>) => {
-                var modelList: Array<TouristAttractionModel> = new Array<TouristAttractionModel>();
+        this.httpService.get("/api/TouristAttraction")
+            .then((response) => {
+                var data: Array<TouristAttractionDto> = <Array<TouristAttractionDto>>response.data;
                 for (var i: number = 0; i < data.length; i++) {
                     var model: TouristAttractionModel = new TouristAttractionModel();
                     model.FromDto(data[i]);
-
-                    modelList.push(model);
+                    self.Model.TouristAttractionList.push(model);
                 }
-            }
-        });
-
+            });
+        
         this.Initialize();
     }
 
 
     public DoSomething(): void {
-        this.Model.Display = "Changed";
-        this.Model.Edit = "Changed";
+        //this.Model.Display = "Changed";
+        //this.Model.Edit = "Changed";
     }
 
     protected Initialize(): void {
