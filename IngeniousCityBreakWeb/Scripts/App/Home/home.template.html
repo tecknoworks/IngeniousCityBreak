@@ -626,8 +626,13 @@
                             <h3>The World’s Most-visited Tourist Attractions</h3>
                         </div>
 
+<<<<<<< .mine
                         <div class="row portfolio no-space">
                             <div class="col-sm-4" ng-repeat="x in  $ctrl.Model.TouristAttractionList " ng-show="$index==1">
+=======
+                        <div class="row portfolio no-space"  >
+                            <div class="col-sm-4" ng-repeat="x in  $ctrl.Model.TouristAttractionList" ng-show="$index == 1">
+>>>>>>> .theirs
                                 <div class="box-image" >
                                     <div class="image" >
                                         <img ng-src="{{x.Image}}" alt="" class="img-responsive"/>
@@ -644,11 +649,11 @@
                                         </p>-->
                                     </div>
                                 </div>
-                                <!-- /.box-image -->
+                                <!-- /.box-image-->
 
                             </div>
                           
-                                <div class="col-sm-4">
+                               <div class="col-sm-4" ng-repeat="x in  $ctrl.Model.TouristAttractionList" ng-show="$index == 2">
                                     <div class="box-image" ng-repeat="x in  $ctrl.Model.TouristAttractionList " ng-show="$index==2" >
                                         <div class="image">
                                             <img ng-src="{{x.Image}}" alt="" class="img-responsive" />
@@ -668,6 +673,7 @@
                                     <!-- /.box-image -->
                               </div>
 
+<<<<<<< .mine
 							<div class="col-sm-4">
 								<div class="box-image" ng-repeat="x in  $ctrl.Model.TouristAttractionList " ng-show="$index==3">
 									<div class="image">
@@ -708,108 +714,50 @@
 								<!-- /.box-image -->
 							</div>
 
+=======
+                            <div class="col-sm-4"  ng-repeat="x in  $ctrl.Model.TouristAttractionList" ng-show="$index == 3">
+                                <div class="box-image">
+                                    <div class="image">
+                                        <img ng-src="{{x.Image}}" alt="" class="img-responsive" />
+                                    </div>
+                                    <div class="bg"></div>
+                                    <div class="name">
+                                        <h3><a href="../../../Content/images/tour-eiffel.jpg">{{x.Name}}</a></h3>
+                                    </div>
+                                    <div class="text">
+                                        <p class="hidden-sm">Pellentesque habitant morbi tristique senectus et netus et malesuada</p>
+                                        <!--<p class="buttons">
+                    <a href="../../../Content/Theme/portfolio-detail.html" class="btn btn-template-transparent-primary">View</a>
+                    <a href="#" class="btn btn-template-transparent-primary">Website</a>
+                </p>-->
+                                    </div>
+                                </div>
+                                <!-- /.box-image -->
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> .theirs
                                 <!--<div class="col-sm-4">
-            <div class="box-image">
-                <div class="image">
-                    <img src="../../../Content/Theme/img/portfolio-2.jpg" alt="" class="img-responsive">
-                </div>
-                <div class="bg"></div>
-                <div class="name">
-                    <h3><a href="../../../Content/Theme/portfolio-detail.html">Portfolio box-image</a></h3>
-                </div>
-                <div class="text">
-                    <p class="hidden-sm">Pellentesque habitant morbi tristique senectus et netus et malesuada</p>
-                    <p class="buttons">
-                        <a href="../../../Content/Theme/portfolio-detail.html" class="btn btn-template-transparent-primary">View</a>
-                        <a href="#" class="btn btn-template-transparent-primary">Website</a>
-                    </p>
-                </div>
-            </div>
-            <!-- /.box-image
-
-        </div>
-
-
-        <div class="col-sm-4">
-            <div class="box-image">
-                <div class="image">
-                    <img src="../../../Content/Theme/img/portfolio-3.jpg" alt="" class="img-responsive">
-                </div>
-                <div class="bg"></div>
-                <div class="name">
-                    <h3><a href="../../../Content/Theme/portfolio-detail.html">Portfolio box-image</a></h3>
-                </div>
-                <div class="text">
-                    <p class="hidden-sm">Pellentesque habitant morbi tristique senectus et netus et malesuada</p>
-                    <p class="buttons">
-                        <a href="../../../Content/Theme/portfolio-detail.html" class="btn btn-template-transparent-primary">View</a>
-                        <a href="#" class="btn btn-template-transparent-primary">Website</a>
-                    </p>
-                </div>
-            </div>
-            <!-- /.box-image
-
-        </div>
-
-        <div class="col-sm-4">
-            <div class="box-image">
-                <div class="image">
-                    <img src="../../../Content/Theme/img/portfolio-4.jpg" alt="" class="img-responsive">
-                </div>
-                <div class="bg"></div>
-                <div class="name">
-                    <h3><a href="../../../Content/Theme/portfolio-detail.html">Portfolio box-image</a></h3>
-                </div>
-                <div class="text">
-                    <p class="hidden-sm">Pellentesque habitant morbi tristique senectus et netus et malesuada</p>
-                    <p class="buttons">
-                        <a href="../../../Content/Theme/portfolio-detail.html" class="btn btn-template-transparent-primary">View</a>
-                        <a href="#" class="btn btn-template-transparent-primary">Website</a>
-                    </p>
-                </div>
-            </div>
-            <!-- /.box-image
-        </div>
-
-        <div class="col-sm-4">
-            <div class="box-image">
-                <div class="image">
-                    <img src="../../../Content/Theme/img/portfolio-5.jpg" alt="" class="img-responsive">
-                </div>
-                <div class="bg"></div>
-                <div class="name">
-                    <h3><a href="../../../Content/Theme/portfolio-detail.html">Portfolio box-image</a></h3>
-                </div>
-                <div class="text">
-                    <p class="hidden-sm">Pellentesque habitant morbi tristique senectus et netus et malesuada</p>
-                    <p class="buttons">
-                        <a href="../../../Content/Theme/portfolio-detail.html" class="btn btn-template-transparent-primary">View</a>
-                        <a href="#" class="btn btn-template-transparent-primary">Website</a>
-                    </p>
-                </div>
-            </div>
-            <!-- /.box-image
-        </div>
-
-        <div class="col-sm-4">
-            <div class="box-image">
-                <div class="image">
-                    <img src="../../../Content/Theme/img/portfolio-6.jpg" alt="" class="img-responsive">
-                </div>
-                <div class="bg"></div>
-                <div class="name">
-                    <h3><a href="../../../Content/Theme/portfolio-detail.html">Portfolio box-image</a></h3>
-                </div>
-                <div class="text">
-                    <p class="hidden-sm">Pellentesque habitant morbi tristique senectus et netus et malesuada</p>
-                    <p class="buttons">
-                        <a href="../../../Content/Theme/portfolio-detail.html" class="btn btn-template-transparent-primary">View</a>
-                        <a href="#" class="btn btn-template-transparent-primary">Website</a>
-                    </p>
-                </div>
-            </div>
-            <!-- /.box-image
-        </div>
+   
 
         <div class="col-sm-4">
             <div class="box-image">
@@ -868,13 +816,80 @@
             </div>
             <!-- /.box-image
         </div>-->
+     </div>
+
+
+
+
+
+                        <div class="row portfolio no-space">
+                            <div class="col-sm-4" ng-repeat="x in  $ctrl.Model.TouristAttractionList" ng-show="$index == 4">
+                                <div class="box-image">
+                                    <div class="image">
+                                        <img ng-src="{{x.Image}}" alt="" class="img-responsive" />
+                                    </div>
+                                    <div class="bg"></div>
+                                    <div class="name">
+                                        <h3><a href="../../../Content/images/tour-eiffel.jpg">{{x.Name}}</a></h3>
+                                    </div>
+                                    <div class="text">
+                                        <p class="hidden-sm">Pellentesque habitant morbi tristique senectus et netus et malesuada</p>
+                                        <!--<p class="buttons">
+                        <a href="../../../Content/Theme/portfolio-detail.html" class="btn btn-template-transparent-primary">View</a>
+                        <a href="#" class="btn btn-template-transparent-primary">Website</a>
+                    </p>-->
+                                    </div>
+                                </div>
+                                <!-- /.box-image-->
+
                             </div>
 
-                        <div class="see-more">
-                            <a href="../../../Content/Theme/portfolio-4.html" class="btn btn-template-main">See more of our work</a>
-                        </div>
+                            <div class="col-sm-4" ng-repeat="x in  $ctrl.Model.TouristAttractionList" ng-show="$index == 5">
+                                <div class="box-image">
+                                    <div class="image">
+                                        <img ng-src="{{x.Image}}" alt="" class="img-responsive" />
+                                    </div>
+                                    <div class="bg"></div>
+                                    <div class="name">
+                                        <h3><a href="../../../Content/images/tour-eiffel.jpg">{{x.Name}}</a></h3>
+                                    </div>
+                                    <div class="text">
+                                        <p class="hidden-sm">Pellentesque habitant morbi tristique senectus et netus et malesuada</p>
+                                        <!--<p class="buttons">
+                        <a href="../../../Content/Theme/portfolio-detail.html" class="btn btn-template-transparent-primary">View</a>
+                        <a href="#" class="btn btn-template-transparent-primary">Website</a>
+                    </p>-->
+                                    </div>
+                                </div>
+                                <!-- /.box-image -->
+                            </div>
 
-                    </div>
+                            <div class="col-sm-4" ng-repeat="x in  $ctrl.Model.TouristAttractionList" ng-show="$index == 6">
+                                <div class="box-image">
+                                    <div class="image">
+                                        <img ng-src="{{x.Image}}" alt="" class="img-responsive" />
+                                    </div>
+                                    <div class="bg"></div>
+                                    <div class="name">
+                                        <h3><a href="../../../Content/images/tour-eiffel.jpg">{{x.Name}}</a></h3>
+                                    </div>
+                                    <div class="text">
+                                        <p class="hidden-sm">Pellentesque habitant morbi tristique senectus et netus et malesuada</p>
+                                        <!--<p class="buttons">
+                        <a href="../../../Content/Theme/portfolio-detail.html" class="btn btn-template-transparent-primary">View</a>
+                        <a href="#" class="btn btn-template-transparent-primary">Website</a>
+                    </p>-->
+                                    </div>
+                                </div>
+                                <!-- /.box-image -->
+                            </div>
+                     </div>
+
+                            <div class="see-more">
+                                <a href="../../../Content/Theme/portfolio-4.html" class="btn btn-template-main">See more of our work</a>
+                            </div>
+
+                        </div>
 
                 </div>
             </div>
