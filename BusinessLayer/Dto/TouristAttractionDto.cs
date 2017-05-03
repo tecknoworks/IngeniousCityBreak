@@ -17,7 +17,7 @@ namespace BusinessLayer.Dto
 
         public float PriceAdult { get; set; }
 
-        public DateTime Schedule { get; set; }
+        public string Schedule { get; set; }
         public string Image { get; set; }
 
     }

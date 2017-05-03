@@ -274,6 +274,13 @@
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\big-ben.jpg" />
+    <Content Include="Content\images\big-ben2.jpg" />
+    <Content Include="Content\images\dubai.jpg" />
+    <Content Include="Content\images\statue-of-liberty.jpg" />
+    <Content Include="Content\images\tour-eiffel.jpg" />
+    <Content Include="Content\images\tour-eiffel2.jpg" />
+    <Content Include="Content\images\travels.jpg" />
     <Content Include="Content\Theme\404.html" />
     <Content Include="Content\Theme\about.html" />
     <Content Include="Content\Theme\blog-medium.html" />
@@ -342,7 +349,7 @@
     <Content Include="Content\Theme\img\home-try.jpg" />
     <Content Include="Content\Theme\img\home.jpg" />
     <Content Include="Content\Theme\img\homepage-slider.jpg" />
-    <Content Include="Content\Theme\img\logo-ingenious-small.jpg" />
+    <Content Include="Content\images\logo-ingenious-small.jpg" />
     <Content Include="Content\Theme\img\logo-small.png" />
     <Content Include="Content\Theme\img\logo.png" />
     <Content Include="Content\Theme\img\main-slider1.jpg" />

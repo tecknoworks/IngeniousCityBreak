@@ -97,18 +97,18 @@ namespace BusinessLayer
             return res;
         }
 
-        public static TouristAttractionDto ToTouristAttractionDto(TouristAttraction entity)
-        {
-            var res = new TouristAttractionDto()
-            {
-                IdTouristAttraction = entity.IdTouristAttraction,
-                Name = entity.Name,
-                PriceAdult = entity.PriceAdult,
-                PriceChild = entity.PriceChild,
-                Schedule = entity.Schedule
-            };
-            return res;
-        }
+        //public static TouristAttractionDto ToTouristAttractionDto(TouristAttraction entity)
+        //{
+        //    var res = new TouristAttractionDto()
+        //    {
+        //        IdTouristAttraction = entity.IdTouristAttraction,
+        //        Name = entity.Name,
+        //        PriceAdult = entity.PriceAdult,
+        //        PriceChild = entity.PriceChild,
+        //        Schedule = entity.Schedule
+        //    };
+        //    return res;
+        //}
 
         public static Country FromCountryDto( CountryDto dto)
         {
@@ -157,7 +157,7 @@ namespace BusinessLayer
                 PriceChild = it.PriceChild,
                 PriceAdult = it.PriceAdult,
                 Schedule = it.Schedule,
-                Image = it.Image
+                Image = "../../../Content/images/" + it.Image
             });
 
             return results;

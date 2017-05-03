@@ -13,7 +13,7 @@ class TouristAttractionDto {
     Name: string;
     PriceAdult: number;
     PriceChild: number;
-    Schedule: Date;
+    Schedule: string;
 
     constructor() {
     }
