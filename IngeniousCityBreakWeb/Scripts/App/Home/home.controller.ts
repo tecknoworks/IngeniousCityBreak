@@ -57,7 +57,7 @@ class HomeController {
                     self.Model.TouristAttractionList.push(model);
                 }
             });
-        
+
         this.Initialize();
     }
 
