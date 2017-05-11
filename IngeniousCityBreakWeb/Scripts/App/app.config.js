@@ -8,7 +8,9 @@ angular.
             when('/home', {
             template: '<home></home>'
         }).
+            when('/register', {
+            template: '<register></register>'
+        }).
             otherwise('/home');
     }
 ]);
-//# sourceMappingURL=app.config.js.map

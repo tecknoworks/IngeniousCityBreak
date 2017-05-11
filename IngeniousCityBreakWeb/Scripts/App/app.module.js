@@ -4,6 +4,6 @@ angular.module('ingeniousCityBreakApp', [
     //'ngAnimate',
     'ngRoute',
     //'core',
-    'home'
+    'home',
+    'register'
 ]);
-//# sourceMappingURL=app.module.js.map

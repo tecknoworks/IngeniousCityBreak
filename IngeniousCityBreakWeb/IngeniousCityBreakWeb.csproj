@@ -274,14 +274,25 @@
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\big-ben-carousel.jpg" />
     <Content Include="Content\images\big-ben.jpg" />
     <Content Include="Content\images\big-ben2.jpg" />
+    <Content Include="Content\images\blue-background-carousel.jpg" />
+    <Content Include="Content\images\burj-khalifa-carousel.jpg" />
     <Content Include="Content\images\burjkhalifa.jpg" />
     <Content Include="Content\images\dubai.jpg" />
+    <Content Include="Content\images\grey-world-map.png" />
+    <Content Include="Content\images\museum-louvre-carousel.jpg" />
+    <Content Include="Content\images\nude-background.jpg" />
+    <Content Include="Content\images\pin.png" />
+    <Content Include="Content\images\rialto-bridge.jpg" />
     <Content Include="Content\images\statue-of-liberty.jpg" />
+    <Content Include="Content\images\taj-mahal-carousel.jpg" />
     <Content Include="Content\images\tour-eiffel.jpg" />
     <Content Include="Content\images\tour-eiffel2.jpg" />
     <Content Include="Content\images\travels.jpg" />
+    <Content Include="Content\images\turquoise-background-carousel.jpg" />
+    <Content Include="Content\images\world-map.png" />
     <Content Include="Content\Theme\404.html" />
     <Content Include="Content\Theme\about.html" />
     <Content Include="Content\Theme\blog-medium.html" />
@@ -474,6 +485,8 @@
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\App\Home\home.template.html" />
+    <Content Include="Scripts\App\Login\login.template.html" />
+    <Content Include="Scripts\App\Register\register.template.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -526,6 +539,8 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\typings\jquery.rwdImageMaps.js" />
+    <Content Include="Scripts\typings\jquery.rwdImageMaps.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -580,6 +595,10 @@
     <TypeScriptCompile Include="Scripts\App\Home\home.component.ts" />
     <TypeScriptCompile Include="Scripts\App\Home\home.module.ts" />
     <TypeScriptCompile Include="Scripts\App\Home\home.controller.ts" />
+    <TypeScriptCompile Include="Scripts\App\Login\login.controller.ts" />
+    <TypeScriptCompile Include="Scripts\App\Register\register.component.ts" />
+    <TypeScriptCompile Include="Scripts\App\Register\register.controller.ts" />
+    <TypeScriptCompile Include="Scripts\App\Register\register.module.ts" />
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular-animate.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular-component-router.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular-cookies.d.ts" />

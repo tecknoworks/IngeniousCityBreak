@@ -35,8 +35,8 @@ var HomeController = (function () {
         this.httpService = $http;
         this.windowService = $window;
         this.Model = new HomeModel();
-        this.Model.Display = "Can't change";
-        this.Model.Edit = "Do change";
+        //this.Model.Display = "Can't change";
+        //this.Model.Edit = "Do change";
         this.httpService.get("/api/TouristAttraction")
             .then(function (response) {
             var data = response.data;
@@ -55,6 +55,7 @@ var HomeController = (function () {
     HomeController.prototype.Initialize = function () {
         var _this = this;
         setTimeout(function () {
+            _this.LoadCss('<link href="https://fonts.googleapis.com/css?family=Roboto:400,700,900,900i" rel="stylesheet">');
             _this.LoadCss("Content/Theme/css/owl.theme.css");
             //load script
             _this.LoadScript("http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js");
@@ -65,7 +66,6 @@ var HomeController = (function () {
             _this.LoadScript("Content/Theme/js/jquery.parallax-1.1.3.js");
             _this.LoadScript("Content/Theme/js/owl.carousel.min.js");
             _this.LoadScript("Content/Theme/js/front.js");
-            _this.LoadScript("Content/Theme/js/jquery.cookie.js");
         });
     };
     HomeController.prototype.LoadScript = function (url, callback) {
@@ -88,4 +88,3 @@ var HomeController = (function () {
     };
     return HomeController;
 }());
-//# sourceMappingURL=home.controller.js.map
