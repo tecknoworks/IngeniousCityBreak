@@ -1,22 +1,4 @@
-﻿<!--<h1>{{$ctrl.Model.Display}}</h1>
-<input type="text" ng-model="$ctrl.Model.Edit" />
-<h1>{{$ctrl.Model.Edit}}</h1>
-<input type="button" ng-click="$ctrl.DoSomething()" value="Do" />-->
-<!--<p class="displayTourist">Lore</p>
-<div id="result">
-    {{$ctrl.Model.TouristAttractionList}}
-    <ul>
-        <li ng-repeat="x in $ctrl.Model.TouristAttractionList">
-          {{x.Name}}
-        </li>
-    </ul>
-</div>-->
-
-
-
-
-
-<div id="all">
+﻿<div id="all">
 
     <header>
 
@@ -576,13 +558,72 @@
                                 </ul>-->
                                 <p>
 
-                                    <img src="../../../Content/images/logo-ingenious-small.jpg" />
-                                </p>
-                            </div>
-                            <div class="col-sm-7">
-                                <img class="img-responsive" src="../../../Content/images/dubai.jpg" alt="">
-                            </div>
+                        <div class="heading text-center">
+                            <h3>The World’s Most-visited Tourist Attractions</h3>
+                        </div>
 
+                        <div class="row portfolio no-space"  >
+                            <div class="col-sm-4" ng-repeat="x in  $ctrl.Model.TouristAttractionList" ng-show="$index == 1">
+                                <div class="box-image" >
+                                    <div class="image" >
+                                        <img ng-src="{{x.Image}}" alt="" class="img-responsive"/>
+                                    </div>
+                                    <div class="bg"></div>
+                                    <div class="name">
+                                        <h3><a href="../../../Content/images/tour-eiffel.jpg">{{x.Name}}</a></h3>
+                                    </div>
+                                    <div class="text">
+                                        <p class="hidden-sm">Pellentesque habitant morbi tristique senectus et netus et malesuada</p>
+                                        <!--<p class="buttons">
+                                            <a href="../../../Content/Theme/portfolio-detail.html" class="btn btn-template-transparent-primary">View</a>
+                                            <a href="#" class="btn btn-template-transparent-primary">Website</a>
+                                        </p>-->
+                                    </div>
+                                </div>
+                                <!-- /.box-image-->
+
+                            </div>
+                    </div>
+                          
+                               <div class="col-sm-4" ng-repeat="x in  $ctrl.Model.TouristAttractionList" ng-show="$index == 2">
+                                    <div class="box-image" ng-repeat="x in  $ctrl.Model.TouristAttractionList " ng-show="$index==2" >
+                                        <div class="image">
+                                            <img ng-src="{{x.Image}}" alt="" class="img-responsive" />
+                                        </div>
+                                        <div class="bg"></div>
+                                        <div class="name">
+                                            <h3><a href="../../../Content/images/tour-eiffel.jpg">{{x.Name}}</a></h3>
+                                        </div>
+                                        <div class="text">
+                                            <p class="hidden-sm">Pellentesque habitant morbi tristique senectus et netus et malesuada</p>
+                                            <!--<p class="buttons">
+                                                <a href="../../../Content/Theme/portfolio-detail.html" class="btn btn-template-transparent-primary">View</a>
+                                                <a href="#" class="btn btn-template-transparent-primary">Website</a>
+                                            </p>-->
+                                        </div>
+                                    </div>
+                                    <!-- /.box-image -->
+                              </div>
+                            <div class="col-sm-4"  ng-repeat="x in  $ctrl.Model.TouristAttractionList" ng-show="$index == 3">
+                                <div class="box-image">
+                                    <div class="image">
+                                        <img ng-src="{{x.Image}}" alt="" class="img-responsive" />
+                                    </div>
+                                    <div class="bg"></div>
+                                    <div class="name">
+                                        <h3><a href="../../../Content/images/tour-eiffel.jpg">{{x.Name}}</a></h3>
+                                    </div>
+                                    <div class="text">
+                                        <p class="hidden-sm">Pellentesque habitant morbi tristique senectus et netus et malesuada</p>
+                                        <!--<p class="buttons">
+                    <a href="../../../Content/Theme/portfolio-detail.html" class="btn btn-template-transparent-primary">View</a>
+                    <a href="#" class="btn btn-template-transparent-primary">Website</a>
+                </p>-->
+                                    </div>
+                                </div>
+                                <!-- /.box-image -->
+                            </div>
+                                <!--<div class="col-sm-4">
                         </div>
                     </div>
                 </div>

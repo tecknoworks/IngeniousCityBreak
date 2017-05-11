@@ -50,11 +50,30 @@ class MapService{
                 setTimeout(() => {
                     $("#removeMarkerBtn1").click((e) => {
                         debugger
+                        marker.setMap(null);
+                        var myMarker = markers.searchNode(marker);
+                        var startpoint = { "lat": myMarker.value.getPosition().lat(), "long": myMarker.value.getPosition().lng() };
+                        var endpoint = { "lat": myMarker.prevNode.value.getPosition().lat(), "long": myMarker.prevNode.value.getPosition().lng() };
+                        var locationlinks = [
+                            new google.maps.LatLng(startpoint.lat, startpoint.long),
+                            new google.maps.LatLng(endpoint.lat, endpoint.long)
+                        ];
+                        var flightPath;
+                        debugger
+                        flightPath = new google.maps.Polyline({
+                            path: locationlinks,
+                            geodesic: true,
+                            strokeColor: '#FF0000',
+                            strokeOpacity: 1.0,
+                            strokeWeight: 2
+                        });
+                        debugger
+                        flightPath.setMap(null);
                         markers.removeMarker(marker);
                     });
                 }, 300);
             });
-            
+            debugger
             var node = markers.last;
             if (markers.first != markers.last) {
                 var node = markers.last.prevNode;
@@ -74,6 +93,7 @@ class MapService{
                     strokeWeight: 2
                 });
                 debugger
+                flightPath
                 flightPath.setMap(this.myMap);
             }
         });
@@ -122,6 +142,25 @@ class MapService{
             this.last = node;
             this._length++;
         }
+    }
+
+    public searchNode(marker: MyMarker): Link {
+        if (this.first == null) {
+            alert("The marker's list is empty");
+            return;
+        }
+        else {
+            var crt = this.first;
+            while (crt.nextNode != null) {
+                if (crt.value == marker) {
+                    var node = crt;
+                    break;
+                }
+                crt = crt.nextNode;
+            }
+            return node;
+        }
+       
     }
 
     //public getIndex(): number {
