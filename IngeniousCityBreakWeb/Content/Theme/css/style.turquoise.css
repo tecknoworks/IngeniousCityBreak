@@ -790,14 +790,15 @@ fieldset[disabled] .btn-template-primary.active {
   position: relative;
 }
 .jumbotron {
-  padding: 30px;
-  margin-bottom: 0;
-  position: relative;
-  background: url('../img/photogrid.jpg') center center repeat;
-  background-size: cover;
-  -webkit-transition: all 0.2s ease-out;
-  -moz-transition: all 0.2s ease-out;
-  transition: all 0.2s ease-out;
+    padding: 30px;
+    margin-bottom: 0;
+    position: relative;
+    /*background: url('../img/photogrid.jpg') center center repeat;*/
+    background-image: url('../../images/blue-background-carousel.jpg');
+    background-size: cover;
+    -webkit-transition: all 0.2s ease-out;
+    -moz-transition: all 0.2s ease-out;
+    transition: all 0.2s ease-out;
 }
 .jumbotron .dark-mask {
   position: absolute;
@@ -1143,7 +1144,8 @@ fieldset[disabled] .btn-template-primary.active {
 }
 .home-carousel {
   position: relative;
-  background: url('../img/photogrid.jpg') center center repeat;
+  /*background: url('../img/photogrid.jpg') center center repeat;*/
+   background-image: url('../../images/blue-background-carousel.jpg');
   background-size: cover;
   -webkit-transition: all 0.2s ease-out;
   -moz-transition: all 0.2s ease-out;

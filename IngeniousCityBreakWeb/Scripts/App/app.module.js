@@ -4,5 +4,6 @@ angular.module('ingeniousCityBreakApp', [
     //'ngAnimate',
     'ngRoute',
     //'core',
-    'home'
+    'home',
+    'register'
 ]);

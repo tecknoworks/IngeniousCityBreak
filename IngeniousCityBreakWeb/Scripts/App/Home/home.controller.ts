@@ -295,8 +295,8 @@ class MapService{
 
 
 class HomeModel {
-    public Display: string;
-    public Edit: string;
+    //public Display: string;
+    //public Edit: string;
     public TouristAttractionList: Array<TouristAttractionModel>;
     constructor() {
         this.TouristAttractionList = new Array<TouristAttractionModel>();
@@ -342,8 +342,8 @@ class HomeController {
 
         this.Model = new HomeModel();
 
-        this.Model.Display = "Can't change";
-        this.Model.Edit = "Do change";
+        //this.Model.Display = "Can't change";
+        //this.Model.Edit = "Do change";
 
         this.httpService.get("/api/TouristAttraction")
             .then((response) => {
@@ -360,20 +360,23 @@ class HomeController {
     }
 
     protected Initialize(): void {
+		
         setTimeout(()=> {
+
+			this.LoadCss('<link href="https://fonts.googleapis.com/css?family=Roboto:400,700,900,900i" rel="stylesheet">');
             this.LoadCss("Content/Theme/css/owl.theme.css");
 
             //load script
-            this.LoadScript("http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js");
-            this.LoadScript("http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js");
-            this.LoadScript("Content/Theme/js/jquery.cookie.js");
+			this.LoadScript("http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js");
+			this.LoadScript("http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js");
+			this.LoadScript("Content/Theme/js/jquery.cookie.js");
+            
             this.LoadScript("Content/Theme/js/waypoints.min.js");
             this.LoadScript("Content/Theme/js/jquery.counterup.min.js");
             this.LoadScript("Content/Theme/js/jquery.parallax-1.1.3.js");
 
             this.LoadScript("Content/Theme/js/owl.carousel.min.js");
             this.LoadScript("Content/Theme/js/front.js");
-            this.LoadScript("Content/Theme/js/jquery.cookie.js");
 
             
         });
