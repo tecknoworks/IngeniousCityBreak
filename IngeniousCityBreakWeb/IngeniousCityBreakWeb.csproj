@@ -580,6 +580,8 @@
     <TypeScriptCompile Include="Scripts\App\Home\home.component.ts" />
     <TypeScriptCompile Include="Scripts\App\Home\home.module.ts" />
     <TypeScriptCompile Include="Scripts\App\Home\home.controller.ts" />
+    <TypeScriptCompile Include="Scripts\App\Map\map.controller.ts" />
+    <TypeScriptCompile Include="Scripts\App\Map\map.component.ts" />
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular-animate.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular-component-router.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular-cookies.d.ts" />
@@ -588,6 +590,7 @@
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular-route.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular-sanitize.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\googlemaps\google.maps.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
   </ItemGroup>
   <ItemGroup>
