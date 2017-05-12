@@ -5,5 +5,6 @@ angular.module('ingeniousCityBreakApp', [
     'ngRoute',
     //'core',
     'home',
-    'register'
+    'register',
+    'login'
 ]);
