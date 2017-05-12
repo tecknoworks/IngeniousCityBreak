@@ -8,3 +8,4 @@ angular.module('ingeniousCityBreakApp', [
     'register',
     'login'
 ]);
+//# sourceMappingURL=app.module.js.map
