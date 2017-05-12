@@ -4,16 +4,18 @@
 
 	constructor($window: ng.IWindowService, $http: ng.IHttpService) {
 		super($window, $http);
-		var self = this;
-		this.HttpService = $http;
-
-		this.Model = new RegisterModel();
-		this.Model.Password = "Hello";
 		this.Initialize();
+		this.HttpService = $http;
+		this.Model = new RegisterModel();
+		//this.Model.Password = "Hello";
+		
+		debugger
+	
 
 	}
 
 	public RegisterClick(): void {
+		debugger
 		var self = this;
 		self.Model.ErrorAlert = false;
 		if (self.Model.Email == null) {
@@ -37,15 +39,26 @@
             self.Model.ErrorAlert = true;
             return;
         }
+		debugger
+
+		var config: angular.IRequestShortcutConfig = {
+            headers: {
+                "dataType": "json",
+                "contentType": "application/json"
+            }
+        };
 
 		this.HttpService.post('api/Account/Register', {
             "Email": self.Model.Email,
             "Password": self.Model.Password,
 			"ConfirmPassword": self.Model.ConfirmPassword,
         }).then(function (response) {
+
             self.Model.ErrorMessage = "You have successfully registered";
 
-        });
+		}).catch(function (response) {
+				self.Model.ErrorMessage = response.data.Message;
+		});
 
 	}
 
@@ -104,7 +117,7 @@
 
 class RegisterModel {
 
-	public Name: string;
+	//public Name: string;
 	public Email: string;
 	public Password: string;
 	public ConfirmPassword: string;

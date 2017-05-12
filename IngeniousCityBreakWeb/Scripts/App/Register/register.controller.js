@@ -7,13 +7,14 @@ var RegisterController = (function (_super) {
     __extends(RegisterController, _super);
     function RegisterController($window, $http) {
         _super.call(this, $window, $http);
-        var self = this;
+        this.Initialize();
         this.HttpService = $http;
         this.Model = new RegisterModel();
-        this.Model.Password = "Hello";
-        this.Initialize();
+        //this.Model.Password = "Hello";
+        debugger;
     }
     RegisterController.prototype.RegisterClick = function () {
+        debugger;
         var self = this;
         self.Model.ErrorAlert = false;
         if (self.Model.Email == null) {
@@ -36,12 +37,21 @@ var RegisterController = (function (_super) {
             self.Model.ErrorAlert = true;
             return;
         }
+        debugger;
+        var config = {
+            headers: {
+                "dataType": "json",
+                "contentType": "application/json"
+            }
+        };
         this.HttpService.post('api/Account/Register', {
             "Email": self.Model.Email,
             "Password": self.Model.Password,
             "ConfirmPassword": self.Model.ConfirmPassword,
         }).then(function (response) {
             self.Model.ErrorMessage = "You have successfully registered";
+        }).catch(function (response) {
+            self.Model.ErrorMessage = response.data.Message;
         });
     };
     RegisterController.prototype.Initialize = function () {
@@ -91,3 +101,4 @@ var RegisterModel = (function () {
     }
     return RegisterModel;
 }());
+//# sourceMappingURL=register.controller.js.map
