@@ -5,5 +5,7 @@ angular.module('ingeniousCityBreakApp', [
     'ngRoute',
     //'core',
     'home',
-    'register'
+    'register',
+    'login'
 ]);
+//# sourceMappingURL=app.module.js.map

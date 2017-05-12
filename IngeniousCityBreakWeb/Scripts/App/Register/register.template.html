@@ -42,8 +42,8 @@
 					<div class="navbar-header">
 
 						<a class="navbar-brand home" href="index.html">
-							<img src="img/logo.png" alt="Universal logo" class="hidden-xs hidden-sm">
-							<img src="img/logo-small.png" alt="Universal logo" class="visible-xs visible-sm"><span class="sr-only">Universal - go to homepage</span>
+							<img src="../../../Content/Theme/img/logo.png" alt="Universal logo" class="hidden-xs hidden-sm">
+							<img src="../../../Content/Theme/img/logo-small.png" alt="Universal logo" class="visible-xs visible-sm"><span class="sr-only">Universal - go to homepage</span>
 						</a>
 						<div class="navbar-buttons">
 							<button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
@@ -84,7 +84,7 @@
 										<div class="yamm-content">
 											<div class="row">
 												<div class="col-sm-6">
-													<img src="img/template-easy-customize.png" class="img-responsive hidden-xs" alt="">
+													<img src="../../../Content/Theme/img/template-easy-customize.png" class="img-responsive hidden-xs" alt="">
 												</div>
 												<div class="col-sm-3">
 													<h5>Shortcodes</h5>
@@ -141,7 +141,7 @@
 										<div class="yamm-content">
 											<div class="row">
 												<div class="col-sm-6">
-													<img src="img/template-homepage.png" class="img-responsive hidden-xs" alt="">
+													<img src="../../../Content/Theme/img/template-homepage.png" class="img-responsive hidden-xs" alt="">
 												</div>
 												<div class="col-sm-3">
 													<h5>Portfolio</h5>
@@ -507,11 +507,11 @@
 						<form action="customer-orders.html" method="post">
 							<div class="form-group">
 								<label for="name-login">Name</label>
-								<input type="text" class="form-control" id="name-login">
+								<input type="text" class="form-control" id="name-login" ng-model="$ctrl.Model.Name">
 							</div>
 							<div class="form-group">
 								<label for="email-login">Email</label>
-								<input type="text" class="form-control" id="email-login">
+								<input type="text" class="form-control" id="email-login" ng-model="$ctrl.Model.Email">
 							</div>
 							<div class="form-group">
 								<label for="password-login">Password</label>
@@ -522,7 +522,8 @@
 								<input type="password" class="form-control" id="confirmpassword-login" ng-model="$ctrl.Model.ConfirmPassword">
 							</div>
 							<div class="text-center">
-								<button type="submit" class="btn btn-template-main"><i class="fa fa-user-md"></i> Register</button>
+								<button type="submit" class="btn btn-template-main"><i class="fa fa-user-md" ng-click="$ctrl.RegisterClick()"></i> Register</button>
+								<span ng-show="$ctrl.Model.ErrorMessage" >{{$ctrl.Model.ErrorMessage}}</span>
 							</div>
 						</form>
 					</div>
@@ -621,7 +622,7 @@
 					<div class="item same-height-row clearfix">
 						<div class="image same-height-always">
 							<a href="#">
-								<img class="img-responsive" src="img/detailsquare.jpg" alt="">
+								<img class="img-responsive" src="../../../Content/Theme/img/detailsquare.jpg" alt="">
 							</a>
 						</div>
 						<div class="name same-height-always">
@@ -632,7 +633,7 @@
 					<div class="item same-height-row clearfix">
 						<div class="image same-height-always">
 							<a href="#">
-								<img class="img-responsive" src="img/detailsquare.jpg" alt="">
+								<img class="img-responsive" src="../../../Content/Theme/img/detailsquare.jpg" alt="">
 							</a>
 						</div>
 						<div class="name same-height-always">
@@ -643,7 +644,7 @@
 					<div class="item same-height-row clearfix">
 						<div class="image same-height-always">
 							<a href="#">
-								<img class="img-responsive" src="img/detailsquare.jpg" alt="">
+								<img class="img-responsive" src="../../../Content/Theme/img/detailsquare.jpg" alt="">
 							</a>
 						</div>
 						<div class="name same-height-always">
@@ -687,32 +688,32 @@
 				<div class="photostream">
 					<div>
 						<a href="#">
-							<img src="img/detailsquare.jpg" class="img-responsive" alt="#">
+							<img src="../../../Content/Theme/img/detailsquare.jpg" class="img-responsive" alt="#">
 						</a>
 					</div>
 					<div>
 						<a href="#">
-							<img src="img/detailsquare2.jpg" class="img-responsive" alt="#">
+							<img src="../../../Content/Theme/img/detailsquare2.jpg" class="img-responsive" alt="#">
 						</a>
 					</div>
 					<div>
 						<a href="#">
-							<img src="img/detailsquare3.jpg" class="img-responsive" alt="#">
+							<img src="../../../Content/Theme/img/detailsquare3.jpg" class="img-responsive" alt="#">
 						</a>
 					</div>
 					<div>
 						<a href="#">
-							<img src="img/detailsquare3.jpg" class="img-responsive" alt="#">
+							<img src="../../../Content/Theme/img/detailsquare3.jpg" class="img-responsive" alt="#">
 						</a>
 					</div>
 					<div>
 						<a href="#">
-							<img src="img/detailsquare2.jpg" class="img-responsive" alt="#">
+							<img src="../../../Content/Theme/img/detailsquare2.jpg" class="img-responsive" alt="#">
 						</a>
 					</div>
 					<div>
 						<a href="#">
-							<img src="img/detailsquare.jpg" class="img-responsive" alt="#">
+							<img src="../../../Content/Theme/img/detailsquare.jpg" class="img-responsive" alt="#">
 						</a>
 					</div>
 				</div>
