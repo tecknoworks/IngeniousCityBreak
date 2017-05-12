@@ -3,6 +3,279 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
+var MyMarker = (function (_super) {
+    __extends(MyMarker, _super);
+    function MyMarker(opts) {
+        _super.call(this, opts);
+    }
+    return MyMarker;
+}(google.maps.Marker));
+var MapService = (function () {
+    function MapService() {
+        var _this = this;
+        var self = this;
+        var mapOptions = {
+            center: new google.maps.LatLng(21.0000, 78.0000),
+            zoom: 2,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var uniqueId = 1; //sus
+        debugger;
+        this.myMap = new google.maps.Map(document.getElementById("dvMap"), mapOptions);
+        var markers = new LinkedList(this.myMap);
+        google.maps.event.addListener(this.myMap, 'click', function (e) {
+            //Determine the location where the user has clicked.
+            var location = e.latLng;
+            //Create a marker and placed it on the map.
+            var markerOptions = {
+                position: location,
+                map: _this.myMap
+            };
+            debugger;
+            var marker = new MyMarker(markerOptions);
+            //Set unique id
+            marker.id = uniqueId;
+            uniqueId++;
+            markers.insertLink(marker);
+            //Attach click event handler to the marker.
+            google.maps.event.addListener(marker, "click", function (e) {
+                var content = 'Latitude: ' + location.lat() + '<br />Longitude: ' + location.lng();
+                content += "<br /><input type = 'button' value = 'Delete' id='removeMarkerBtn1' marker='" + marker.id + "' value = 'Delete' />";
+                debugger;
+                var infoWindow = new google.maps.InfoWindow({
+                    content: content
+                });
+                debugger;
+                infoWindow.open(_this.myMap, marker);
+                setTimeout(function () {
+                    $("#removeMarkerBtn1").click(function (e) {
+                        debugger;
+                        marker.setMap(null);
+                        var myMarker = markers.searchNode(marker);
+                        var startpoint = { "lat": myMarker.value.getPosition().lat(), "long": myMarker.value.getPosition().lng() };
+                        var endpoint = { "lat": myMarker.prevNode.value.getPosition().lat(), "long": myMarker.prevNode.value.getPosition().lng() };
+                        var locationlinks = [
+                            new google.maps.LatLng(startpoint.lat, startpoint.long),
+                            new google.maps.LatLng(endpoint.lat, endpoint.long)
+                        ];
+                        var flightPath;
+                        debugger;
+                        flightPath = new google.maps.Polyline({
+                            path: locationlinks,
+                            geodesic: true,
+                            strokeColor: '#FF0000',
+                            strokeOpacity: 1.0,
+                            strokeWeight: 2
+                        });
+                        debugger;
+                        flightPath.setMap(null);
+                        markers.removeMarker(marker);
+                    });
+                }, 300);
+            });
+            debugger;
+            var node = markers.last;
+            if (markers.first != markers.last) {
+                var node = markers.last.prevNode;
+                var startpoint = { "lat": node.value.getPosition().lat(), "long": node.value.getPosition().lng() };
+                var endpoint = { "lat": markers.last.value.getPosition().lat(), "long": markers.last.value.getPosition().lng() };
+                var locationlinks = [
+                    new google.maps.LatLng(startpoint.lat, startpoint.long),
+                    new google.maps.LatLng(endpoint.lat, endpoint.long)
+                ];
+                var flightPath;
+                debugger;
+                flightPath = new google.maps.Polyline({
+                    path: locationlinks,
+                    geodesic: true,
+                    strokeColor: '#FF0000',
+                    strokeOpacity: 1.0,
+                    strokeWeight: 2
+                });
+                debugger;
+                flightPath;
+                flightPath.setMap(_this.myMap);
+            }
+        });
+    }
+    return MapService;
+}());
+var Link = (function () {
+    function Link() {
+    }
+    return Link;
+}());
+var LinkedList = (function () {
+    function LinkedList(myMap) {
+        //list: Link;
+        this._length = 0;
+    }
+    LinkedList.prototype.insertLink = function (myMarker) {
+        if (this.first == null) {
+            var node = new Link();
+            node.value = myMarker;
+            node.prevNode = node.nextNode = null;
+            this.first = this.last = node;
+            this._length++;
+            return true;
+        }
+        else {
+            var crt = this.first;
+            var node = new Link();
+            node.nextNode = null;
+            node.value = myMarker;
+            while (crt.nextNode != null) {
+                crt = crt.nextNode;
+            }
+            crt.nextNode = node;
+            node.prevNode = crt;
+            this.last = node;
+            this._length++;
+        }
+    };
+    LinkedList.prototype.searchNode = function (marker) {
+        if (this.first == null) {
+            alert("The marker's list is empty");
+            return;
+        }
+        else {
+            var crt = this.first;
+            while (crt.nextNode != null) {
+                if (crt.value == marker) {
+                    var node = crt;
+                    break;
+                }
+                crt = crt.nextNode;
+            }
+            return node;
+        }
+    };
+    //public getIndex(): number {
+    //    if (this.first != null) {
+    //        var crt = this.first;
+    //        var index = 1;
+    //        while (crt.nextNode != null) {
+    //            return index++;
+    //            crt = crt.nextNode;
+    //        }
+    //    }
+    //}
+    LinkedList.prototype.removeMarker = function (myMarker) {
+        if (this.first == null) {
+            console.log("The list of markers is empty!");
+            return true;
+        }
+        else {
+            var crt = this.first;
+            while (crt.nextNode != null) {
+                if (crt.value.getPosition() == myMarker.getPosition()) {
+                    var nodeToBeDeleted = crt;
+                    break;
+                }
+                crt = crt.nextNode;
+            }
+            if (this.last.value.getPosition() == myMarker.getPosition()) {
+                var nodeToBeDeleted = crt;
+            }
+            if (nodeToBeDeleted == this.first) {
+                this.first.nextNode.prevNode = null;
+                this.first = this.first.nextNode;
+            }
+            else if (nodeToBeDeleted == this.last) {
+                this.last.prevNode.nextNode = null;
+                this.last = this.last.prevNode;
+            }
+            else {
+                nodeToBeDeleted.prevNode.nextNode = nodeToBeDeleted.nextNode;
+                nodeToBeDeleted.nextNode.prevNode = nodeToBeDeleted.prevNode;
+            }
+        }
+    };
+    LinkedList.prototype.printLinkList = function () {
+        var crt = this.first;
+        if (this.first == null) {
+            console.log('empty linked list');
+        }
+        else {
+            while (crt.nextNode != null) {
+                console.log(crt.value);
+                crt = crt.nextNode;
+            }
+            //to show last element
+            console.log(crt.value);
+        }
+    };
+    //last occurrence of a given number
+    LinkedList.prototype.searchNodeByValue = function (myMarker) {
+        var temp = this.first;
+        var counter = 1;
+        var position = null;
+        if (temp == null) {
+            console.log('empty list');
+        }
+        else {
+            while (temp.nextNode != null) {
+                if (temp.value === myMarker) {
+                    position = counter;
+                    break;
+                }
+                counter++;
+                temp = temp.nextNode;
+            }
+            //check if the  last element of the node
+            if (temp.value === myMarker) {
+                position = counter;
+            }
+        }
+        //console.log(position);
+        if (position == null) {
+            return 0;
+        }
+        else {
+            return position;
+        }
+    };
+    LinkedList.prototype.removeListItemByValue = function (myMarker) {
+        if (this.first == null) {
+            return true;
+        }
+        else {
+            var itemPosition = this.searchNodeByValue(myMarker);
+            if (itemPosition == 0) {
+                return true;
+            }
+            else {
+                var temp = this.first;
+                //if its the first element in the stack
+                if (itemPosition == 1) {
+                    this.first = this.first.nextNode;
+                    this.first.prevNode = null;
+                    return true;
+                }
+                //if the element is not first or last
+                while (temp.nextNode.value != myMarker) {
+                    console.log('in here');
+                    temp = temp.nextNode;
+                }
+                temp.nextNode.prevNode = temp.prevNode;
+                temp.prevNode.nextNode = temp.nextNode;
+            }
+            return true;
+        }
+    };
+    LinkedList.prototype.toString = function () {
+        var current = this.first;
+        var str = '';
+        while (current) {
+            str += current.value; //output is undefinedundefinedundefined
+            // str += JSON.stringify(current);
+            // prints out {"next":{"next":{}}}{"next":{}}{}
+            current = current.nextNode;
+        }
+        return str;
+    };
+    return LinkedList;
+}());
 var HomeModel = (function () {
     function HomeModel() {
         this.TouristAttractionList = new Array();
@@ -47,11 +320,8 @@ var HomeController = (function () {
             }
         });
         this.Initialize();
+        this.mapService = new MapService();
     }
-    HomeController.prototype.DoSomething = function () {
-        //this.Model.Display = "Changed";
-        //this.Model.Edit = "Changed";
-    };
     HomeController.prototype.Initialize = function () {
         var _this = this;
         setTimeout(function () {
