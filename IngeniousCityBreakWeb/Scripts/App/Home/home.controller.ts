@@ -37,6 +37,7 @@ class MapService{
             uniqueId++;
             markers.insertLink(marker);
             //Attach click event handler to the marker.
+            
          
             google.maps.event.addListener(marker, "click", (e) => {
                 var content = 'Latitude: ' + location.lat() + '<br />Longitude: ' + location.lng();
@@ -50,26 +51,39 @@ class MapService{
                 setTimeout(() => {
                     $("#removeMarkerBtn1").click((e) => {
                         debugger
-                        marker.setMap(null);
                         var myMarker = markers.searchNode(marker);
-                        var startpoint = { "lat": myMarker.value.getPosition().lat(), "long": myMarker.value.getPosition().lng() };
-                        var endpoint = { "lat": myMarker.prevNode.value.getPosition().lat(), "long": myMarker.prevNode.value.getPosition().lng() };
-                        var locationlinks = [
-                            new google.maps.LatLng(startpoint.lat, startpoint.long),
-                            new google.maps.LatLng(endpoint.lat, endpoint.long)
-                        ];
-                        var flightPath;
-                        debugger
-                        flightPath = new google.maps.Polyline({
-                            path: locationlinks,
-                            geodesic: true,
-                            strokeColor: '#FF0000',
-                            strokeOpacity: 1.0,
-                            strokeWeight: 2
-                        });
-                        debugger
-                        flightPath.setMap(null);
+                        if (myMarker == markers.first) {
+                            var startpoint = { "lat": myMarker.value.getPosition().lat(), "long": myMarker.value.getPosition().lng() };
+                            var endpoint = { "lat": myMarker.nextNode.value.getPosition().lat(), "long": myMarker.nextNode.value.getPosition().lng() };
+                            debugger
+                            markers.removeMarker(myMarker.value);
+                            debugger
+                            marker.setMap(null);
+                        }
+                        //else if (myMarker == markers.last) {
+                        //    var startpoint = { "lat": myMarker.prevNode.value.getPosition().lat(), "long": myMarker.prevNode.value.getPosition().lng() };
+                        //    var endpoint1 = { "lat": myMarker.value.getPosition().lat(), "long": myMarker.value.getPosition().lng() };
+                        //    markers.removeMarker(myMarker.value);
+                        //    marker.setMap(null);
+                        //}
+                       
+                        
+                        //var startpoint = { "lat": myMarker.value.getPosition().lat(), "long": myMarker.value.getPosition().lng() };
+                        //var endpoint1 = { "lat": myMarker.prevNode.value.getPosition().lat(), "long": myMarker.prevNode.value.getPosition().lng() };
+                        //var endpoint2 = { "lat": myMarker.nextNode.value.getPosition().lat(), "long": myMarker.nextNode.value.getPosition().lng() };
+                        //var locationlinks1 = [
+                        //    new google.maps.LatLng(startpoint.lat, startpoint.long),
+                        //    new google.maps.LatLng(endpoint1.lat, endpoint1.long)
+                        //];
+                        //debugger
+                        ////flightPath.setMap(null);
+                        //var locationlinks2 = [
+                        //    new google.maps.LatLng(startpoint.lat, startpoint.long),
+                        //    new google.maps.LatLng(endpoint2.lat, endpoint2.long)
+                        //];
+                      //  flightPath.setMap(null);
                         markers.removeMarker(marker);
+                        marker.setMap(null);
                     });
                 }, 300);
             });
@@ -83,9 +97,8 @@ class MapService{
                     new google.maps.LatLng(startpoint.lat, startpoint.long),
                     new google.maps.LatLng(endpoint.lat, endpoint.long)
                 ];
-                var flightPath;
                 debugger
-                flightPath = new google.maps.Polyline({
+                var flightPath = new google.maps.Polyline({
                     path: locationlinks,
                     geodesic: true,
                     strokeColor: '#FF0000',
@@ -93,23 +106,17 @@ class MapService{
                     strokeWeight: 2
                 });
                 debugger
-                flightPath
                 flightPath.setMap(this.myMap);
             }
         });
     }
 }
 
+
  class Link {
     public value: MyMarker;
     public prevNode: Link;
-    public nextNode : Link
-
-    //constructor(nodeValue: MyMarker, prevNodeReference, nextNodeReference ) {
-    //    this.value = nodeValue;
-    //    this.nextNode = nextNodeReference;
-    //    this.prevNode = prevNodeReference;
-    //}
+    public nextNode: Link;
 }
 
 
@@ -146,33 +153,27 @@ class MapService{
 
     public searchNode(marker: MyMarker): Link {
         if (this.first == null) {
-            alert("The marker's list is empty");
+           
             return;
         }
         else {
             var crt = this.first;
+            var node;
             while (crt.nextNode != null) {
                 if (crt.value == marker) {
-                    var node = crt;
+                    node = crt;
                     break;
                 }
                 crt = crt.nextNode;
+            }
+            if (crt.value == marker) {
+                node = crt;
             }
             return node;
         }
        
     }
 
-    //public getIndex(): number {
-    //    if (this.first != null) {
-    //        var crt = this.first;
-    //        var index = 1;
-    //        while (crt.nextNode != null) {
-    //            return index++;
-    //            crt = crt.nextNode;
-    //        }
-    //    }
-    //}
 
     public removeMarker(myMarker: MyMarker): boolean {
         if (this.first == null) {
@@ -190,6 +191,10 @@ class MapService{
             }
             if (this.last.value.getPosition() == myMarker.getPosition()) {
                 var nodeToBeDeleted = crt;
+            }
+            if ((nodeToBeDeleted == this.first) && (nodeToBeDeleted == this.last)) {
+                this.first = null;
+                this.last = null;
             }
             if (nodeToBeDeleted == this.first) {
                 this.first.nextNode.prevNode = null;

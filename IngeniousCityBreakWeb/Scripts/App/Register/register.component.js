@@ -6,4 +6,3 @@ angular.
     templateUrl: 'scripts/app/Register/register.template.html',
     controller: ['$window', '$http', RegisterController]
 });
-//# sourceMappingURL=register.component.js.map
