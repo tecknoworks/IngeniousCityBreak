@@ -1,27 +1,37 @@
 var LoginController = (function () {
     function LoginController($window, $http) {
         this.HttpService = $http;
-        this.LoginM = new LoginModel();
+        this.Model = new LoginModel();
     }
     LoginController.prototype.LoginClick = function () {
         var self = this;
-        this.LoginM.ErrorAlert = false;
-        if (self.LoginM.Email == null) {
-            self.LoginM.ErrorMessage = "Your email field is blank";
-            self.LoginM.ErrorAlert = true;
+        this.Model.ErrorAlert = false;
+        if (self.Model.Email == null) {
+            self.Model.ErrorMessage = "Your email field is blank";
+            self.Model.ErrorAlert = true;
             return;
         }
         if (self.EmailValidator((self.LoginM).Email) !== true) {
-            self.LoginM.ErrorMessage = "Email address is not valid!";
-            self.LoginM.ErrorAlert = true;
+            self.Model.ErrorMessage = "Email address is not valid!";
+            self.Model.ErrorAlert = true;
             return;
         }
         if (self.PasswordValidator(self.LoginM.Password) !== true) {
-            self.LoginM.ErrorMessage = "Password is not valid!";
-            self.LoginM.ErrorAlert = true;
+            self.Model.ErrorMessage = "Password is not valid!";
+            self.Model.ErrorAlert = true;
             return;
         }
-        //this.HttpService.post("/Token")
+        var data = {
+            email: self.Model.Email,
+            password: self.Model.Password
+        };
+        self.HttpService({
+            method: 'POST',
+            url: '/token',
+            data: data,
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+        });
+        //this.HttpService.post("/Token",data)
         //	.then((response) => {
         //	});
     };
@@ -40,4 +50,3 @@ var LoginModel = (function () {
     }
     return LoginModel;
 }());
-//# sourceMappingURL=login.controller.js.map
