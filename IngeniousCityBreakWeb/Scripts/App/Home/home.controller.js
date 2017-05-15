@@ -10,6 +10,13 @@ var MyMarker = (function (_super) {
     }
     return MyMarker;
 }(google.maps.Marker));
+var MyPolyline = (function (_super) {
+    __extends(MyPolyline, _super);
+    function MyPolyline(opts) {
+        _super.call(this, opts);
+    }
+    return MyPolyline;
+}(google.maps.Polyline));
 var MapService = (function () {
     function MapService() {
         var _this = this;
@@ -51,36 +58,47 @@ var MapService = (function () {
                     $("#removeMarkerBtn1").click(function (e) {
                         debugger;
                         var myMarker = markers.searchNode(marker);
-                        if (myMarker == markers.first) {
-                            var startpoint = { "lat": myMarker.value.getPosition().lat(), "long": myMarker.value.getPosition().lng() };
-                            var endpoint = { "lat": myMarker.nextNode.value.getPosition().lat(), "long": myMarker.nextNode.value.getPosition().lng() };
+                        if ((myMarker == markers.first) && (markers.first == markers.last)) {
+                            markers.removeMarker(myMarker.value);
+                            myMarker.value.setMap(null);
+                        }
+                        else if ((myMarker == markers.first) && (markers.first != markers.last)) {
+                            markers.first.line.setMap(null);
                             debugger;
                             markers.removeMarker(myMarker.value);
                             debugger;
-                            marker.setMap(null);
+                            myMarker.value.setMap(null);
                         }
-                        //else if (myMarker == markers.last) {
-                        //    var startpoint = { "lat": myMarker.prevNode.value.getPosition().lat(), "long": myMarker.prevNode.value.getPosition().lng() };
-                        //    var endpoint1 = { "lat": myMarker.value.getPosition().lat(), "long": myMarker.value.getPosition().lng() };
-                        //    markers.removeMarker(myMarker.value);
-                        //    marker.setMap(null);
-                        //}
-                        //var startpoint = { "lat": myMarker.value.getPosition().lat(), "long": myMarker.value.getPosition().lng() };
-                        //var endpoint1 = { "lat": myMarker.prevNode.value.getPosition().lat(), "long": myMarker.prevNode.value.getPosition().lng() };
-                        //var endpoint2 = { "lat": myMarker.nextNode.value.getPosition().lat(), "long": myMarker.nextNode.value.getPosition().lng() };
-                        //var locationlinks1 = [
-                        //    new google.maps.LatLng(startpoint.lat, startpoint.long),
-                        //    new google.maps.LatLng(endpoint1.lat, endpoint1.long)
-                        //];
-                        //debugger
-                        ////flightPath.setMap(null);
-                        //var locationlinks2 = [
-                        //    new google.maps.LatLng(startpoint.lat, startpoint.long),
-                        //    new google.maps.LatLng(endpoint2.lat, endpoint2.long)
-                        //];
-                        //  flightPath.setMap(null);
-                        markers.removeMarker(marker);
-                        marker.setMap(null);
+                        else if ((myMarker == markers.last) && (markers.last != markers.first)) {
+                            markers.last.prevNode.line.setMap(null);
+                            markers.removeMarker(myMarker.value);
+                            myMarker.value.setMap(null);
+                        }
+                        else {
+                            var startpoint = { "lat": myMarker.prevNode.value.getPosition().lat(), "long": myMarker.prevNode.value.getPosition().lng() };
+                            var endpoint = { "lat": myMarker.nextNode.value.getPosition().lat(), "long": myMarker.nextNode.value.getPosition().lng() };
+                            var locationlinks = [
+                                new google.maps.LatLng(startpoint.lat, startpoint.long),
+                                new google.maps.LatLng(endpoint.lat, endpoint.long)
+                            ];
+                            debugger;
+                            var lineOptions = {
+                                path: locationlinks,
+                                geodesic: true,
+                                strokeColor: '#FF0000',
+                                strokeOpacity: 1.0,
+                                strokeWeight: 2
+                            };
+                            var flightPath = new MyPolyline(lineOptions);
+                            debugger;
+                            var mark = myMarker;
+                            myMarker.prevNode.line.setMap(null);
+                            myMarker.line.setMap(null);
+                            markers.removeMarker(myMarker.value);
+                            mark.value.setMap(null);
+                            mark.prevNode.line = flightPath;
+                            mark.prevNode.line.setMap(_this.myMap);
+                        }
                     });
                 }, 300);
             });
@@ -95,15 +113,17 @@ var MapService = (function () {
                     new google.maps.LatLng(endpoint.lat, endpoint.long)
                 ];
                 debugger;
-                var flightPath = new google.maps.Polyline({
+                var lineOptions = {
                     path: locationlinks,
                     geodesic: true,
                     strokeColor: '#FF0000',
                     strokeOpacity: 1.0,
                     strokeWeight: 2
-                });
+                };
+                var flightPath = new MyPolyline(lineOptions);
                 debugger;
-                flightPath.setMap(_this.myMap);
+                markers.last.prevNode.line = flightPath;
+                markers.last.prevNode.line.setMap(_this.myMap);
             }
         });
     }
@@ -123,6 +143,7 @@ var LinkedList = (function () {
         if (this.first == null) {
             var node = new Link();
             node.value = myMarker;
+            node.line = null;
             node.prevNode = node.nextNode = null;
             this.first = this.last = node;
             this._length++;
@@ -133,6 +154,7 @@ var LinkedList = (function () {
             var node = new Link();
             node.nextNode = null;
             node.value = myMarker;
+            node.line = null;
             while (crt.nextNode != null) {
                 crt = crt.nextNode;
             }
@@ -159,10 +181,16 @@ var LinkedList = (function () {
             if (crt.value == marker) {
                 node = crt;
             }
-            return node;
+            if (node == null) {
+                return node;
+            }
+            else {
+                return crt;
+            }
         }
     };
     LinkedList.prototype.removeMarker = function (myMarker) {
+        var nodeToBeDeleted;
         if (this.first == null) {
             console.log("The list of markers is empty!");
             return true;
@@ -171,19 +199,19 @@ var LinkedList = (function () {
             var crt = this.first;
             while (crt.nextNode != null) {
                 if (crt.value.getPosition() == myMarker.getPosition()) {
-                    var nodeToBeDeleted = crt;
+                    nodeToBeDeleted = crt;
                     break;
                 }
                 crt = crt.nextNode;
             }
             if (this.last.value.getPosition() == myMarker.getPosition()) {
-                var nodeToBeDeleted = crt;
+                nodeToBeDeleted = crt;
             }
-            if ((nodeToBeDeleted == this.first) && (nodeToBeDeleted == this.last)) {
+            if ((nodeToBeDeleted == this.first) && (this.first == this.last)) {
                 this.first = null;
                 this.last = null;
             }
-            if (nodeToBeDeleted == this.first) {
+            else if (nodeToBeDeleted == this.first) {
                 this.first.nextNode.prevNode = null;
                 this.first = this.first.nextNode;
             }
@@ -211,64 +239,6 @@ var LinkedList = (function () {
             console.log(crt.value);
         }
     };
-    //last occurrence of a given number
-    LinkedList.prototype.searchNodeByValue = function (myMarker) {
-        var temp = this.first;
-        var counter = 1;
-        var position = null;
-        if (temp == null) {
-            console.log('empty list');
-        }
-        else {
-            while (temp.nextNode != null) {
-                if (temp.value === myMarker) {
-                    position = counter;
-                    break;
-                }
-                counter++;
-                temp = temp.nextNode;
-            }
-            //check if the  last element of the node
-            if (temp.value === myMarker) {
-                position = counter;
-            }
-        }
-        //console.log(position);
-        if (position == null) {
-            return 0;
-        }
-        else {
-            return position;
-        }
-    };
-    LinkedList.prototype.removeListItemByValue = function (myMarker) {
-        if (this.first == null) {
-            return true;
-        }
-        else {
-            var itemPosition = this.searchNodeByValue(myMarker);
-            if (itemPosition == 0) {
-                return true;
-            }
-            else {
-                var temp = this.first;
-                //if its the first element in the stack
-                if (itemPosition == 1) {
-                    this.first = this.first.nextNode;
-                    this.first.prevNode = null;
-                    return true;
-                }
-                //if the element is not first or last
-                while (temp.nextNode.value != myMarker) {
-                    console.log('in here');
-                    temp = temp.nextNode;
-                }
-                temp.nextNode.prevNode = temp.prevNode;
-                temp.prevNode.nextNode = temp.nextNode;
-            }
-            return true;
-        }
-    };
     LinkedList.prototype.toString = function () {
         var current = this.first;
         var str = '';
@@ -287,6 +257,11 @@ var HomeModel = (function () {
         this.TouristAttractionList = new Array();
     }
     return HomeModel;
+}());
+var RouteDto = (function () {
+    function RouteDto() {
+    }
+    return RouteDto;
 }());
 var TouristAttractionDto = (function () {
     function TouristAttractionDto() {
