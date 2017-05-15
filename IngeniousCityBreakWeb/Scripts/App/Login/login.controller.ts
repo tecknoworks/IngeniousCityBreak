@@ -1,51 +1,55 @@
 ﻿class LoginController {
-	public Model: LoginModel;
+	public Model1: LoginModel;
 	protected HttpService: ng.IHttpService;
+	protected Window: ng.IWindowService;
 	constructor($window: ng.IWindowService, $http: ng.IHttpService) {
 		this.HttpService = $http;
-		this.Model = new LoginModel();
+		this.Window = $window;
+		this.Model1 = new LoginModel();
 	}
 
 	public LoginClick(): void {
 		var self = this;
-		this.Model.ErrorAlert = false;
-
-		if (self.Model.Email == null) {
-			self.Model.ErrorMessage = "Your email field is blank";
-			self.Model.ErrorAlert = true;
+		this.Model1.ErrorAlert = false;
+		debugger
+		if (self.Model1.Email == null) {
+			self.Model1.ErrorMessage = "Your email field is blank!";
+			self.Model1.ErrorAlert = true;
 			return;
 		}
-		if (self.EmailValidator((self.LoginM).Email) !== true) {
-			self.Model.ErrorMessage = "Email address is not valid!";
-            self.Model.ErrorAlert = true;
+		debugger
+		if (self.EmailValidator((self.Model1).Email) !== true) {
+			self.Model1.ErrorMessage = "Email address is not valid!";
+            self.Model1.ErrorAlert = true;
+			debugger
             return;
 		}
-		if (self.PasswordValidator(self.LoginM.Password) !== true) {
-            self.Model.ErrorMessage = "Password is not valid!";
-            self.Model.ErrorAlert = true;
+		if (self.PasswordValidator(self.Model1.Password) !== true) {
+            self.Model1.ErrorMessage = "Password is not valid!";
+            self.Model1.ErrorAlert = true;
+			debugger
             return;
         }
 
-		var data = {
-			email: self.Model.Email,
-			password: self.Model.Password
-		};
-
-		self.HttpService({
-			method: 'POST',
-			url: '/token',
-			data: data,
-			headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-
+		var config: angular.IRequestShortcutConfig = {
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            }
+        };
+		debugger
+		var data = "username=" + self.Model1.Email + "&password=" + self.Model1.Password + "&grant_type=password";
+		this.HttpService.post('/token', data).then(function (response){
+			debugger
+			self.Model1.ErrorMessage = "You are now logged in! ";
+			self.Window.location.href = '/index.html#!/home';
+           
+			debugger
+			}).catch(function (response) {
+				debugger
+			self.Model1.ErrorMessage = response.data.Message;
 		});
 
-
-
-
-		//this.HttpService.post("/Token",data)
-		//	.then((response) => {
-
-		//	});
+		
 	}
 
 	protected EmailValidator(email) {

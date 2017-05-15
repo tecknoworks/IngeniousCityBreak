@@ -509,7 +509,7 @@
 								<label for="name-login">Name</label>
 								<input type="text" class="form-control" id="name-login" ng-model="$ctrl.Model.Name">
 							</div>-->
-							<div class="form-group">
+							<div class="form-group" >
 								<label for="email-login">Email</label>
 								<input type="text" class="form-control" id="email-login" ng-model="$ctrl.Model.Email">
 							</div>
@@ -522,11 +522,12 @@
 								<input type="password" class="form-control" id="confirmpassword-login" ng-model="$ctrl.Model.ConfirmPassword">
 							</div>
 							<div class="text-center">
-								<button type="submit" class="btn btn-template-main"><i class="fa fa-user-md" ng-click="$ctrl.RegisterClick()"></i> Register</button>
-								<!--<span ng-show="$ctrl.Model.ErrorMessage" >{{$ctrl.Model.ErrorMessage}}</span>-->
+								<button type="submit" class="btn btn-template-main" ng-click="$ctrl.RegisterClick()"><i class="fa fa-user-md" ></i> Register</button>
+								<br />
+								<span ng-show="$ctrl.Model.ErrorMessage" >{{$ctrl.Model.ErrorMessage}}</span>
 							</div>
-						<!--</form>-->
-					</div>
+							<!--</form>-->
+						</div>
 				</div>
 
 				<div class="col-md-6">
@@ -542,16 +543,18 @@
 						<hr>
 
 						<!--<form action="customer-orders.html" method="post">-->
-							<div class="form-group">
+							<div class="form-group" >
 								<label for="email">Email</label>
-								<input type="text" class="form-control" id="email">
+								<input type="text" class="form-control" id="email" ng-model="$ctrl.Model1.Email">
 							</div>
 							<div class="form-group">
 								<label for="password">Password</label>
-								<input type="password" class="form-control" id="password">
+								<input type="password" class="form-control" id="password" ng-model="$ctrl.Model1.Password">
 							</div>
 							<div class="text-center">
-								<button type="submit" class="btn btn-template-main"><i class="fa fa-sign-in"></i> Log in</button>
+								<button type="submit" class="btn btn-template-main" ng-click="$ctrl.LoginClick()"><i class="fa fa-sign-in"></i> Log in</button>
+								<br />
+								<span ng-show="$ctrl.Model1.ErrorMessage">{{$ctrl.Model1.ErrorMessage}}</span>
 							</div>
 						<!--</form>-->
 					</div>

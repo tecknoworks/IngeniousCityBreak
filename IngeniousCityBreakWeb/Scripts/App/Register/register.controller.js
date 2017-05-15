@@ -8,10 +8,9 @@ var RegisterController = (function (_super) {
     function RegisterController($window, $http) {
         _super.call(this, $window, $http);
         this.Initialize();
-        this.HttpService = $http;
         this.Model = new RegisterModel();
         //this.Model.Password = "Hello";
-        debugger;
+        //debugger
     }
     RegisterController.prototype.RegisterClick = function () {
         debugger;
@@ -22,16 +21,19 @@ var RegisterController = (function (_super) {
             self.Model.ErrorAlert = true;
             return;
         }
+        debugger;
         if (self.Model.Password !== self.Model.ConfirmPassword) {
             self.Model.ErrorMessage = "The password must be the same!";
             self.Model.ErrorAlert = true;
             return;
         }
+        debugger;
         if (self.EmailValidator(self.Model.Email) !== true) {
             self.Model.ErrorMessage = "Email address is not valid!";
             self.Model.ErrorAlert = true;
             return;
         }
+        debugger;
         if (self.PasswordValidator(self.Model.Password) !== true) {
             self.Model.ErrorMessage = "Password is not valid!";
             self.Model.ErrorAlert = true;
@@ -44,11 +46,14 @@ var RegisterController = (function (_super) {
                 "contentType": "application/json"
             }
         };
+        debugger;
         this.HttpService.post('api/Account/Register', {
             "Email": self.Model.Email,
             "Password": self.Model.Password,
             "ConfirmPassword": self.Model.ConfirmPassword,
         }).then(function (response) {
+            debugger;
+            self.Window.location.href = '/index.html#!/home';
             self.Model.ErrorMessage = "You have successfully registered";
         }).catch(function (response) {
             self.Model.ErrorMessage = response.data.Message;
