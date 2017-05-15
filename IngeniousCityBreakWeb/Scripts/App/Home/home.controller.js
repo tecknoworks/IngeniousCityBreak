@@ -258,11 +258,6 @@ var HomeModel = (function () {
     }
     return HomeModel;
 }());
-var RouteDto = (function () {
-    function RouteDto() {
-    }
-    return RouteDto;
-}());
 var TouristAttractionDto = (function () {
     function TouristAttractionDto() {
     }
@@ -339,3 +334,4 @@ var HomeController = (function () {
     };
     return HomeController;
 }());
+//# sourceMappingURL=home.controller.js.map

@@ -278,11 +278,6 @@ class HomeModel {
     }
 }
 
-class RouteDto {
-    IdRoute: number;
-    Route: Arr
-}
-
 class TouristAttractionDto {
     IdTouristAttraction: number;
     Image: string;
