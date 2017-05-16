@@ -5,11 +5,10 @@
 	constructor($window: ng.IWindowService, $http: ng.IHttpService) {
 		super($window, $http);
 		this.Initialize();
-		this.HttpService = $http;
 		this.Model = new RegisterModel();
 		//this.Model.Password = "Hello";
 		
-		debugger
+		//debugger
 	
 
 	}
@@ -23,17 +22,20 @@
             self.Model.ErrorAlert = true;
             return;
 		}
+		debugger
 		if (self.Model.Password !== self.Model.ConfirmPassword) {
             self.Model.ErrorMessage = "The password must be the same!";
             self.Model.ErrorAlert = true;
             return;
         }
+		debugger
 
 		if (self.EmailValidator(self.Model.Email) !== true) {
             self.Model.ErrorMessage = "Email address is not valid!";
             self.Model.ErrorAlert = true;
             return;
         }
+		debugger
         if (self.PasswordValidator(self.Model.Password) !== true) {
             self.Model.ErrorMessage = "Password is not valid!";
             self.Model.ErrorAlert = true;
@@ -47,13 +49,16 @@
                 "contentType": "application/json"
             }
         };
+		debugger
 
 		this.HttpService.post('api/Account/Register', {
             "Email": self.Model.Email,
             "Password": self.Model.Password,
 			"ConfirmPassword": self.Model.ConfirmPassword,
+			
         }).then(function (response) {
-
+			debugger
+			self.Window.location.href = '/index.html#!/home';
             self.Model.ErrorMessage = "You have successfully registered";
 
 		}).catch(function (response) {
@@ -117,7 +122,6 @@
 
 class RegisterModel {
 
-	//public Name: string;
 	public Email: string;
 	public Password: string;
 	public ConfirmPassword: string;

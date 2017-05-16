@@ -1,29 +1,47 @@
 var LoginController = (function () {
     function LoginController($window, $http) {
         this.HttpService = $http;
-        this.LoginM = new LoginModel();
+        this.Window = $window;
+        this.Model1 = new LoginModel();
     }
     LoginController.prototype.LoginClick = function () {
         var self = this;
-        this.LoginM.ErrorAlert = false;
-        if (self.LoginM.Email == null) {
-            self.LoginM.ErrorMessage = "Your email field is blank";
-            self.LoginM.ErrorAlert = true;
+        this.Model1.ErrorAlert = false;
+        debugger;
+        if (self.Model1.Email == null) {
+            self.Model1.ErrorMessage = "Your email field is blank!";
+            self.Model1.ErrorAlert = true;
             return;
         }
-        if (self.EmailValidator((self.LoginM).Email) !== true) {
-            self.LoginM.ErrorMessage = "Email address is not valid!";
-            self.LoginM.ErrorAlert = true;
+        debugger;
+        if (self.EmailValidator((self.Model1).Email) !== true) {
+            self.Model1.ErrorMessage = "Email address is not valid!";
+            self.Model1.ErrorAlert = true;
+            debugger;
             return;
         }
-        if (self.PasswordValidator(self.LoginM.Password) !== true) {
-            self.LoginM.ErrorMessage = "Password is not valid!";
-            self.LoginM.ErrorAlert = true;
+        if (self.PasswordValidator(self.Model1.Password) !== true) {
+            self.Model1.ErrorMessage = "Password is not valid!";
+            self.Model1.ErrorAlert = true;
+            debugger;
             return;
         }
-        //this.HttpService.post("/Token")
-        //	.then((response) => {
-        //	});
+        var config = {
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            }
+        };
+        debugger;
+        var data = "username=" + self.Model1.Email + "&password=" + self.Model1.Password + "&grant_type=password";
+        this.HttpService.post('/token', data).then(function (response) {
+            debugger;
+            self.Model1.ErrorMessage = "You are now logged in! ";
+            self.Window.location.href = '/index.html#!/home';
+            debugger;
+        }).catch(function (response) {
+            debugger;
+            self.Model1.ErrorMessage = response.data.Message;
+        });
     };
     LoginController.prototype.EmailValidator = function (email) {
         var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

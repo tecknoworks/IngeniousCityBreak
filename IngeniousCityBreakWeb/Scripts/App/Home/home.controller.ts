@@ -278,6 +278,11 @@ class HomeModel {
     }
 }
 
+class RouteDto {
+    IdRoute: number;
+   
+}
+
 class TouristAttractionDto {
     IdTouristAttraction: number;
     Image: string;
@@ -338,7 +343,7 @@ class HomeController {
 
         setTimeout(() => {
 
-            this.LoadCss('<link href="https://fonts.googleapis.com/css?family=Roboto:400,700,900,900i" rel="stylesheet">');
+           // this.LoadCss('<link href="https://fonts.googleapis.com/css?family=Roboto:400,700,900,900i" rel="stylesheet">');
             this.LoadCss("Content/Theme/css/owl.theme.css");
 
             //load script

@@ -301,7 +301,7 @@ var HomeController = (function () {
     HomeController.prototype.Initialize = function () {
         var _this = this;
         setTimeout(function () {
-            _this.LoadCss('<link href="https://fonts.googleapis.com/css?family=Roboto:400,700,900,900i" rel="stylesheet">');
+            // this.LoadCss('<link href="https://fonts.googleapis.com/css?family=Roboto:400,700,900,900i" rel="stylesheet">');
             _this.LoadCss("Content/Theme/css/owl.theme.css");
             //load script
             _this.LoadScript("http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js");
