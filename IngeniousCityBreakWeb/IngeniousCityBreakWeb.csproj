@@ -593,6 +593,7 @@
     <TypeScriptCompile Include="Scripts\App\app.config.ts" />
     <TypeScriptCompile Include="Scripts\App\app.module.ts" />
     <TypeScriptCompile Include="Scripts\App\app.ts" />
+    <TypeScriptCompile Include="Scripts\App\Core\Base\base.controller.ts" />
     <TypeScriptCompile Include="Scripts\App\Home\home.component.ts" />
     <TypeScriptCompile Include="Scripts\App\Home\home.module.ts" />
     <TypeScriptCompile Include="Scripts\App\Home\home.controller.ts" />
