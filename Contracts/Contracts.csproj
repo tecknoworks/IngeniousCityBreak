@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Managers\IRouteManager.cs" />
     <Compile Include="Managers\ITouristAttraction.cs" />
     <Compile Include="Managers\IUserManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

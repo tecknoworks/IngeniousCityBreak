@@ -8,6 +8,8 @@ namespace BusinessLayer.Dto
 {
     public class RouteDto
     {
-        public int? IdRoute { get; set; } 
+        public int? IdRoute { get; set; }
+
+        public string RouteJson { get; set; }
     }
 }

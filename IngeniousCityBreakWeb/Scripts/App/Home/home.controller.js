@@ -45,15 +45,18 @@ var MapService = (function () {
             uniqueId++;
             markers.insertLink(marker);
             //Attach click event handler to the marker.
+            var geocoder = new google.maps.Geocoder;
+            var latlng = location.lat() + "," + location.lng();
+            var url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' + location.lat() + ',' + location.lng() + '&sensor=true';
             google.maps.event.addListener(marker, "click", function (e) {
-                var content = 'Latitude: ' + location.lat() + '<br />Longitude: ' + location.lng();
+                var content = 'Latitude: ' + location.lat() + '<br />Longitude: ' + location.lng() + '<br/>Adress: ';
                 content += "<br /><input type = 'button' value = 'Delete' id='removeMarkerBtn1' marker='" + marker.id + "' value = 'Delete' />";
                 debugger;
                 var infoWindow = new google.maps.InfoWindow({
                     content: content
                 });
-                debugger;
                 infoWindow.open(_this.myMap, marker);
+                debugger;
                 setTimeout(function () {
                     $("#removeMarkerBtn1").click(function (e) {
                         debugger;
@@ -258,6 +261,11 @@ var HomeModel = (function () {
     }
     return HomeModel;
 }());
+var RouteDto = (function () {
+    function RouteDto() {
+    }
+    return RouteDto;
+}());
 var TouristAttractionDto = (function () {
     function TouristAttractionDto() {
     }
@@ -284,8 +292,8 @@ var HomeController = (function () {
         this.httpService = $http;
         this.windowService = $window;
         this.Model = new HomeModel();
-        //this.Model.Display = "Can't change";
-        //this.Model.Edit = "Do change";
+        this.Model.Display = "Can't change";
+        this.Model.Edit = "Do change";
         this.httpService.get("/api/TouristAttraction")
             .then(function (response) {
             var data = response.data;

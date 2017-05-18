@@ -87,14 +87,12 @@
   <ItemGroup>
     <Compile Include="Dto\CityDto.cs" />
     <Compile Include="Dto\CountryDto.cs" />
-    <Compile Include="Dto\MapDto.cs" />
     <Compile Include="Dto\RouteDto.cs" />
     <Compile Include="Dto\TouristAttractionDto.cs" />
     <Compile Include="Dto\UserDetailsDto.cs" />
     <Compile Include="Entity\ApplicationUser.cs" />
     <Compile Include="Entity\City.cs" />
     <Compile Include="Entity\Country.cs" />
-    <Compile Include="Entity\Map.cs" />
     <Compile Include="Entity\Route.cs" />
     <Compile Include="Entity\TouristAttraction.cs" />
     <Compile Include="Entity\UserDetails.cs" />

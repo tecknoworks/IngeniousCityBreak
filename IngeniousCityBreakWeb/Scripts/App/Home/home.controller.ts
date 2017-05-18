@@ -44,17 +44,18 @@ class MapService {
             uniqueId++;
             markers.insertLink(marker);
             //Attach click event handler to the marker.
-
-
+            var geocoder = new google.maps.Geocoder;
+            var latlng = location.lat() + "," + location.lng();
+            var url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' + location.lat() + ',' + location.lng() + '&sensor=true'; 
             google.maps.event.addListener(marker, "click", (e) => {
-                var content = 'Latitude: ' + location.lat() + '<br />Longitude: ' + location.lng();
-                content += "<br /><input type = 'button' value = 'Delete' id='removeMarkerBtn1' marker='" + marker.id + "' value = 'Delete' />";
-                debugger
+                var content = 'Latitude: ' + location.lat() + '<br />Longitude: ' + location.lng() + '<br/>Adress: ';
+                    content += "<br /><input type = 'button' value = 'Delete' id='removeMarkerBtn1' marker='" + marker.id + "' value = 'Delete' />";
+                    debugger
                 var infoWindow = new google.maps.InfoWindow({
                     content: content
                 });
-                debugger
                 infoWindow.open(this.myMap, marker);
+                debugger
                 setTimeout(() => {
                     $("#removeMarkerBtn1").click((e) => {
                         debugger
@@ -270,12 +271,12 @@ class LinkedList {
 }
 
 class HomeModel {
-    //public Display: string;
-    //public Edit: string;
+    public Display: string;
+    public Edit: string;
     public TouristAttractionList: Array<TouristAttractionModel>;
-    constructor() {
-        this.TouristAttractionList = new Array<TouristAttractionModel>();
-    }
+   constructor() {
+      this.TouristAttractionList = new Array<TouristAttractionModel>();
+   }
 }
 
 class RouteDto {
@@ -322,8 +323,8 @@ class HomeController {
 
         this.Model = new HomeModel();
 
-        //this.Model.Display = "Can't change";
-        //this.Model.Edit = "Do change";
+        this.Model.Display = "Can't change";
+        this.Model.Edit = "Do change";
 
         this.httpService.get("/api/TouristAttraction")
             .then((response) => {

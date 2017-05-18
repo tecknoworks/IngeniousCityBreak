@@ -481,22 +481,22 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
-        <member name="M:IngeniousCityBreakWeb.Controllers.TouristAttractionController.InsertTouristAttraction(BusinessLayer.Dto.TouristAttractionDto)">
+        <member name="M:IngeniousCityBreakWeb.Controllers.RouteController.InsertTouristAttraction(BusinessLayer.Dto.RouteDto)">
             <summary>
-            Create a new tourist attraction
+            Create a new route
             </summary>
-            <param name="touristAttraction"></param>
+            <param name="route"></param>
             <returns></returns>
         </member>
-        <member name="M:IngeniousCityBreakWeb.Controllers.TouristAttractionController.GetAll">
+        <member name="M:IngeniousCityBreakWeb.Controllers.RouteController.GetAll">
             <summary>
-            Get all tourist attractions
+            Get all routes
             </summary>
-            <returns>All tourist ttractions</returns>
+            <returns>All routes</returns>
         </member>
-        <member name="M:IngeniousCityBreakWeb.Controllers.TouristAttractionController.GetTouristAttractionId(System.Int32)">
+        <member name="M:IngeniousCityBreakWeb.Controllers.RouteController.GetRouteById(System.Int32)">
             <summary>
-            Get tourist attractions by Id
+            Get route by Id
             </summary>
             <param name="id"></param>
             <returns></returns>
