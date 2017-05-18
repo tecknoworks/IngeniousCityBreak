@@ -35,6 +35,14 @@ var LoginController = (function () {
         var data = "username=" + self.Model1.Email + "&password=" + self.Model1.Password + "&grant_type=password";
         this.HttpService.post('/token', data).then(function (response) {
             debugger;
+            var user = new UserModel();
+            //var result: any = response.data;
+            var result = response.data;
+            user.UserName = result.userName;
+            user.AccessToken = result.access_token;
+            user.TokenType = result.token_type;
+            var userJson = JSON.stringify(user);
+            localStorage.setItem('IngeniousCityBreakUser', userJson);
             self.Model1.ErrorMessage = "You are now logged in! ";
             self.Window.location.href = '/index.html#!/home';
             debugger;
@@ -57,5 +65,15 @@ var LoginModel = (function () {
     function LoginModel() {
     }
     return LoginModel;
+}());
+var UserModel = (function () {
+    function UserModel() {
+    }
+    return UserModel;
+}());
+var UserDto = (function () {
+    function UserDto() {
+    }
+    return UserDto;
 }());
 //# sourceMappingURL=login.controller.js.map

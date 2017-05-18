@@ -1,5 +1,8 @@
-﻿class LoginController {
+﻿
+
+class LoginController {
 	public Model1: LoginModel;
+	//public User: UserModel;
 	protected HttpService: ng.IHttpService;
 	protected Window: ng.IWindowService;
 	constructor($window: ng.IWindowService, $http: ng.IHttpService) {
@@ -7,6 +10,7 @@
 		this.Window = $window;
 		this.Model1 = new LoginModel();
 	}
+
 
 	public LoginClick(): void {
 		var self = this;
@@ -37,9 +41,25 @@
             }
         };
 		debugger
+
+
 		var data = "username=" + self.Model1.Email + "&password=" + self.Model1.Password + "&grant_type=password";
-		this.HttpService.post('/token', data).then(function (response){
+		this.HttpService.post('/token', data).then(function (response) {
 			debugger
+
+			var user: UserModel = new UserModel();
+			//var result: any = response.data;
+
+			var result: UserDto = <UserDto>response.data;
+
+			user.UserName = result.userName;
+			user.AccessToken = result.access_token;
+			user.TokenType = result.token_type;
+
+			var userJson = JSON.stringify(user);
+			localStorage.setItem('IngeniousCityBreakUser', userJson);
+
+
 			self.Model1.ErrorMessage = "You are now logged in! ";
 			self.Window.location.href = '/index.html#!/home';
            
@@ -67,5 +87,20 @@ class LoginModel {
 	public Password: string;
 	public ErrorMessage: string;
 	public ErrorAlert: boolean;
+	constructor() { }
+}
+
+class UserModel {
+	public UserName: string;
+	public AccessToken: string;
+	public TokenType: string;
+	constructor() { }
+}
+
+class UserDto {
+	public userName: string;
+	public access_token: string;
+	public token_type: string;
+	
 	constructor() { }
 }
