@@ -29,7 +29,7 @@
 							<a ng-hide="$ctrl.currentUser" id="signInLink" href="#!/register" data-toggle="modal" data-target="#login-modal"><i class="fa fa-sign-in"></i> <span class="hidden-xs text-uppercase">Sign in</span></a>
 							<a ng-hide="$ctrl.currentUser" href="#!/register"><i class="fa fa-user"></i><span class="hidden-xs text-uppercase">Sign up</span></a>
 
-
+							<a ng-show="$ctrl.currentUser" href="javascript" >{{$ctrl.currentUser.UserName}}</a>
 							<a ng-show="$ctrl.currentUser" href="javascript: void(0)" ng-click="$ctrl.LogOutClick()"><i class="fa fa-sign-out"></i><span class="hidden-xs text-uppercase">Sign out</span></a>
 						
 						</div>

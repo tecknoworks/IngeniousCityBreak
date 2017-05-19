@@ -1,11 +1,12 @@
 ﻿
 
-class LoginController {
+class LoginController extends BaseController {
 	public Model1: LoginModel;
 	//public User: UserModel;
 	protected HttpService: ng.IHttpService;
 	protected Window: ng.IWindowService;
 	constructor($window: ng.IWindowService, $http: ng.IHttpService) {
+		super($window);
 		this.HttpService = $http;
 		this.Window = $window;
 		this.Model1 = new LoginModel();

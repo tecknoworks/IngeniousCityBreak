@@ -12,3 +12,4 @@ var BaseController = (function () {
     };
     return BaseController;
 }());
+//# sourceMappingURL=base.controller.js.map

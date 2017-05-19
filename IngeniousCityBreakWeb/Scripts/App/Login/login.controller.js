@@ -1,5 +1,12 @@
-var LoginController = (function () {
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var LoginController = (function (_super) {
+    __extends(LoginController, _super);
     function LoginController($window, $http) {
+        _super.call(this, $window);
         this.HttpService = $http;
         this.Window = $window;
         this.Model1 = new LoginModel();
@@ -60,7 +67,7 @@ var LoginController = (function () {
         return re.test(password);
     };
     return LoginController;
-}());
+}(BaseController));
 var LoginModel = (function () {
     function LoginModel() {
     }
@@ -76,3 +83,4 @@ var UserDto = (function () {
     }
     return UserDto;
 }());
+//# sourceMappingURL=login.controller.js.map
