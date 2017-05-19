@@ -1,7 +1,21 @@
-﻿class MyMarker extends google.maps.Marker {
+﻿class RouteDataItemModel {
+    Lat: number;
+    Long: number;
+
+    constructor(lat, long) {
+        this.Lat = lat;
+        this.Long = long;
+    }
+}
+
+class MyMarker extends google.maps.Marker {
     id: number;
     constructor(opts?: google.maps.MarkerOptions) {
         super(opts);
+    }
+
+    public GetRouteDataItemModel(): RouteDataItemModel {
+        return new RouteDataItemModel(this.getPosition().lat(), this.getPosition().lng());
     }
 }
 
@@ -14,6 +28,7 @@ class MyPolyline extends google.maps.Polyline {
 
 class MapService {
     protected myMap: google.maps.Map;
+    markers: LinkedList;
     constructor() {
         var self = this;
 
@@ -26,7 +41,7 @@ class MapService {
         var uniqueId = 1; //sus
         debugger
         this.myMap = new google.maps.Map(document.getElementById("dvMap"), mapOptions);
-        let markers = new LinkedList(this.myMap);
+        this.markers = new LinkedList(this.myMap);
 
         google.maps.event.addListener(this.myMap, 'click', (e) => {
             //Determine the location where the user has clicked.
@@ -42,15 +57,15 @@ class MapService {
             //Set unique id
             marker.id = uniqueId;
             uniqueId++;
-            markers.insertLink(marker);
+            this.markers.insertLink(marker);
             //Attach click event handler to the marker.
             var geocoder = new google.maps.Geocoder;
             var latlng = location.lat() + "," + location.lng();
-            var url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' + location.lat() + ',' + location.lng() + '&sensor=true'; 
+            var url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' + location.lat() + ',' + location.lng() + '&sensor=true';
             google.maps.event.addListener(marker, "click", (e) => {
-                var content = 'Latitude: ' + location.lat() + '<br />Longitude: ' + location.lng() + '<br/>Adress: ';
-                    content += "<br /><input type = 'button' value = 'Delete' id='removeMarkerBtn1' marker='" + marker.id + "' value = 'Delete' />";
-                    debugger
+                var content = 'Latitude: ' + location.lat() + '<br />Longitude: ' + location.lng();
+                content += "<br /><input type = 'button' value = 'Delete' id='removeMarkerBtn1' marker='" + marker.id + "' value = 'Delete' />";
+                debugger
                 var infoWindow = new google.maps.InfoWindow({
                     content: content
                 });
@@ -59,22 +74,22 @@ class MapService {
                 setTimeout(() => {
                     $("#removeMarkerBtn1").click((e) => {
                         debugger
-                        var myMarker = markers.searchNode(marker);
-                        if ((myMarker == markers.first) && (markers.first == markers.last)) {
-                            markers.removeMarker(myMarker.value);
+                        var myMarker = this.markers.searchNode(marker);
+                        if ((myMarker == this.markers.first) && (this.markers.first == this.markers.last)) {
+                            this.markers.removeMarker(myMarker.value);
                             myMarker.value.setMap(null);
                         }
                         else
-                            if ((myMarker == markers.first) && (markers.first != markers.last)) {
-                                markers.first.line.setMap(null);
+                            if ((myMarker == this.markers.first) && (this.markers.first != this.markers.last)) {
+                                this.markers.first.line.setMap(null);
                                 debugger
-                                markers.removeMarker(myMarker.value);
+                                this.markers.removeMarker(myMarker.value);
                                 debugger
                                 myMarker.value.setMap(null);
                             }
-                            else if ((myMarker == markers.last) && (markers.last != markers.first)) {
-                                markers.last.prevNode.line.setMap(null);
-                                markers.removeMarker(myMarker.value);
+                            else if ((myMarker == this.markers.last) && (this.markers.last != this.markers.first)) {
+                                this.markers.last.prevNode.line.setMap(null);
+                                this.markers.removeMarker(myMarker.value);
                                 myMarker.value.setMap(null);
                             }
                             else {
@@ -97,22 +112,22 @@ class MapService {
                                 var mark = myMarker;
                                 myMarker.prevNode.line.setMap(null);
                                 myMarker.line.setMap(null);
-                                markers.removeMarker(myMarker.value);
+                                this.markers.removeMarker(myMarker.value);
                                 mark.value.setMap(null);
                                 mark.prevNode.line = flightPath;
                                 mark.prevNode.line.setMap(this.myMap);
                             }
-                       
+
                     });
 
                 }, 300);
             });
             debugger
-            var node = markers.last;
-            if (markers.first != markers.last) {
-                var node = markers.last.prevNode;
+            var node = this.markers.last;
+            if (this.markers.first != this.markers.last) {
+                var node = this.markers.last.prevNode;
                 var startpoint = { "lat": node.value.getPosition().lat(), "long": node.value.getPosition().lng() };
-                var endpoint = { "lat": markers.last.value.getPosition().lat(), "long": markers.last.value.getPosition().lng() };
+                var endpoint = { "lat": this.markers.last.value.getPosition().lat(), "long": this.markers.last.value.getPosition().lng() };
                 var locationlinks = [
                     new google.maps.LatLng(startpoint.lat, startpoint.long),
                     new google.maps.LatLng(endpoint.lat, endpoint.long)
@@ -125,13 +140,30 @@ class MapService {
                     strokeWeight: 2
                 };
                 var flightPath = new MyPolyline(lineOptions);
-                markers.last.prevNode.line = flightPath;
-                markers.last.prevNode.line.setMap(this.myMap);
+                this.markers.last.prevNode.line = flightPath;
+                this.markers.last.prevNode.line.setMap(this.myMap);
             }
         });
     }
-}
 
+    public GetRouteDataModel(): RouteModel {
+        var routeDataModel: Array<RouteDataItemModel> = new Array<RouteDataItemModel>();
+        var item = this.markers.first;
+        var hasNext: boolean = true;
+        do {
+            routeDataModel.push(item.value.GetRouteDataItemModel());
+            item = item.nextNode;
+            if (item === undefined || item === null) {
+                hasNext = false;
+            }
+        }
+        while (hasNext);
+
+        var routeModel: RouteModel = new RouteModel();
+        routeModel.RouteJson = JSON.stringify(routeDataModel);
+        return routeModel;
+    }
+}
 
 class Link {
     public value: MyMarker;
@@ -139,8 +171,6 @@ class Link {
     public nextNode: Link;
     public line: MyPolyline;
 }
-
-
 
 class LinkedList {
     public first: Link;
@@ -196,7 +226,8 @@ class LinkedList {
                 return node;
             }
             else {
-                return crt;}
+                return crt;
+            }
         }
 
     }
@@ -212,31 +243,31 @@ class LinkedList {
             var crt = this.first;
             while (crt.nextNode != null) {
                 if (crt.value.getPosition() == myMarker.getPosition()) {
-                     nodeToBeDeleted = crt;
+                    nodeToBeDeleted = crt;
                     break;
                 }
                 crt = crt.nextNode;
             }
             if (this.last.value.getPosition() == myMarker.getPosition()) {
-                 nodeToBeDeleted = crt;
+                nodeToBeDeleted = crt;
             }
             if ((nodeToBeDeleted == this.first) && (this.first == this.last)) {
                 this.first = null;
                 this.last = null;
             }
             else
-            if (nodeToBeDeleted == this.first) {
-                this.first.nextNode.prevNode = null;
-                this.first = this.first.nextNode;
-            }
-            else if (nodeToBeDeleted == this.last) {
-                this.last.prevNode.nextNode = null;
-                this.last = this.last.prevNode;
-            }
-            else {
-                nodeToBeDeleted.prevNode.nextNode = nodeToBeDeleted.nextNode;
-                nodeToBeDeleted.nextNode.prevNode = nodeToBeDeleted.prevNode;
-            }
+                if (nodeToBeDeleted == this.first) {
+                    this.first.nextNode.prevNode = null;
+                    this.first = this.first.nextNode;
+                }
+                else if (nodeToBeDeleted == this.last) {
+                    this.last.prevNode.nextNode = null;
+                    this.last = this.last.prevNode;
+                }
+                else {
+                    nodeToBeDeleted.prevNode.nextNode = nodeToBeDeleted.nextNode;
+                    nodeToBeDeleted.nextNode.prevNode = nodeToBeDeleted.prevNode;
+                }
         }
     }
 
@@ -254,7 +285,7 @@ class LinkedList {
         }
     }
 
-    
+
     public toString(): String {
         let current = this.first;
         let str = '';
@@ -271,13 +302,15 @@ class LinkedList {
 class HomeModel {
     public Display: string;
     public Edit: string;
+    public ErrorMessage: string;
+    public ErrorAlert: boolean;
     public TouristAttractionList: Array<TouristAttractionModel>;
     public RouteList: Array<RouteModel>;
-   
-   constructor() {
-       this.TouristAttractionList = new Array<TouristAttractionModel>();
-       this.RouteList = new Array<RouteModel>();
-   }
+
+    constructor() {
+        this.TouristAttractionList = new Array<TouristAttractionModel>();
+        this.RouteList = new Array<RouteModel>();
+    }
 }
 
 
@@ -287,7 +320,6 @@ class RouteDto {
 
     constructor() {
     }
-   
 }
 
 class TouristAttractionDto {
@@ -312,7 +344,6 @@ class RouteModel extends RouteDto {
     }
 }
 
-
 class TouristAttractionModel extends TouristAttractionDto {
     constructor() {
         super();
@@ -331,7 +362,7 @@ class TouristAttractionModel extends TouristAttractionDto {
 class RouteService {
     constructor($window: ng.IWindowService, $http: ng.IHttpService, Model: HomeModel) {
         var self = this;
-        
+
         $http.get("/api/Route")
             .then((response) => {
                 var data: Array<RouteDto> = <Array<RouteDto>>response.data;
@@ -372,18 +403,35 @@ class HomeController {
                     self.Model.TouristAttractionList.push(model);
                 }
             });
-
         this.Initialize();
         this.mapService = new MapService();
         debugger
         this.routeService = new RouteService(this.windowService, this.httpService, this.Model);
     }
 
+    public PostRouteClick(): void {
+        debugger
+        var self = this;
+        var config: angular.IRequestShortcutConfig = {
+            headers: {
+                "dataType": "json",
+                "contentType": "application/json"
+            }
+        };
+        debugger
+        var routeModel = new RouteModel();
+        self.httpService.post('api/InsertRoute', this.mapService.GetRouteDataModel()).then(function (response) {
+            //self.windowService.location.href = '/index.html#!/home';
+        }).catch(function (response) {
+        });
+
+    }
+
     protected Initialize(): void {
 
         setTimeout(() => {
 
-           // this.LoadCss('<link href="https://fonts.googleapis.com/css?family=Roboto:400,700,900,900i" rel="stylesheet">');
+            // this.LoadCss('<link href="https://fonts.googleapis.com/css?family=Roboto:400,700,900,900i" rel="stylesheet">');
             this.LoadCss("Content/Theme/css/owl.theme.css");
 
             //load script
@@ -397,8 +445,6 @@ class HomeController {
 
             this.LoadScript("Content/Theme/js/owl.carousel.min.js");
             this.LoadScript("Content/Theme/js/front.js");
-
-
         });
     }
 

@@ -3,11 +3,21 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
+var RouteDataItemModel = (function () {
+    function RouteDataItemModel(lat, long) {
+        this.Lat = lat;
+        this.Long = long;
+    }
+    return RouteDataItemModel;
+}());
 var MyMarker = (function (_super) {
     __extends(MyMarker, _super);
     function MyMarker(opts) {
         _super.call(this, opts);
     }
+    MyMarker.prototype.GetRouteDataItemModel = function () {
+        return new RouteDataItemModel(this.getPosition().lat(), this.getPosition().lng());
+    };
     return MyMarker;
 }(google.maps.Marker));
 var MyPolyline = (function (_super) {
@@ -29,7 +39,7 @@ var MapService = (function () {
         var uniqueId = 1; //sus
         debugger;
         this.myMap = new google.maps.Map(document.getElementById("dvMap"), mapOptions);
-        var markers = new LinkedList(this.myMap);
+        this.markers = new LinkedList(this.myMap);
         google.maps.event.addListener(this.myMap, 'click', function (e) {
             //Determine the location where the user has clicked.
             var location = e.latLng;
@@ -43,13 +53,13 @@ var MapService = (function () {
             //Set unique id
             marker.id = uniqueId;
             uniqueId++;
-            markers.insertLink(marker);
+            _this.markers.insertLink(marker);
             //Attach click event handler to the marker.
             var geocoder = new google.maps.Geocoder;
             var latlng = location.lat() + "," + location.lng();
             var url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' + location.lat() + ',' + location.lng() + '&sensor=true';
             google.maps.event.addListener(marker, "click", function (e) {
-                var content = 'Latitude: ' + location.lat() + '<br />Longitude: ' + location.lng() + '<br/>Adress: ';
+                var content = 'Latitude: ' + location.lat() + '<br />Longitude: ' + location.lng();
                 content += "<br /><input type = 'button' value = 'Delete' id='removeMarkerBtn1' marker='" + marker.id + "' value = 'Delete' />";
                 debugger;
                 var infoWindow = new google.maps.InfoWindow({
@@ -60,21 +70,21 @@ var MapService = (function () {
                 setTimeout(function () {
                     $("#removeMarkerBtn1").click(function (e) {
                         debugger;
-                        var myMarker = markers.searchNode(marker);
-                        if ((myMarker == markers.first) && (markers.first == markers.last)) {
-                            markers.removeMarker(myMarker.value);
+                        var myMarker = _this.markers.searchNode(marker);
+                        if ((myMarker == _this.markers.first) && (_this.markers.first == _this.markers.last)) {
+                            _this.markers.removeMarker(myMarker.value);
                             myMarker.value.setMap(null);
                         }
-                        else if ((myMarker == markers.first) && (markers.first != markers.last)) {
-                            markers.first.line.setMap(null);
+                        else if ((myMarker == _this.markers.first) && (_this.markers.first != _this.markers.last)) {
+                            _this.markers.first.line.setMap(null);
                             debugger;
-                            markers.removeMarker(myMarker.value);
+                            _this.markers.removeMarker(myMarker.value);
                             debugger;
                             myMarker.value.setMap(null);
                         }
-                        else if ((myMarker == markers.last) && (markers.last != markers.first)) {
-                            markers.last.prevNode.line.setMap(null);
-                            markers.removeMarker(myMarker.value);
+                        else if ((myMarker == _this.markers.last) && (_this.markers.last != _this.markers.first)) {
+                            _this.markers.last.prevNode.line.setMap(null);
+                            _this.markers.removeMarker(myMarker.value);
                             myMarker.value.setMap(null);
                         }
                         else {
@@ -97,7 +107,7 @@ var MapService = (function () {
                             var mark = myMarker;
                             myMarker.prevNode.line.setMap(null);
                             myMarker.line.setMap(null);
-                            markers.removeMarker(myMarker.value);
+                            _this.markers.removeMarker(myMarker.value);
                             mark.value.setMap(null);
                             mark.prevNode.line = flightPath;
                             mark.prevNode.line.setMap(_this.myMap);
@@ -106,11 +116,11 @@ var MapService = (function () {
                 }, 300);
             });
             debugger;
-            var node = markers.last;
-            if (markers.first != markers.last) {
-                var node = markers.last.prevNode;
+            var node = _this.markers.last;
+            if (_this.markers.first != _this.markers.last) {
+                var node = _this.markers.last.prevNode;
                 var startpoint = { "lat": node.value.getPosition().lat(), "long": node.value.getPosition().lng() };
-                var endpoint = { "lat": markers.last.value.getPosition().lat(), "long": markers.last.value.getPosition().lng() };
+                var endpoint = { "lat": _this.markers.last.value.getPosition().lat(), "long": _this.markers.last.value.getPosition().lng() };
                 var locationlinks = [
                     new google.maps.LatLng(startpoint.lat, startpoint.long),
                     new google.maps.LatLng(endpoint.lat, endpoint.long)
@@ -123,11 +133,26 @@ var MapService = (function () {
                     strokeWeight: 2
                 };
                 var flightPath = new MyPolyline(lineOptions);
-                markers.last.prevNode.line = flightPath;
-                markers.last.prevNode.line.setMap(_this.myMap);
+                _this.markers.last.prevNode.line = flightPath;
+                _this.markers.last.prevNode.line.setMap(_this.myMap);
             }
         });
     }
+    MapService.prototype.GetRouteDataModel = function () {
+        var routeDataModel = new Array();
+        var item = this.markers.first;
+        var hasNext = true;
+        do {
+            routeDataModel.push(item.value.GetRouteDataItemModel());
+            item = item.nextNode;
+            if (item === undefined || item === null) {
+                hasNext = false;
+            }
+        } while (hasNext);
+        var routeModel = new RouteModel();
+        routeModel.RouteJson = JSON.stringify(routeDataModel);
+        return routeModel;
+    };
     return MapService;
 }());
 var Link = (function () {
@@ -336,6 +361,22 @@ var HomeController = (function () {
         debugger;
         this.routeService = new RouteService(this.windowService, this.httpService, this.Model);
     }
+    HomeController.prototype.PostRouteClick = function () {
+        debugger;
+        var self = this;
+        var config = {
+            headers: {
+                "dataType": "json",
+                "contentType": "application/json"
+            }
+        };
+        debugger;
+        var routeModel = new RouteModel();
+        self.httpService.post('api/InsertRoute', this.mapService.GetRouteDataModel()).then(function (response) {
+            //self.windowService.location.href = '/index.html#!/home';
+        }).catch(function (response) {
+        });
+    };
     HomeController.prototype.Initialize = function () {
         var _this = this;
         setTimeout(function () {
@@ -372,3 +413,4 @@ var HomeController = (function () {
     };
     return HomeController;
 }());
+//# sourceMappingURL=home.controller.js.map
