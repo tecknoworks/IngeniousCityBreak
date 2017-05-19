@@ -115,7 +115,6 @@ var MapService = (function () {
                     new google.maps.LatLng(startpoint.lat, startpoint.long),
                     new google.maps.LatLng(endpoint.lat, endpoint.long)
                 ];
-                debugger;
                 var lineOptions = {
                     path: locationlinks,
                     geodesic: true,
@@ -124,7 +123,6 @@ var MapService = (function () {
                     strokeWeight: 2
                 };
                 var flightPath = new MyPolyline(lineOptions);
-                debugger;
                 markers.last.prevNode.line = flightPath;
                 markers.last.prevNode.line.setMap(_this.myMap);
             }
@@ -258,6 +256,7 @@ var LinkedList = (function () {
 var HomeModel = (function () {
     function HomeModel() {
         this.TouristAttractionList = new Array();
+        this.RouteList = new Array();
     }
     return HomeModel;
 }());
@@ -271,6 +270,17 @@ var TouristAttractionDto = (function () {
     }
     return TouristAttractionDto;
 }());
+var RouteModel = (function (_super) {
+    __extends(RouteModel, _super);
+    function RouteModel() {
+        _super.call(this);
+    }
+    RouteModel.prototype.FromRouteDto = function (dto) {
+        this.IdRoute = dto.IdRoute;
+        this.RouteJson = dto.RouteJson;
+    };
+    return RouteModel;
+}(RouteDto));
 var TouristAttractionModel = (function (_super) {
     __extends(TouristAttractionModel, _super);
     function TouristAttractionModel() {
@@ -286,6 +296,24 @@ var TouristAttractionModel = (function (_super) {
     };
     return TouristAttractionModel;
 }(TouristAttractionDto));
+var RouteService = (function () {
+    function RouteService($window, $http, Model) {
+        var self = this;
+        $http.get("/api/Route")
+            .then(function (response) {
+            var data = response.data;
+            for (var i = 0; i < data.length; i++) {
+                var model = new RouteModel();
+                debugger;
+                model.FromRouteDto(data[i]);
+                debugger;
+                Model.RouteList.push(model);
+                debugger;
+            }
+        });
+    }
+    return RouteService;
+}());
 var HomeController = (function () {
     function HomeController($window, $http) {
         var self = this;
@@ -305,6 +333,8 @@ var HomeController = (function () {
         });
         this.Initialize();
         this.mapService = new MapService();
+        debugger;
+        this.routeService = new RouteService(this.windowService, this.httpService, this.Model);
     }
     HomeController.prototype.Initialize = function () {
         var _this = this;

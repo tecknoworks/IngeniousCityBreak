@@ -5,6 +5,6 @@ angular.
     module('home').
     component('home', {
         templateUrl: 'scripts/app/Home/home.template.html',
-        controller: ['$window', '$http', HomeController]
+        controller: ['$window', '$http', HomeController],
        
     });
