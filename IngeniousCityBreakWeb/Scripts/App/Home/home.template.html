@@ -1,7 +1,6 @@
 ﻿<div ng-repeat="x in  $ctrl.Model.RouteList">
     <h3>{{x.RouteJson}}</h3>
 </div>
-
 <div id="all">
 
 	<header>
@@ -27,9 +26,11 @@
 
 						<div class="login">
 							
-							<a id="signInLink" href="#" data-toggle="modal" data-target="#login-modal"><i class="fa fa-sign-in"></i> <span class="hidden-xs text-uppercase">Sign in</span></a>
-							<a href="#!/register"><i class="fa fa-user"></i><span class="hidden-xs text-uppercase">Sign up</span></a>
-							<a href="#"ng-click="$ctrl.LogOutClick()"><i class="fa fa-sign-out"></i><span class="hidden-xs text-uppercase">Sign out</span></a>
+							<a ng-hide="$ctrl.currentUser" id="signInLink" href="#!/register" data-toggle="modal" data-target="#login-modal"><i class="fa fa-sign-in"></i> <span class="hidden-xs text-uppercase">Sign in</span></a>
+							<a ng-hide="$ctrl.currentUser" href="#!/register"><i class="fa fa-user"></i><span class="hidden-xs text-uppercase">Sign up</span></a>
+
+
+							<a ng-show="$ctrl.currentUser" href="javascript: void(0)" ng-click="$ctrl.LogOutClick()"><i class="fa fa-sign-out"></i><span class="hidden-xs text-uppercase">Sign out</span></a>
 						
 						</div>
 
@@ -997,8 +998,15 @@
 
     <section class="bar background-white no-mb">
         <!-- /.container -->
-        <div id="dvMap" style="width: 100%; height:500px">
+        <div id="dvMap" style="width: 100%; height:500px;">
+          
         </div>
+        <div class="center-block" style="padding-left:45%; height:50px; padding-top:10px;" >
+            <input onclick="" type=button class="btn btn-template-main" value="Save Route" style="height:80px; width:200px" ng-click="$ctrl.PostRouteClick()">
+             
+        </div>
+       
+
     </section>
 
 	<section class="bar background-gray no-mb">

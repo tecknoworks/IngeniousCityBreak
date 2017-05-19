@@ -17,12 +17,25 @@ namespace IngeniousCityBreakWeb.Controllers
         }
 
         /// <summary>
-        /// Create a new route
+        /// Create a new Tourist Attraction
         /// </summary>
         /// <param name="route"></param>
         /// <returns></returns>
         [System.Web.Http.HttpPost]
         public IHttpActionResult InsertTouristAttraction(RouteDto routeDto)
+        {
+            iRouteManeger.insert(routeDto);
+            return Ok(100);
+        }
+
+        /// <summary>
+        /// Create a new route
+        /// </summary>
+        /// <param name="routeDto"></param>
+        /// <returns></returns>
+        [System.Web.Http.HttpPost]
+        [Route("api/InsertRoute")]
+        public IHttpActionResult InsertRoute(RouteDto routeDto)
         {
             iRouteManeger.insert(routeDto);
             return Ok(100);
