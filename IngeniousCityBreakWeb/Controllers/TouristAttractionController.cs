@@ -35,7 +35,7 @@ namespace IngeniousCityBreakWeb.Controllers
         /// </summary>
         /// <returns>All tourist ttractions</returns>
         [System.Web.Http.HttpGet]
-       
+
         public IEnumerable<TouristAttractionDto> GetAll()
         {
             var result = iTouristAttractions.GetAll();
@@ -53,6 +53,6 @@ namespace IngeniousCityBreakWeb.Controllers
             var result = iTouristAttractions.GetByIdTouristAttraction(id);
             yield return result;
         }
-       
+
     }
 }

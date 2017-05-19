@@ -40,7 +40,7 @@ namespace BusinessLogic
             return result;
         }
 
-       public void AddUserDetails(ApplicationUser user) {
+        public void AddUserDetails(ApplicationUser user) {
             //IDbRepository<ApplicationUser> repo = new DbRepository<ApplicationUser>();
             var newUser = _userRepository.GetById(user.Id);
             newUser.UserDetails = new UserDetails();

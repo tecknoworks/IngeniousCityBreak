@@ -44,17 +44,18 @@ class MapService {
             uniqueId++;
             markers.insertLink(marker);
             //Attach click event handler to the marker.
-
-
+            var geocoder = new google.maps.Geocoder;
+            var latlng = location.lat() + "," + location.lng();
+            var url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' + location.lat() + ',' + location.lng() + '&sensor=true'; 
             google.maps.event.addListener(marker, "click", (e) => {
-                var content = 'Latitude: ' + location.lat() + '<br />Longitude: ' + location.lng();
-                content += "<br /><input type = 'button' value = 'Delete' id='removeMarkerBtn1' marker='" + marker.id + "' value = 'Delete' />";
-                debugger
+                var content = 'Latitude: ' + location.lat() + '<br />Longitude: ' + location.lng() + '<br/>Adress: ';
+                    content += "<br /><input type = 'button' value = 'Delete' id='removeMarkerBtn1' marker='" + marker.id + "' value = 'Delete' />";
+                    debugger
                 var infoWindow = new google.maps.InfoWindow({
                     content: content
                 });
-                debugger
                 infoWindow.open(this.myMap, marker);
+                debugger
                 setTimeout(() => {
                     $("#removeMarkerBtn1").click((e) => {
                         debugger
@@ -116,7 +117,6 @@ class MapService {
                     new google.maps.LatLng(startpoint.lat, startpoint.long),
                     new google.maps.LatLng(endpoint.lat, endpoint.long)
                 ];
-                debugger
                 var lineOptions: google.maps.PolylineOptions = <google.maps.PolylineOptions>{
                     path: locationlinks,
                     geodesic: true,
@@ -125,7 +125,6 @@ class MapService {
                     strokeWeight: 2
                 };
                 var flightPath = new MyPolyline(lineOptions);
-                debugger
                 markers.last.prevNode.line = flightPath;
                 markers.last.prevNode.line.setMap(this.myMap);
             }
@@ -270,16 +269,24 @@ class LinkedList {
 }
 
 class HomeModel {
-    //public Display: string;
-    //public Edit: string;
+    public Display: string;
+    public Edit: string;
     public TouristAttractionList: Array<TouristAttractionModel>;
-    constructor() {
-        this.TouristAttractionList = new Array<TouristAttractionModel>();
-    }
+    public RouteList: Array<RouteModel>;
+   
+   constructor() {
+       this.TouristAttractionList = new Array<TouristAttractionModel>();
+       this.RouteList = new Array<RouteModel>();
+   }
 }
+
 
 class RouteDto {
     IdRoute: number;
+    RouteJson: string;
+
+    constructor() {
+    }
    
 }
 
@@ -294,6 +301,17 @@ class TouristAttractionDto {
     constructor() {
     }
 }
+
+class RouteModel extends RouteDto {
+    constructor() {
+        super();
+    }
+    public FromRouteDto(dto: RouteDto): void {
+        this.IdRoute = dto.IdRoute;
+        this.RouteJson = dto.RouteJson;
+    }
+}
+
 
 class TouristAttractionModel extends TouristAttractionDto {
     constructor() {
@@ -310,11 +328,31 @@ class TouristAttractionModel extends TouristAttractionDto {
     }
 }
 
+class RouteService {
+    constructor($window: ng.IWindowService, $http: ng.IHttpService, Model: HomeModel) {
+        var self = this;
+        
+        $http.get("/api/Route")
+            .then((response) => {
+                var data: Array<RouteDto> = <Array<RouteDto>>response.data;
+                for (var i: number = 0; i < data.length; i++) {
+                    var model: RouteModel = new RouteModel();
+                    debugger
+                    model.FromRouteDto(data[i]);
+                    debugger
+                    Model.RouteList.push(model);
+                    debugger
+                }
+            });
+    }
+}
+
 class HomeController {
     public Model: HomeModel;
     protected windowService: ng.IWindowService
     protected httpService: ng.IHttpService;
     protected mapService: MapService;
+    protected routeService: RouteService;
     constructor($window: ng.IWindowService, $http: ng.IHttpService) {
         var self = this;
         this.httpService = $http;
@@ -322,8 +360,8 @@ class HomeController {
 
         this.Model = new HomeModel();
 
-        //this.Model.Display = "Can't change";
-        //this.Model.Edit = "Do change";
+        this.Model.Display = "Can't change";
+        this.Model.Edit = "Do change";
 
         this.httpService.get("/api/TouristAttraction")
             .then((response) => {
@@ -337,6 +375,8 @@ class HomeController {
 
         this.Initialize();
         this.mapService = new MapService();
+        debugger
+        this.routeService = new RouteService(this.windowService, this.httpService, this.Model);
     }
 
     protected Initialize(): void {

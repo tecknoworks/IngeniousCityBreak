@@ -11,6 +11,6 @@ namespace BusinessLayer
     {
         [Key]
         public int IdRoute { get; set; }
-        public ICollection<TouristAttraction> TouristAttractions { get; set; }
+        public string RouteJson { get; set; }
     }
 }

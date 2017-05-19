@@ -40,9 +40,11 @@ namespace IngeniousCityBreakWeb
             Register<IDbRepository<ApplicationUser>, DbRepository < ApplicationUser >>();
             Register<IDbRepository<UserDetails>, DbRepository<UserDetails>>();
             Register<ITouristAttraction, TouristAttractionManager>();
-            Register<IDbRepository<TouristAttraction>, DbRepository<TouristAttraction>>();
-            
-           
+           Register<IDbRepository<TouristAttraction>, DbRepository<TouristAttraction>>();
+           Register<IRouteManager, RouteManeger>();
+           Register<IDbRepository<Route>, DbRepository<Route>>();
+
+
         }
 
         public void Register<Interface, Implemantation>() where Implemantation: Interface {

@@ -37,6 +37,38 @@ namespace BusinessLayer
             return res;
         }
 
+        public static Route FromRouteDto(RouteDto dto)
+        {
+            var res = new Route()
+            {
+                RouteJson = dto.RouteJson
+            };
+            if (dto.IdRoute.HasValue)
+            {
+                res.IdRoute = dto.IdRoute.Value;
+            }
+            return res;
+        }
+
+        public static IEnumerable<RouteDto> ToRouteDto(this IEnumerable<Route> entities)
+        {
+            var results = entities.Select(it =>
+            new RouteDto()
+            {
+                IdRoute = it.IdRoute,
+                RouteJson = it.RouteJson
+            });
+
+            return results;
+        }
+
+        public static RouteDto ToRouteDtoId(Route route)
+        {
+            var dto = new RouteDto();
+            dto.IdRoute = route.IdRoute;
+            dto.RouteJson = route.RouteJson;
+            return dto;
+        }
         //13.04.2017
         public static IEnumerable<UserDetailsDto> ToUserDetailsDto(this IEnumerable<UserDetails> userDetails)
         {
@@ -97,20 +129,7 @@ namespace BusinessLayer
             return res;
         }
 
-        //public static TouristAttractionDto ToTouristAttractionDto(TouristAttraction entity)
-        //{
-        //    var res = new TouristAttractionDto()
-        //    {
-        //        IdTouristAttraction = entity.IdTouristAttraction,
-        //        Name = entity.Name,
-        //        PriceAdult = entity.PriceAdult,
-        //        PriceChild = entity.PriceChild,
-        //        Schedule = entity.Schedule
-        //    };
-        //    return res;
-        //}
-
-        public static Country FromCountryDto( CountryDto dto)
+        public static Country FromCountryDto(CountryDto dto)
         {
             var res = new Country()
             {
@@ -131,7 +150,7 @@ namespace BusinessLayer
                 IdCountry = entity.IdCountry,
                 Name = entity.Name
 
-        };
+            };
             return res;
         }
 
@@ -142,7 +161,7 @@ namespace BusinessLayer
             entity.PriceChild = dto.PriceChild;
             entity.PriceAdult = dto.PriceAdult;
             entity.Schedule = dto.Schedule;
-			entity.Image=dto.Image;
+            entity.Image = dto.Image;
             return entity;
         }
 
@@ -170,7 +189,7 @@ namespace BusinessLayer
             dto.PriceAdult = touristAttraction.PriceAdult;
             dto.PriceChild = touristAttraction.PriceChild;
             dto.Schedule = touristAttraction.Schedule;
-            dto.Image =  touristAttraction.Image;
+            dto.Image = touristAttraction.Image;
             return dto;
         }
 
