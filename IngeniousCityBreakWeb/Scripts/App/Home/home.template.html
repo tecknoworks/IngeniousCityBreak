@@ -23,10 +23,13 @@
 						</div>
 
 						<div class="login">
-							<a id="signInLink" href="#" data-toggle="modal" data-target="#login-modal"><i class="fa fa-sign-in"></i> <span class="hidden-xs text-uppercase">Sign in</span></a>
-							<!--<a href="../../../Content/Theme/customer-register.html"><i class="fa fa-user"></i> <span class="hidden-xs text-uppercase">Sign up</span></a>-->
-							<a href="#!/register"><i class="fa fa-user"></i><span class="hidden-xs text-uppercase">Sign up</span></a>
-							<a href="#"><i class="fa fa-sign-out"></i><span class="hidden-xs text-uppercase">Sign out</span></a>
+							
+							<a ng-hide="$ctrl.currentUser" id="signInLink" href="#!/register" data-toggle="modal" data-target="#login-modal"><i class="fa fa-sign-in"></i> <span class="hidden-xs text-uppercase">Sign in</span></a>
+							<a ng-hide="$ctrl.currentUser" href="#!/register"><i class="fa fa-user"></i><span class="hidden-xs text-uppercase">Sign up</span></a>
+
+
+							<a ng-show="$ctrl.currentUser" href="javascript: void(0)" ng-click="$ctrl.LogOutClick()"><i class="fa fa-sign-out"></i><span class="hidden-xs text-uppercase">Sign out</span></a>
+						
 						</div>
 
 					</div>

@@ -339,8 +339,10 @@ var RouteService = (function () {
     }
     return RouteService;
 }());
-var HomeController = (function () {
+var HomeController = (function (_super) {
+    __extends(HomeController, _super);
     function HomeController($window, $http) {
+        _super.call(this, $window);
         var self = this;
         this.httpService = $http;
         this.windowService = $window;
@@ -412,5 +414,4 @@ var HomeController = (function () {
         head.appendChild(link);
     };
     return HomeController;
-}());
-//# sourceMappingURL=home.controller.js.map
+}(BaseController));

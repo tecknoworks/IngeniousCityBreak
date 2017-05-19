@@ -378,13 +378,14 @@ class RouteService {
     }
 }
 
-class HomeController {
+class HomeController extends BaseController {
     public Model: HomeModel;
     protected windowService: ng.IWindowService
     protected httpService: ng.IHttpService;
     protected mapService: MapService;
     protected routeService: RouteService;
     constructor($window: ng.IWindowService, $http: ng.IHttpService) {
+		super($window);
         var self = this;
         this.httpService = $http;
         this.windowService = $window;
