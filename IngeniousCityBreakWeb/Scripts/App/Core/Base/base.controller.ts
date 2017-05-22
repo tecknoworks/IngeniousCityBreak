@@ -1,14 +1,12 @@
 ﻿class BaseController {
 	protected currentUser: UserModel = null;
-	//public Model: BaseModel;
 	protected IWindowService: ng.IWindowService;
 
 	constructor($window: ng.IWindowService) {
 		this.IWindowService = $window;
-		//this.Model = new BaseModel();
+		
 		if (localStorage.getItem('IngeniousCityBreakUser') != null) {
 			this.currentUser = JSON.parse(localStorage.getItem('IngeniousCityBreakUser'));
-			//this.Model.currentUser = JSON.parse(localStorage.getItem('IngeniousCityBreakUser'));
 		}
 
 	}
@@ -19,8 +17,3 @@
 	}
 
 }
-/*class BaseModel {
-	public currentUser: UserModel;
-	constructor() { }
-
-}*/
