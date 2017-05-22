@@ -19,4 +19,3 @@ var BaseController = (function () {
     constructor() { }
 
 }*/ 
-//# sourceMappingURL=base.controller.js.map

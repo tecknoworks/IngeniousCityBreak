@@ -265,17 +265,6 @@ var LinkedList = (function () {
             console.log(crt.value);
         }
     };
-    LinkedList.prototype.toString = function () {
-        var current = this.first;
-        var str = '';
-        while (current) {
-            str += current.value; //output is undefinedundefinedundefined
-            // str += JSON.stringify(current);
-            // prints out {"next":{"next":{}}}{"next":{}}{}
-            current = current.nextNode;
-        }
-        return str;
-    };
     return LinkedList;
 }());
 var HomeModel = (function () {
@@ -415,4 +404,3 @@ var HomeController = (function (_super) {
     };
     return HomeController;
 }(BaseController));
-//# sourceMappingURL=home.controller.js.map

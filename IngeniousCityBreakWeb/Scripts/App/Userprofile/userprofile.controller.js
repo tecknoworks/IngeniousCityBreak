@@ -53,4 +53,3 @@ var UserProfileController = (function (_super) {
     };
     return UserProfileController;
 }(BaseController));
-//# sourceMappingURL=userprofile.controller.js.map

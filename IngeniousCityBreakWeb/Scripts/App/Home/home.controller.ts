@@ -285,18 +285,6 @@ class LinkedList {
         }
     }
 
-
-    public toString(): String {
-        let current = this.first;
-        let str = '';
-        while (current) {
-            str += current.value; //output is undefinedundefinedundefined
-            // str += JSON.stringify(current);
-            // prints out {"next":{"next":{}}}{"next":{}}{}
-            current = current.nextNode;
-        }
-        return str;
-    }
 }
 
 class HomeModel {
