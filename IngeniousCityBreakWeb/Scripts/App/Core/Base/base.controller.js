@@ -2,7 +2,6 @@ var BaseController = (function () {
     function BaseController($window) {
         this.currentUser = null;
         this.IWindowService = $window;
-        //this.Model = new BaseModel();
         if (localStorage.getItem('IngeniousCityBreakUser') != null) {
             this.currentUser = JSON.parse(localStorage.getItem('IngeniousCityBreakUser'));
         }
@@ -14,8 +13,3 @@ var BaseController = (function () {
     };
     return BaseController;
 }());
-/*class BaseModel {
-    public currentUser: UserModel;
-    constructor() { }
-
-}*/ 

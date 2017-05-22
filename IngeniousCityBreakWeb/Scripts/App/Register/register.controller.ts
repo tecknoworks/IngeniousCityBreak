@@ -7,6 +7,7 @@
 		this.Initialize();
 		this.Model = new RegisterModel();
 	
+	
 
 	}
 
