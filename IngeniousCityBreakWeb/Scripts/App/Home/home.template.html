@@ -24,11 +24,11 @@
 
 						<div class="login">
 							
-							<a ng-hide="$ctrl.currentUser" id="signInLink" href="#!/register" data-toggle="modal" data-target="#login-modal"><i class="fa fa-sign-in"></i> <span class="hidden-xs text-uppercase">Sign in</span></a>
+							<a ng-hide="$ctrl.currentUser" href="#!/register"><i class="fa fa-sign-in"></i> <span class="hidden-xs text-uppercase">Sign in</span></a>
 							<a ng-hide="$ctrl.currentUser" href="#!/register"><i class="fa fa-user"></i><span class="hidden-xs text-uppercase">Sign up</span></a>
 
-							<a ng-show="$ctrl.currentUser" href="javascript" >{{$ctrl.currentUser.UserName}}</a>
-							<a ng-show="$ctrl.currentUser" href="javascript: void(0)" ng-click="$ctrl.LogOutClick()"><i class="fa fa-sign-out"></i><span class="hidden-xs text-uppercase">Sign out</span></a>
+							<a ng-show="$ctrl.currentUser" href="#!/userprofile" target="_blank">{{$ctrl.currentUser.UserName}}</a>
+							<a ng-show="$ctrl.currentUser" href="javascript:void(0)" ng-click="$ctrl.LogOutClick()"><i class="fa fa-sign-out"></i><span class="hidden-xs text-uppercase">Sign out</span></a>
 						
 						</div>
 
@@ -87,7 +87,7 @@
 								</ul>
 							</li>
 							<li class="dropdown use-yamm yamm-fw">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">About<b class="caret"></b></a>
+								<a href="javascript: void(0)" class="dropdown-toggle" data-toggle="dropdown">About<b class="caret"></b></a>
 								<ul class="dropdown-menu">
 									<li>
 										<div class="yamm-content">
@@ -144,7 +144,7 @@
 								</ul>
 							</li>
 							<li class="dropdown use-yamm yamm-fw">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Portofolio <b class="caret"></b></a>
+								<a href="javascript: void(0)" class="dropdown-toggle" data-toggle="dropdown">Portofolio <b class="caret"></b></a>
 								<ul class="dropdown-menu">
 									<li>
 										<div class="yamm-content">
@@ -211,7 +211,7 @@
 							</li>
 							<!-- ========== FULL WIDTH MEGAMENU ================== -->
 							<li class="dropdown use-yamm yamm-fw">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">All Routes <b class="caret"></b></a>
+								<a href="javascript: void(0)" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">All Routes <b class="caret"></b></a>
 								<ul class="dropdown-menu">
 									<li>
 										<div class="yamm-content">
@@ -408,6 +408,10 @@
 									</li>
 
 								</ul>
+							</li>
+
+							<li class="navbar-buttons">
+								<a ng-show="$ctrl.currentUser" href="#!/userprofile" class="buttons" target="_blank">My profile</a>
 							</li>
 						</ul>
 

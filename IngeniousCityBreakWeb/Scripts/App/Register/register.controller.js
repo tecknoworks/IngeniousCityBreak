@@ -9,8 +9,6 @@ var RegisterController = (function (_super) {
         _super.call(this, $window, $http);
         this.Initialize();
         this.Model = new RegisterModel();
-        //this.Model.Password = "Hello";
-        //debugger
     }
     RegisterController.prototype.RegisterClick = function () {
         debugger;

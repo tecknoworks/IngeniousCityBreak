@@ -7,4 +7,5 @@ angular.module('ingeniousCityBreakApp', [
     //'core',
     'home',
 	'register',
+	'userprofile',
 ]);

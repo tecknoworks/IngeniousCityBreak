@@ -6,5 +6,6 @@ angular.module('ingeniousCityBreakApp', [
     //'core',
     'home',
     'register',
+    'userprofile',
 ]);
 //# sourceMappingURL=app.module.js.map

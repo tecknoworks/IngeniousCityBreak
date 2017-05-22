@@ -6,9 +6,6 @@
 		super($window, $http);
 		this.Initialize();
 		this.Model = new RegisterModel();
-		//this.Model.Password = "Hello";
-		
-		//debugger
 	
 
 	}

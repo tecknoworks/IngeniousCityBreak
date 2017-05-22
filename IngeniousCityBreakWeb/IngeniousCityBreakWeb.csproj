@@ -496,6 +496,7 @@
     <Content Include="Scripts\App\Home\home.template.html" />
     <Content Include="Scripts\App\Login\login.template.html" />
     <Content Include="Scripts\App\Register\register.template.html" />
+    <Content Include="Scripts\App\Userprofile\userprofile.template.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -609,6 +610,9 @@
     <TypeScriptCompile Include="Scripts\App\Register\register.component.ts" />
     <TypeScriptCompile Include="Scripts\App\Register\register.controller.ts" />
     <TypeScriptCompile Include="Scripts\App\Register\register.module.ts" />
+    <TypeScriptCompile Include="Scripts\App\Userprofile\userprofile.component.ts" />
+    <TypeScriptCompile Include="Scripts\App\Userprofile\userprofile.controller.ts" />
+    <TypeScriptCompile Include="Scripts\App\Userprofile\userprofile.module.ts" />
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular-animate.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular-component-router.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular-cookies.d.ts" />
