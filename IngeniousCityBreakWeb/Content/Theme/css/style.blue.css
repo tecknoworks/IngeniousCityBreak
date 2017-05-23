@@ -407,6 +407,7 @@ ul.list-style-none {
   border-bottom: solid 1px #eeeeee;
   text-transform: uppercase;
   padding: 4px 0;
+  width:900px;
 }
 .navbar .yamm-content ul li a {
   position: relative;
