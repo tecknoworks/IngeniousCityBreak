@@ -8,10 +8,15 @@ var UserProfileController = (function (_super) {
     function UserProfileController($window, $http) {
         _super.call(this, $window);
         this.HttpService = $http;
+        this.UPModel = new UserProfileModel();
         this.Initialize();
         if (this.currentUser == null)
             this.IWindowService.location.href = '/index.html#!/home';
     }
+    UserProfileController.prototype.SavePasswordClick = function () {
+    };
+    UserProfileController.prototype.SaveClick = function () {
+    };
     UserProfileController.prototype.Initialize = function () {
         var _this = this;
         //load css & script
@@ -53,4 +58,9 @@ var UserProfileController = (function (_super) {
     };
     return UserProfileController;
 }(BaseController));
+var UserProfileModel = (function () {
+    function UserProfileModel() {
+    }
+    return UserProfileModel;
+}());
 //# sourceMappingURL=userprofile.controller.js.map
