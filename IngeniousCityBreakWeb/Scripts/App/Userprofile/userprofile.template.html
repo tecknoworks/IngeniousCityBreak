@@ -7,7 +7,6 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-xs-5 contact">
-						<p class="hidden-sm hidden-xs">Contact us on +420 777 555 333 or hello@universal.com.</p>
 						<p class="hidden-md hidden-lg">
 							<a href="#" data-animate-hover="pulse"><i class="fa fa-phone"></i></a>  <a href="#" data-animate-hover="pulse"><i class="fa fa-envelope"></i></a>
 						</p>
@@ -511,10 +510,8 @@
 				<div class="col-md-9 clearfix" id="customer-account">
 
 					<p class="lead">Change your personal details or your password here.</p>
-					<p class="text-muted">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
 
 					<div class="box">
-
 						<div class="heading">
 							<h3 class="text-uppercase">Change password</h3>
 						</div>
@@ -524,7 +521,7 @@
 								<div class="col-sm-6">
 									<div class="form-group">
 										<label for="password_old">Old password</label>
-										<input type="password" class="form-control" id="password_old">
+										<input type="password" class="form-control" id="password_old" ng-model="$ctrl.UPModel.OldPassword">
 									</div>
 								</div>
 							</div>
@@ -532,20 +529,22 @@
 								<div class="col-sm-6">
 									<div class="form-group">
 										<label for="password_1">New password</label>
-										<input type="password" class="form-control" id="password_1">
+										<input type="password" class="form-control" id="password_1" ng-model="$ctrl.UPModel.NewPassword">
 									</div>
 								</div>
+							</div>
+							<div class="row">
 								<div class="col-sm-6">
 									<div class="form-group">
 										<label for="password_2">Retype new password</label>
-										<input type="password" class="form-control" id="password_2">
+										<input type="password" class="form-control" id="password_2" ng-model="$ctrl.UPModel.RetypeNewPassword">
 									</div>
 								</div>
 							</div>
 							<!-- /.row -->
 
 							<div class="text-center">
-								<button type="submit" class="btn btn-template-main"><i class="fa fa-save"></i> Save new password</button>
+								<button type="submit" class="btn btn-template-main" ng-click="$ctrl.SavePasswordClick()"><i class="fa fa-save"></i> Save new password</button>
 							</div>
 						</form>
 
@@ -560,80 +559,63 @@
 
 						<form>
 							<div class="row">
+								<div class="col-sm-12">
+									<div class="form-group">
+										<label for="email_account">Email</label>
+										<input type="text" class="form-control" id="email_account" ng-model="$ctrl.UPModel.Email">
+									</div>
+								</div>
+							</div>
+							<div class="row">
 								<div class="col-sm-6">
 									<div class="form-group">
 										<label for="firstname">Firstname</label>
-										<input type="text" class="form-control" id="firstname">
+										<input type="text" class="form-control" id="firstname" ng-model="$ctrl.UPModel.FirstName">
 									</div>
 								</div>
 								<div class="col-sm-6">
 									<div class="form-group">
 										<label for="lastname">Lastname</label>
-										<input type="text" class="form-control" id="lastname">
+										<input type="text" class="form-control" id="lastname" ng-model="$ctrl.UPModel.LastName">
 									</div>
 								</div>
 							</div>
-							<!-- /.row -->
 
 							<div class="row">
 								<div class="col-sm-6">
-									<div class="form-group">
-										<label for="company">Company</label>
-										<input type="text" class="form-control" id="company">
-									</div>
-								</div>
-								<div class="col-sm-6">
-									<div class="form-group">
-										<label for="street">Street</label>
-										<input type="text" class="form-control" id="street">
-									</div>
-								</div>
-							</div>
-							<!-- /.row -->
-
-							<div class="row">
-								<div class="col-sm-6 col-md-3">
-									<div class="form-group">
-										<label for="city">Company</label>
-										<input type="text" class="form-control" id="city">
-									</div>
-								</div>
-								<div class="col-sm-6 col-md-3">
-									<div class="form-group">
-										<label for="zip">ZIP</label>
-										<input type="text" class="form-control" id="zip">
-									</div>
-								</div>
-								<div class="col-sm-6 col-md-3">
-									<div class="form-group">
-										<label for="state">State</label>
-										<select class="form-control" id="state"></select>
-									</div>
-								</div>
-								<div class="col-sm-6 col-md-3">
 									<div class="form-group">
 										<label for="country">Country</label>
-										<select class="form-control" id="country"></select>
+										<input type="text" class="form-control" id="country" ng-model="$ctrl.UPModel.Country">
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="form-group">
+										<label for="city">City</label>
+										<input type="text" class="form-control" id="city" ng-model="$ctrl.UPModel.City">
+									</div>
+								</div>
+							</div>
+			
+							<div class="row">
+								<div class="col-sm-6">
+									<div class="form-group">
+										<label for="address">Address</label>
+										 <input type="text" class="form-control" id="address" ng-model="$ctrl.UPModel.Address">
 									</div>
 								</div>
 
 								<div class="col-sm-6">
 									<div class="form-group">
 										<label for="phone">Telephone</label>
-										<input type="text" class="form-control" id="phone">
+										<input type="text" class="form-control" id="phone" ng-model="$ctrl.UPModel.Telephone">
 									</div>
 								</div>
-								<div class="col-sm-6">
-									<div class="form-group">
-										<label for="email_account">Email</label>
-										<input type="text" class="form-control" id="email_account">
-									</div>
-								</div>
+							</div>
+							<div class="row">
 								<div class="col-sm-12 text-center">
-									<button type="submit" class="btn btn-template-main"><i class="fa fa-save"></i> Save changes</button>
-
+									<button type="submit" class="btn btn-template-main" ng-click="$ctrl.SaveClick()"><i class="fa fa-save"></i> Save changes</button>
+									<span ng-show="$ctrl.UPModel.ErrorMessage">{{$ctrl.UPModel.ErrorMessage}}</span>
 								</div>
-
 							</div>
 
 						</form>
@@ -659,16 +641,16 @@
 
 							<ul class="nav nav-pills nav-stacked">
 								<li class="active">
-									<a href="customer-orders.html"><i class="fa fa-list"></i> My orders</a>
+									<a href="../../../Content/Theme/customer-orders.html"><i class="fa fa-list"></i> My orders</a>
 								</li>
 								<li>
-									<a href="customer-wishlist.html"><i class="fa fa-heart"></i> My wishlist</a>
+									<a href="../../../Content/Theme/customer-wishlist.html"><i class="fa fa-heart"></i> My wishlist</a>
 								</li>
 								<li>
-									<a href="customer-account.html"><i class="fa fa-user"></i> My account</a>
+									<a href="../../../Content/Theme/customer-account.html"><i class="fa fa-user"></i> My account</a>
 								</li>
 								<li>
-									<a href="index.html"><i class="fa fa-sign-out"></i> Logout</a>
+									<a href="../../../Content/Theme/index.html"><i class="fa fa-sign-out"></i> Logout</a>
 								</li>
 							</ul>
 						</div>
@@ -690,7 +672,7 @@
 	<!-- *** GET IT ***
 	_________________________________________________________ -->
 
-	<div id="get-it">
+	<!--<div id="get-it">
 		<div class="container">
 			<div class="col-md-8 col-sm-12">
 				<h3>Do you want cool website like this one?</h3>
@@ -699,7 +681,7 @@
 				<a href="#" class="btn btn-template-transparent-primary">Buy this template now</a>
 			</div>
 		</div>
-	</div>
+	</div>-->
 
 
 	<!-- *** GET IT END *** -->
@@ -745,7 +727,7 @@
 					<div class="item same-height-row clearfix">
 						<div class="image same-height-always">
 							<a href="#">
-								<img class="img-responsive" src="img/detailsquare.jpg" alt="">
+								<img class="img-responsive" src="../../../Content/Theme/img/detailsquare.jpg" alt="">
 							</a>
 						</div>
 						<div class="name same-height-always">
@@ -756,7 +738,7 @@
 					<div class="item same-height-row clearfix">
 						<div class="image same-height-always">
 							<a href="#">
-								<img class="img-responsive" src="img/detailsquare.jpg" alt="">
+								<img class="img-responsive" src="../../../Content/Theme/img/detailsquare.jpg" alt="">
 							</a>
 						</div>
 						<div class="name same-height-always">
@@ -767,7 +749,7 @@
 					<div class="item same-height-row clearfix">
 						<div class="image same-height-always">
 							<a href="#">
-								<img class="img-responsive" src="img/detailsquare.jpg" alt="">
+								<img class="img-responsive" src="../../../Content/Theme/img/detailsquare.jpg" alt="">
 							</a>
 						</div>
 						<div class="name same-height-always">
@@ -795,7 +777,7 @@
 					<strong>Great Britain</strong>
 				</p>
 
-				<a href="contact.html" class="btn btn-small btn-template-main">Go to contact page</a>
+				<a href="../../../Content/Theme/contact.html" class="btn btn-small btn-template-main">Go to contact page</a>
 
 				<hr class="hidden-md hidden-lg hidden-sm">
 
@@ -811,32 +793,32 @@
 				<div class="photostream">
 					<div>
 						<a href="#">
-							<img src="img/detailsquare.jpg" class="img-responsive" alt="#">
+							<img src="../../../Content/Theme/img/detailsquare.jpg" class="img-responsive" alt="#">
 						</a>
 					</div>
 					<div>
 						<a href="#">
-							<img src="img/detailsquare2.jpg" class="img-responsive" alt="#">
+							<img src="../../../Content/Theme/img/detailsquare2.jpg" class="img-responsive" alt="#">
 						</a>
 					</div>
 					<div>
 						<a href="#">
-							<img src="img/detailsquare3.jpg" class="img-responsive" alt="#">
+							<img src="../../../Content/Theme/img/detailsquare3.jpg" class="img-responsive" alt="#">
 						</a>
 					</div>
 					<div>
 						<a href="#">
-							<img src="img/detailsquare3.jpg" class="img-responsive" alt="#">
+							<img src="../../../Content/Theme/img/detailsquare3.jpg" class="img-responsive" alt="#">
 						</a>
 					</div>
 					<div>
 						<a href="#">
-							<img src="img/detailsquare2.jpg" class="img-responsive" alt="#">
+							<img src="../../../Content/Theme/img/detailsquare2.jpg" class="img-responsive" alt="#">
 						</a>
 					</div>
 					<div>
 						<a href="#">
-							<img src="img/detailsquare.jpg" class="img-responsive" alt="#">
+							<img src="../../../Content/Theme/img/detailsquare.jpg" class="img-responsive" alt="#">
 						</a>
 					</div>
 				</div>

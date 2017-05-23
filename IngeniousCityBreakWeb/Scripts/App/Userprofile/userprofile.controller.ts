@@ -1,12 +1,26 @@
 ﻿class UserProfileController extends BaseController {
 	protected HttpService: ng.IHttpService;
+	public UPModel: UserProfileModel;
 
 	constructor($window: ng.IWindowService, $http: ng.IHttpService) {
 		super($window);
 		this.HttpService = $http;
+		this.UPModel = new UserProfileModel();
 		this.Initialize();
 		if (this.currentUser == null)
 			this.IWindowService.location.href = '/index.html#!/home';
+	}
+
+	public SavePasswordClick(): void {
+
+
+	}
+
+	public SaveClick(): void {
+
+
+
+
 	}
 
 	protected Initialize(): void {
@@ -55,4 +69,20 @@
     }
 
 }
+class UserProfileModel {
+	public OldPassword: string;
+	public NewPassword: string;
+	public RetypeNewPassword: string;
 
+	public Email: string;
+	public FirstName: string;
+	public LastName: string;
+	public Country: string;
+	public City: string;
+	public Address: string;
+	public Telephone: number;
+
+	public ErrorMessage: string;
+	public ErrorAlert: boolean;
+	constructor() { }
+}

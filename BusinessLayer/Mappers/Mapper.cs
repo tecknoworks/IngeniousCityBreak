@@ -13,8 +13,7 @@ namespace BusinessLayer
         {
             var res = new UserDetails()
             {
-                Adress = dto.Adress,
-                CardNumber = dto.CardNumber
+                Address = dto.Address,
             };
 
             if (dto.Id.HasValue)
@@ -30,8 +29,7 @@ namespace BusinessLayer
             var res = new UserDetailsDto()
             {
                 Id = entity.Id,
-                Adress = entity.Adress,
-                CardNumber = entity.CardNumber
+                Address = entity.Address
             };
 
             return res;
@@ -76,8 +74,7 @@ namespace BusinessLayer
             var res = userDetails.Select(p => new UserDetailsDto()
             {
                 Id = p.Id,
-                Adress = p.Adress,
-                CardNumber = p.CardNumber
+                Address = p.Address
             });
             return res;
         }
@@ -85,8 +82,7 @@ namespace BusinessLayer
         {
             var dto = new UserDetailsDto();
             dto.Id = userDetails.Id;
-            dto.Adress = userDetails.Adress;
-            dto.CardNumber = userDetails.CardNumber;
+            dto.Address = userDetails.Address;
 
             return dto;
         }
