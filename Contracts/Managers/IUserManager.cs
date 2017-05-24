@@ -10,10 +10,13 @@ namespace Contracts
     public interface IUserManager
     {
         void Create(UserDetailsDto userDetailsDto);
+        void Update(UserDetailsDto userDetailsDto);
 
         IEnumerable<UserDetailsDto> GetAll();
 
         UserDetailsDto GetByIdUser(int id);
+
+        UserDetailsDto GetByEmailUser(string email);
         void AddUserDetails(ApplicationUser user);
     }
 }

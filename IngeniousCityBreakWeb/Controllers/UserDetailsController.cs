@@ -8,6 +8,7 @@ using System.Web.Http;
 
 namespace IngeniousCityBreakWeb.Controllers
 {
+    [Authorize]
     public class UserDetailsController : BaseApiController
     {
         private IUserManager UserManager;
@@ -22,8 +23,10 @@ namespace IngeniousCityBreakWeb.Controllers
         /// <returns></returns>
         [HttpPost]
         public IHttpActionResult Create(UserDetailsDto usersDetailsDto) {
+            var userName = RequestContext.Principal.Identity.Name;
+            usersDetailsDto.UserName = userName;
             var manager = DiContainer.Resolve<IUserManager>();
-            manager.Create(usersDetailsDto);
+            manager.Update(usersDetailsDto);
             return Ok();
         }
 
@@ -44,6 +47,18 @@ namespace IngeniousCityBreakWeb.Controllers
         public UserDetailsDto GetById(int id)
         {
             var manager = UserManager.GetByIdUser(id);
+            return manager;
+        }
+
+        /// <summary>
+        /// Get user by email
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        [Route("api/UserDetails")]
+        public UserDetailsDto GetByEmail(string email)
+        {
+            var manager = UserManager.GetByEmailUser(email);
             return manager;
         }
     }

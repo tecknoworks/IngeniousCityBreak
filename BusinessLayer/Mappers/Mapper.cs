@@ -30,6 +30,18 @@ namespace BusinessLayer
             return res;
         }
 
+        public static void FromDto(UserDetails entity, UserDetailsDto dto)
+        {
+
+            entity.Email = dto.Email;
+            entity.FirstName = dto.FirstName;
+            entity.LastName = dto.LastName;
+            entity.Country = dto.Country;
+            entity.City = dto.City;
+            entity.Address = dto.Address;
+            entity.Telephone = dto.Telephone;
+        }
+
         public static UserDetailsDto ToDto(UserDetails entity)
         {
             var res = new UserDetailsDto()
@@ -109,6 +121,22 @@ namespace BusinessLayer
             dto.Telephone = userDetails.Telephone;
 
             return dto;
+        }
+
+        public static UserDetailsDto ToUserDetailsEmailDto(UserDetails userDetails)
+        {
+            var dto = new UserDetailsDto();
+            dto.Id = userDetails.Id;
+            dto.Email = userDetails.Email;
+            dto.FirstName = userDetails.FirstName;
+            dto.LastName = userDetails.LastName;
+            dto.Country = userDetails.Country;
+            dto.City = userDetails.City;
+            dto.Address = userDetails.Address;
+            dto.Telephone = userDetails.Telephone;
+
+            return dto;
+
         }
 
         public static City FromCityDto(CityDto cityDto)

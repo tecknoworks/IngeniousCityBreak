@@ -26,6 +26,16 @@ namespace BusinessLogic
             UserDetailsRepository.Insert(entity);
             UserDetailsRepository.Save();
         }
+
+        public void Update(UserDetailsDto userDetailsDto)
+        {
+            //var entity = Mapper.FromDto(userDetailsDto);
+            var userEntity = _userRepository.GetAll().First(it => it.UserName == userDetailsDto.UserName);
+            Mapper.FromDto(userEntity.UserDetails, userDetailsDto);
+
+            //UserDetailsRepository.Insert(entity);
+            _userRepository.Save();
+        }
         public IEnumerable<UserDetailsDto> GetAll()
         {
             // var result = UserDetailsRepository.GetAll().ToUserDetailsDto();
@@ -38,6 +48,13 @@ namespace BusinessLogic
         {
             var result = Mapper.ToUserDetailsIdDto(UserDetailsRepository.GetById(id));
             return result;
+        }
+
+        public UserDetailsDto GetByEmailUser(string email)
+        {
+          //  var result = Mapper.ToUserDetailsEmailDto(UserDetailsRepository.GetByEmail(email));
+            var result = UserDetailsRepository.GetAll().Where(it => it.Email.Contains(email)).FirstOrDefault();
+            return Mapper.ToUserDetailsIdDto(result);
         }
 
         public void AddUserDetails(ApplicationUser user) {
