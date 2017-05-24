@@ -10,10 +10,7 @@ namespace IngeniousCityBreakWeb.Controllers
 {
     public class UserDetailsController : BaseApiController
     {
-        //13.04.2017
         private IUserManager UserManager;
-
-        //13.04.2017
         public UserDetailsController()
         {
             this.UserManager = this.DiContainer.Resolve<IUserManager>();
