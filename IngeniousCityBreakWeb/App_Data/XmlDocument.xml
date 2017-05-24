@@ -481,13 +481,6 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
-        <member name="M:IngeniousCityBreakWeb.Controllers.RouteController.InsertTouristAttraction(BusinessLayer.Dto.RouteDto)">
-            <summary>
-            Create a new Tourist Attraction
-            </summary>
-            <param name="route"></param>
-            <returns></returns>
-        </member>
         <member name="M:IngeniousCityBreakWeb.Controllers.RouteController.InsertRoute(BusinessLayer.Dto.RouteDto)">
             <summary>
             Create a new route

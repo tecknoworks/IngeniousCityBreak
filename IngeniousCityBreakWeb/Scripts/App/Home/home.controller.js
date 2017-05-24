@@ -37,7 +37,6 @@ var MapService = (function () {
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
         var uniqueId = 1; //sus
-        debugger;
         this.myMap = new google.maps.Map(document.getElementById("dvMap"), mapOptions);
         this.markers = new LinkedList(this.myMap);
         google.maps.event.addListener(this.myMap, 'click', function (e) {
@@ -48,28 +47,23 @@ var MapService = (function () {
                 position: location,
                 map: _this.myMap
             };
-            debugger;
             var marker = new MyMarker(markerOptions);
             //Set unique id
             marker.id = uniqueId;
             uniqueId++;
             _this.markers.insertLink(marker);
             //Attach click event handler to the marker.
-            var geocoder = new google.maps.Geocoder;
             var latlng = location.lat() + "," + location.lng();
             var url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' + location.lat() + ',' + location.lng() + '&sensor=true';
             google.maps.event.addListener(marker, "click", function (e) {
                 var content = 'Latitude: ' + location.lat() + '<br />Longitude: ' + location.lng();
                 content += "<br /><input type = 'button' value = 'Delete' id='removeMarkerBtn1' marker='" + marker.id + "' value = 'Delete' />";
-                debugger;
                 var infoWindow = new google.maps.InfoWindow({
                     content: content
                 });
                 infoWindow.open(_this.myMap, marker);
-                debugger;
                 setTimeout(function () {
                     $("#removeMarkerBtn1").click(function (e) {
-                        debugger;
                         var myMarker = _this.markers.searchNode(marker);
                         if ((myMarker == _this.markers.first) && (_this.markers.first == _this.markers.last)) {
                             _this.markers.removeMarker(myMarker.value);
@@ -77,9 +71,7 @@ var MapService = (function () {
                         }
                         else if ((myMarker == _this.markers.first) && (_this.markers.first != _this.markers.last)) {
                             _this.markers.first.line.setMap(null);
-                            debugger;
                             _this.markers.removeMarker(myMarker.value);
-                            debugger;
                             myMarker.value.setMap(null);
                         }
                         else if ((myMarker == _this.markers.last) && (_this.markers.last != _this.markers.first)) {
@@ -103,7 +95,6 @@ var MapService = (function () {
                                 strokeWeight: 2
                             };
                             var flightPath = new MyPolyline(lineOptions);
-                            debugger;
                             var mark = myMarker;
                             myMarker.prevNode.line.setMap(null);
                             myMarker.line.setMap(null);
@@ -115,7 +106,6 @@ var MapService = (function () {
                     });
                 }, 300);
             });
-            debugger;
             var node = _this.markers.last;
             if (_this.markers.first != _this.markers.last) {
                 var node = _this.markers.last.prevNode;
@@ -265,23 +255,14 @@ var LinkedList = (function () {
             console.log(crt.value);
         }
     };
-    LinkedList.prototype.toString = function () {
-        var current = this.first;
-        var str = '';
-        while (current) {
-            str += current.value; //output is undefinedundefinedundefined
-            // str += JSON.stringify(current);
-            // prints out {"next":{"next":{}}}{"next":{}}{}
-            current = current.nextNode;
-        }
-        return str;
-    };
     return LinkedList;
 }());
 var HomeModel = (function () {
     function HomeModel() {
         this.TouristAttractionList = new Array();
         this.RouteList = new Array();
+        this.RouteListString = new Array();
+        this.RouteListString2 = new Array();
     }
     return HomeModel;
 }());
@@ -327,16 +308,66 @@ var RouteService = (function () {
         $http.get("/api/Route")
             .then(function (response) {
             var data = response.data;
+            var resp;
+            var rr;
             for (var i = 0; i < data.length; i++) {
                 var model = new RouteModel();
-                debugger;
                 model.FromRouteDto(data[i]);
+                var routeDataModel = JSON.parse(model.RouteJson);
                 debugger;
+                var lat = routeDataModel[0].Lat;
+                var lng = routeDataModel[0].Long;
+                $http.get('http://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + lng + '&sensor=true')
+                    .then(function (r) {
+                    resp = r.data;
+                    Model.RouteListString.push(resp.results[0].formatted_address);
+                })
+                    .catch(function (r) {
+                    console.log(r);
+                });
+                var len = routeDataModel.length;
+                len = len - 1;
+                var lat = routeDataModel[len].Lat;
+                var lng = routeDataModel[len].Long;
+                $http.get('http://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + lng + '&sensor=true')
+                    .then(function (r) {
+                    debugger;
+                    resp = r.data;
+                    Model.RouteListString2.push(resp.results[0].formatted_address);
+                })
+                    .catch(function (r) {
+                    console.log(r);
+                });
                 Model.RouteList.push(model);
-                debugger;
             }
         });
     }
+    RouteService.prototype.geocodeLatLng = function (geocoder, map, infowindow, location) {
+        debugger;
+        var latlngStr = location.split(',', 2);
+        var latlng = { lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1]) };
+        geocoder.geocode({ 'location': latlng }, function (results, status) {
+            if (status === 'OK') {
+                if (results[1]) {
+                    // map.setZoom(11);
+                    var marker = new google.maps.Marker({
+                        position: latlng,
+                        map: map
+                    });
+                    debugger;
+                    infowindow.setContent(results[1].formatted_address);
+                    infowindow.open(map, marker);
+                    debugger;
+                }
+                else {
+                    window.alert('No results found');
+                }
+            }
+            else {
+                window.alert('Geocoder failed due to: ' + status);
+            }
+        });
+    };
     return RouteService;
 }());
 var HomeController = (function (_super) {
@@ -360,7 +391,6 @@ var HomeController = (function (_super) {
         });
         this.Initialize();
         this.mapService = new MapService();
-        debugger;
         this.routeService = new RouteService(this.windowService, this.httpService, this.Model);
     }
     HomeController.prototype.PostRouteClick = function () {
@@ -375,7 +405,7 @@ var HomeController = (function (_super) {
         debugger;
         var routeModel = new RouteModel();
         self.httpService.post('api/InsertRoute', this.mapService.GetRouteDataModel()).then(function (response) {
-            //self.windowService.location.href = '/index.html#!/home';
+            alert("Your route has been saved successfully");
         }).catch(function (response) {
         });
     };

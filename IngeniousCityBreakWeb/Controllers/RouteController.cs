@@ -16,17 +16,6 @@ namespace IngeniousCityBreakWeb.Controllers
             this.iRouteManeger = this.DiContainer.Resolve<IRouteManager>();
         }
 
-        /// <summary>
-        /// Create a new Tourist Attraction
-        /// </summary>
-        /// <param name="route"></param>
-        /// <returns></returns>
-        [System.Web.Http.HttpPost]
-        public IHttpActionResult InsertTouristAttraction(RouteDto routeDto)
-        {
-            iRouteManeger.insert(routeDto);
-            return Ok(100);
-        }
 
         /// <summary>
         /// Create a new route
