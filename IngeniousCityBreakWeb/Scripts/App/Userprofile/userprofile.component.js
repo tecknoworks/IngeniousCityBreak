@@ -6,3 +6,4 @@ angular.
     templateUrl: 'scripts/app/userprofile/userprofile.template.html',
     controller: ['$window', '$http', UserProfileController]
 });
+//# sourceMappingURL=userprofile.component.js.map
