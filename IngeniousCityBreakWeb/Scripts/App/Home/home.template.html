@@ -1,1073 +1,921 @@
 ﻿
 <div id="all">
 
-	<header>
+    <header>
 
-		<!-- *** TOP ***
-		_________________________________________________________ -->
-		<div id="top">
-			<div class="container">
-				<div class="row">
-					<div class="col-xs-5 contact">
-						<!--<p class="hidden-sm hidden-xs">Contact us on +420 777 555 333 or hello@universal.com.</p>-->
-						<p class="hidden-md hidden-lg">
-							<a href="#" data-animate-hover="pulse"><i class="fa fa-phone"></i></a>  <a href="#" data-animate-hover="pulse"><i class="fa fa-envelope"></i></a>
-						</p>
-					</div>
-					<div class="col-xs-7">
-						<div class="social">
-							<a href="#" class="external facebook" data-animate-hover="pulse"><i class="fa fa-facebook"></i></a>
-							<a href="#" class="external gplus" data-animate-hover="pulse"><i class="fa fa-google-plus"></i></a>
-							<a href="#" class="external twitter" data-animate-hover="pulse"><i class="fa fa-twitter"></i></a>
-							<a href="#" class="email" data-animate-hover="pulse"><i class="fa fa-envelope"></i></a>
-						</div>
+        <!-- *** TOP ***
+        _________________________________________________________ -->
+        <div id="top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-5 contact">
+                        <!--<p class="hidden-sm hidden-xs">Contact us on +420 777 555 333 or hello@universal.com.</p>-->
+                        <p class="hidden-md hidden-lg">
+                            <a href="#" data-animate-hover="pulse"><i class="fa fa-phone"></i></a>  <a href="#" data-animate-hover="pulse"><i class="fa fa-envelope"></i></a>
+                        </p>
+                    </div>
+                    <div class="col-xs-7">
+                        <div class="social">
+                            <a href="#" class="external facebook" data-animate-hover="pulse"><i class="fa fa-facebook"></i></a>
+                            <a href="#" class="external gplus" data-animate-hover="pulse"><i class="fa fa-google-plus"></i></a>
+                            <a href="#" class="external twitter" data-animate-hover="pulse"><i class="fa fa-twitter"></i></a>
+                            <a href="#" class="email" data-animate-hover="pulse"><i class="fa fa-envelope"></i></a>
+                        </div>
 
-						<div class="login">
-							
-							<a ng-hide="$ctrl.currentUser" href="#!/register"><i class="fa fa-sign-in"></i> <span class="hidden-xs text-uppercase">Sign in</span></a>
-							<a ng-hide="$ctrl.currentUser" href="#!/register"><i class="fa fa-user"></i><span class="hidden-xs text-uppercase">Sign up</span></a>
+                        <div class="login">
 
-							<a ng-show="$ctrl.currentUser" href="#!/userprofile" target="_blank">{{$ctrl.currentUser.UserName}}</a>
-							<a ng-show="$ctrl.currentUser" href="javascript:void(0)" ng-click="$ctrl.LogOutClick()"><i class="fa fa-sign-out"></i><span class="hidden-xs text-uppercase">Sign out</span></a>
-						
-						</div>
+                            <a ng-hide="$ctrl.currentUser" href="#!/register"><i class="fa fa-sign-in"></i> <span class="hidden-xs text-uppercase">Sign in</span></a>
+                            <a ng-hide="$ctrl.currentUser" href="#!/register"><i class="fa fa-user"></i><span class="hidden-xs text-uppercase">Sign up</span></a>
 
-					</div>
-				</div>
-			</div>
-		</div>
+                            <a ng-show="$ctrl.currentUser" href="#!/userprofile" target="_blank">{{$ctrl.currentUser.UserName}}</a>
+                            <a ng-show="$ctrl.currentUser" href="javascript:void(0)" ng-click="$ctrl.LogOutClick()"><i class="fa fa-sign-out"></i><span class="hidden-xs text-uppercase">Sign out</span></a>
 
-		<!-- *** TOP END *** -->
-		<!-- *** NAVBAR ***
-		_________________________________________________________ -->
+                        </div>
 
-		<div class="navbar-affixed-top" data-spy="affix" data-offset-top="200">
+                    </div>
+                </div>
+            </div>
+        </div>
 
-			<div class="navbar navbar-default yamm" role="navigation" id="navbar">
+        <!-- *** TOP END *** -->
+        <!-- *** NAVBAR ***
+        _________________________________________________________ -->
 
-				<div class="container">
-					<div class="navbar-header">
+        <div class="navbar-affixed-top" data-spy="affix" data-offset-top="200">
 
-						<a class="navbar-brand home" href="/index.html#!/home">
-							<img src="../../../Content/images/logo-ingenious-small.jpg" alt="Universal logo" class="hidden-xs hidden-sm">
-							<img src="../../../Content/images/logo-ingenious-small.jpg" alt="Universal logo" class="visible-xs visible-sm"><span class="sr-only">Universal - go to homepage</span>
+            <div class="navbar navbar-default yamm" role="navigation" id="navbar">
+
+                <div class="container">
+                    <div class="navbar-header">
+
+                        <a class="navbar-brand home" href="/index.html#!/home">
+                            <img src="../../../Content/images/logo-ingenious-small.jpg" alt="Universal logo" class="hidden-xs hidden-sm">
+                            <img src="../../../Content/images/logo-ingenious-small.jpg" alt="Universal logo" class="visible-xs visible-sm"><span class="sr-only">Universal - go to homepage</span>
 
 
-						</a>
-						<div class="navbar-buttons">
-							<button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
-								<span class="sr-only">Toggle navigation</span>
-								<i class="fa fa-align-justify"></i>
-							</button>
-						</div>
-					</div>
-					<!--/.navbar-header -->
+                        </a>
+                        <div class="navbar-buttons">
+                            <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
+                                <span class="sr-only">Toggle navigation</span>
+                                <i class="fa fa-align-justify"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <!--/.navbar-header -->
 
-					<div class="navbar-collapse collapse" id="navigation">
+                    <div class="navbar-collapse collapse" id="navigation">
 
-						<ul class="nav navbar-nav navbar-right">
-							<li class="dropdown active">
-								<a href="javascript: void(0)" class="dropdown-toggle" data-toggle="dropdown">Home <b class="caret"></b></a>
-								<ul class="dropdown-menu">
-									<li>
-										<a href="../../../Content/Theme/index.html">Option 1: Default Page</a>
-									</li>
-									<li>
-										<a href="../../../Content/Theme/index2.html">Option 2: Application</a>
-									</li>
-									<li>
-										<a href="../../../Content/Theme/index3.html">Option 3: Startup</a>
-									</li>
-									<li>
-										<a href="../../../Content/Theme/index4.html">Option 4: Agency</a>
-									</li>
-									<li>
-										<a href="../../../Content/Theme/index5.html">Option 5: Portfolio</a>
-									</li>
-								</ul>
-							</li>
-							<li class="dropdown use-yamm yamm-fw">
-								<a href="javascript: void(0)" class="dropdown-toggle" data-toggle="dropdown">About<b class="caret"></b></a>
-								<ul class="dropdown-menu">
-									<li>
-										<div class="yamm-content">
-											<div class="row">
-												<div class="col-sm-6">
-													<img src="../../../Content/Theme/img/template-easy-customize.png" class="img-responsive hidden-xs" alt="">
-												</div>
-												<div class="col-sm-3">
-													<h5>Shortcodes</h5>
-													<ul>
-														<li>
-															<a href="../../../Content/Theme/template-accordions.html">Accordions</a>
-														</li>
-														<li>
-															<a href="../../../Content/Theme/template-alerts.html">Alerts</a>
-														</li>
-														<li>
-															<a href="../../../Content/Theme/template-buttons.html">Buttons</a>
-														</li>
-														<li>
-															<a href="../../../Content/Theme/template-content-boxes.html">Content boxes</a>
-														</li>
-														<li>
-															<a href="../../../Content/Theme/template-blocks.html">Horizontal blocks</a>
-														</li>
-														<li>
-															<a href="../../../Content/Theme/template-pagination.html">Pagination</a>
-														</li>
-														<li>
-															<a href="../../../Content/Theme/template-tabs.html">Tabs</a>
-														</li>
-														<li>
-															<a href="../../../Content/Theme/template-typography.html">Typography</a>
-														</li>
-													</ul>
-												</div>
-												<div class="col-sm-3">
-													<h5>Header variations</h5>
-													<ul>
-														<li>
-															<a href="../../../Content/Theme/template-header-default.html">Default sticky header</a>
-														</li>
-														<li>
-															<a href="../../../Content/Theme/template-header-nosticky.html">No sticky header</a>
-														</li>
-														<li>
-															<a href="../../../Content/Theme/template-header-light.html">Light header</a>
-														</li>
-													</ul>
-												</div>
-											</div>
-										</div>
-									</li>
-								</ul>
-							</li>
-							<li class="dropdown use-yamm yamm-fw">
-								<a href="javascript: void(0)" class="dropdown-toggle" data-toggle="dropdown">Portofolio <b class="caret"></b></a>
-								<ul class="dropdown-menu">
-									<li>
-										<div class="yamm-content">
-											<div class="row">
-												<div class="col-sm-6">
-													<img src="../../../Content/Theme/img/template-homepage.png" class="img-responsive hidden-xs" alt="">
-												</div>
-												<div class="col-sm-3">
-													<h5>Portfolio</h5>
-													<ul>
-														<li>
-															<a href="../../../Content/Theme/portfolio-2.html">2 columns</a>
-														</li>
-														<li>
-															<a href="../../../Content/Theme/portfolio-no-space-2.html">2 columns with negative space</a>
-														</li>
-														<li>
-															<a href="../../../Content/Theme/portfolio-3.html">3 columns</a>
-														</li>
-														<li>
-															<a href="../../../Content/Theme/portfolio-no-space-3.html">3 columns with negative space</a>
-														</li>
-														<li>
-															<a href="../../../Content/Theme/portfolio-4.html">4 columns</a>
-														</li>
-														<li>
-															<a href="../../../Content/Theme/portfolio-no-space-4.html">4 columns with negative space</a>
-														</li>
-														<li>
-															<a href="../../../Content/Theme/portfolio-detail.html">Portfolio - detail</a>
-														</li>
-														<li>
-															<a href="../../../Content/Theme/portfolio-detail-2.html">Portfolio - detail 2</a>
-														</li>
-													</ul>
-												</div>
-												<div class="col-sm-3">
-													<h5>About</h5>
-													<ul>
-														<li>
-															<a href="../../../Content/Theme/about.html">About us</a>
-														</li>
-														<li>
-															<a href="../../../Content/Theme/team.html">Our team</a>
-														</li>
-														<li>
-															<a href="../../../Content/Theme/team-member.html">Team member</a>
-														</li>
-														<li>
-															<a href="../../../Content/Theme/services.html">Services</a>
-														</li>
-													</ul>
-													<h5>Marketing</h5>
-													<ul>
-														<li>
-															<a href="../../../Content/Theme/packages.html">Packages</a>
-														</li>
-													</ul>
-												</div>
-											</div>
-										</div>
-									</li>
-								</ul>
-							</li>
-							<!-- ========== FULL WIDTH MEGAMENU ================== -->
-							<li class="dropdown use-yamm yamm-fw">
-								<a href="javascript: void(0)" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">All Routes <b class="caret"></b></a>
-								<ul class="dropdown-menu">
-									<li>
-										<div class="yamm-content">
-											<div class="row">
-												<div class="col-sm-3">
-													<ul>
-                                                        <li ng-repeat="x in  $ctrl.Model.RouteListString" style="width:1000px">{{x}}<input type="radio" id="myRatio" name="foo" style="margin-right:10px" /></li>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown active">
+                                <a href="javascript: void(0)" class="dropdown-toggle" data-toggle="dropdown">Home <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="../../../Content/Theme/index.html">Option 1: Default Page</a>
+                                    </li>
+                                    <li>
+                                        <a href="../../../Content/Theme/index2.html">Option 2: Application</a>
+                                    </li>
+                                    <li>
+                                        <a href="../../../Content/Theme/index3.html">Option 3: Startup</a>
+                                    </li>
+                                    <li>
+                                        <a href="../../../Content/Theme/index4.html">Option 4: Agency</a>
+                                    </li>
+                                    <li>
+                                        <a href="../../../Content/Theme/index5.html">Option 5: Portfolio</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown use-yamm yamm-fw">
+                                <a href="javascript: void(0)" class="dropdown-toggle" data-toggle="dropdown">About<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <div class="yamm-content">
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <img src="../../../Content/Theme/img/template-easy-customize.png" class="img-responsive hidden-xs" alt="">
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <h5>Shortcodes</h5>
+                                                    <ul>
+                                                        <li>
+                                                            <a href="../../../Content/Theme/template-accordions.html">Accordions</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="../../../Content/Theme/template-alerts.html">Alerts</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="../../../Content/Theme/template-buttons.html">Buttons</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="../../../Content/Theme/template-content-boxes.html">Content boxes</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="../../../Content/Theme/template-blocks.html">Horizontal blocks</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="../../../Content/Theme/template-pagination.html">Pagination</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="../../../Content/Theme/template-tabs.html">Tabs</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="../../../Content/Theme/template-typography.html">Typography</a>
+                                                        </li>
                                                     </ul>
-													
-													
-												</div>
-												<div class="col-sm-3">
-													
-													
-												</div>
-												<div class="col-sm-3">
-													
-												</div>
-												<div class="col-sm-3">
-													
-												</div>
-											</div>
-										</div>
-										<!-- /.yamm-content -->
-									</li>
-								</ul>
-							</li>
-							<!-- ========== FULL WIDTH MEGAMENU END ================== -->
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <h5>Header variations</h5>
+                                                    <ul>
+                                                        <li>
+                                                            <a href="../../../Content/Theme/template-header-default.html">Default sticky header</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="../../../Content/Theme/template-header-nosticky.html">No sticky header</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="../../../Content/Theme/template-header-light.html">Light header</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown use-yamm yamm-fw">
+                                <a href="javascript: void(0)" class="dropdown-toggle" data-toggle="dropdown">Portofolio <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <div class="yamm-content">
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <img src="../../../Content/Theme/img/template-homepage.png" class="img-responsive hidden-xs" alt="">
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <h5>Portfolio</h5>
+                                                    <ul>
+                                                        <li>
+                                                            <a href="../../../Content/Theme/portfolio-2.html">2 columns</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="../../../Content/Theme/portfolio-no-space-2.html">2 columns with negative space</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="../../../Content/Theme/portfolio-3.html">3 columns</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="../../../Content/Theme/portfolio-no-space-3.html">3 columns with negative space</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="../../../Content/Theme/portfolio-4.html">4 columns</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="../../../Content/Theme/portfolio-no-space-4.html">4 columns with negative space</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="../../../Content/Theme/portfolio-detail.html">Portfolio - detail</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="../../../Content/Theme/portfolio-detail-2.html">Portfolio - detail 2</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <h5>About</h5>
+                                                    <ul>
+                                                        <li>
+                                                            <a href="../../../Content/Theme/about.html">About us</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="../../../Content/Theme/team.html">Our team</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="../../../Content/Theme/team-member.html">Team member</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="../../../Content/Theme/services.html">Services</a>
+                                                        </li>
+                                                    </ul>
+                                                    <h5>Marketing</h5>
+                                                    <ul>
+                                                        <li>
+                                                            <a href="../../../Content/Theme/packages.html">Packages</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- ========== FULL WIDTH MEGAMENU ================== -->
+                            <li class="dropdown use-yamm yamm-fw">
+                                <a href="javascript: void(0)" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">All Routes <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <div class="yamm-content">
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <ul>
+                                                        <li ng-repeat="x in  $ctrl.Model.RouteListString" style="width:500px">{{x}} <p style="display:inline"><img src="../../../Content/images/to.png" style="width:30px;height:20px;position:fixed; left:800px" /></p></li>
+
+                                                    </ul>
+
+
+                                                </div>
+                                                <div class="col-sm-3">
 
-							<li class="dropdown">
-								<a href="javascript: void(0)" class="dropdown-toggle" data-toggle="dropdown">Contact <b class="caret"></b></a>
-								<ul class="dropdown-menu">
-									<li>
-										<a href="../../../Content/Theme/contact.html">Contact option 1</a>
-									</li>
-									<li>
-										<a href="../../../Content/Theme/contact2.html">Contact option 2</a>
-									</li>
-									<li>
-										<a href="../../../Content/Theme/contact3.html">Contact option 3</a>
-									</li>
 
-								</ul>
-							</li>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <ul>
+                                                        <li ng-repeat="x in $ctrl.Model.RouteListString2" style="width:500px">{{x}}<input type="radio" id="myRatio" name="foo" style="margin-right:10px; position:fixed; left:1340px" /></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-sm-3">
 
-							<li class="navbar-buttons">
-								<a ng-show="$ctrl.currentUser" href="#!/userprofile" class="buttons">My profile</a>
-							</li>
-						</ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /.yamm-content -->
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- ========== FULL WIDTH MEGAMENU END ================== -->
 
-					</div>
-					<!--/.nav-collapse -->
+                            <li class="dropdown">
+                                <a href="javascript: void(0)" class="dropdown-toggle" data-toggle="dropdown">Contact <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="../../../Content/Theme/contact.html">Contact option 1</a>
+                                    </li>
+                                    <li>
+                                        <a href="../../../Content/Theme/contact2.html">Contact option 2</a>
+                                    </li>
+                                    <li>
+                                        <a href="../../../Content/Theme/contact3.html">Contact option 3</a>
+                                    </li>
 
+                                </ul>
+                            </li>
 
+                            <li class="navbar-buttons">
+                                <a ng-show="$ctrl.currentUser" href="#!/userprofile" class="buttons">My profile</a>
+                            </li>
+                        </ul>
 
-					<div class="collapse clearfix" id="search">
+                    </div>
+                    <!--/.nav-collapse -->
 
-						<form class="navbar-form" role="search">
-							<div class="input-group">
-								<input type="text" class="form-control" placeholder="Search">
-								<span class="input-group-btn">
 
-									<button type="submit" class="btn btn-template-main"><i class="fa fa-search"></i></button>
 
-								</span>
-							</div>
-						</form>
+                    <div class="collapse clearfix" id="search">
 
-					</div>
-					<!--/.nav-collapse -->
+                        <form class="navbar-form" role="search">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search">
+                                <span class="input-group-btn">
 
-				</div>
+                                    <button type="submit" class="btn btn-template-main"><i class="fa fa-search"></i></button>
 
+                                </span>
+                            </div>
+                        </form>
 
-			</div>
-			<!-- /#navbar -->
+                    </div>
+                    <!--/.nav-collapse -->
 
-		</div>
+                </div>
 
-		<!-- *** NAVBAR END *** -->
 
-	</header>
+            </div>
+            <!-- /#navbar -->
 
-	<!-- *** LOGIN MODAL ***
-	_________________________________________________________ -->
-
-	<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
-		<div class="modal-dialog modal-sm">
-
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h4 class="modal-title" id="Login">Customer login</h4>
-				</div>
-				<div class="modal-body">
-					<form action="../../../Content/Theme/customer-orders.html" method="post">
-						<div class="form-group">
-							<input type="text" class="form-control" id="email_modal" placeholder="email">
-						</div>
-						<div class="form-group">
-							<input type="password" class="form-control" id="password_modal" placeholder="password">
-						</div>
-
-						<p class="text-center">
-							<button class="btn btn-template-main"><i class="fa fa-sign-in"></i> Log in</button>
-						</p>
-
-					</form>
-
-					<p class="text-center text-muted">Not registered yet?</p>
-					<p class="text-center text-muted"><a href="../../../Content/Theme/customer-register.html"><strong>Register now</strong></a>! It is easy and done in 1&nbsp;minute and gives you access to special discounts and much more!</p>
-
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- *** LOGIN MODAL END *** -->
-
-	<section>
-		<!-- *** HOMEPAGE CAROUSEL ***
-		_________________________________________________________ -->
-
-		<div class="home-carousel">
-
-			<!--<div class="dark-mask"></div>-->
-
-			<!--<div class="container">-->
-				<div class="homepage owl-carousel">
-					<div class="item">
-						<div class="container">
-							<div class="row">
-								<div class="col-sm-5 ">									
-									<h1>What to visit when in Paris?</h1>
-									<p>
-										The Louvre Museum <br/> is definitely a must!
-									</p>
-								</div>
-								<div class="col-sm-7">
-									<img class="img-responsive" src="../../../Content/images/museum-louvre-carousel.jpg" style="height:400px; border:5px solid white;" alt="">
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="container">
-							<div class="row">
-								<div class="col-sm-5">				
-									<h1>London is calling</h1>
-									<ul class="list-style-none">
-										<li>Make sure you don't miss </li>
-										<li>one of the most prominent symbols</li>
-										<li>of the united kingdom-big ben</li>
-									</ul>
-								</div>
-								<div class="col-sm-7 ">
-									<img class="img-responsive" src="../../../Content/images/big-ben-carousel.jpg" style="height:400px; border:5px solid white;" alt="">
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="container">
-							<div class="row">
-								<div class="col-sm-5">
-									<h1>Are you afraid of heights?</h1>
-									<ul class="list-style-none">
-										<li>Burj Khalifa is currently the tallest</li>
-										<li>structure in the world since 2008</li>
-										<li>don't miss it!</li>
-									</ul>								
-								</div>
-								<div class="col-sm-7">
-									<img class="img-responsive" src="../../../Content/images/burj-khalifa-carousel.jpg" style="height:400px; border:5px solid white;" alt="">
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="container">
-							<div class="row">
-								<div class="col-sm-5">
-									<h1>Rialto Bridge</h1>
-									<ul class="list-style-none">
-										<li>Is one of the four bridges spanning the</li>
-										<li>grand canal in Venice,Italy</li>
-										<li>You will love it!</li>
-									</ul>
-								</div>
-								<div class="col-sm-7">
-									<img class="img-responsive" src="../../../Content/images/rialto-bridge.jpg" style="height:400px; border:5px solid white;" alt="">
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- /.project owl-slider -->
-			<!--</div>-->
-		</div>
-
-		<!-- *** HOMEPAGE CAROUSEL END *** -->
-	</section>
-
-	<section class="bar background-white no-mb">
-		<div class="container" data-animate="fadeInUp">
-			<div class="row">
-				<div class="col-md-12">
-
-					<div class="heading text-center">
-						<h2>About Ingenious City Break</h2>
-					</div>
-
-					<div class="row">
-						<div class="portfolio-showcase clearfix">
-							<div class="col-sm-6">
-								<div class="image">
-									<img src="../../../Content/images/travels.jpeg" alt="" class="img-responsive">
-								</div>
-							</div>
-
-							<div class="col-sm-6">
-								<h3><a href="../../../Content/Theme/portfolio-detail.html">Do you like to travel?</a></h3>
-								<p class="lead"> If your answer is definitely yes, you are on the right page! Ingenious City Break is everything  you need for a perfect city break. We will take care of you and we will make sure that you will have the most wonderful holiday. Just tell us what cities you want to visit and we will show you the most visited tourist attractions from that area and we will also give you information about the schedule, the prices for the tickets and many more!  </p>
-								<!--<p>
-									Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.
-									Aenean ultricies mi vitae est. Mauris placerat eleifend leo.
-								</p>-->
-								<p class="buttons">
-									<a href="../../../Content/Theme/portfolio-detail.html" class="btn btn-template-main">View</a>
-									<a href="#" class="btn btn-template-main">Visit website</a>
-								</p>
-
-
-
-							</div>
-						</div>
-					</div>
-
-					<!--<div width="100%">
-						<script>
-						$(document).ready(function (e) {
-						$('img[usemap]').rwdImageMaps();
-						});
-						</script>
-
-						<img src="../../../Content/images/world-map.png" style="width:1600px; height:1135px;" usemap="#image-map" class="img-responsive">
-
-						<map name="image-map">
-							<area target="" alt="France" title="France" href="#" coords="760,533,751,546,734,551,746,561,747,574,751,584,761,585,768,580,775,578,777,565,782,555,777,543" shape="poly">
-							<area target="" alt="Italy" title="Italy" href="#" coords="782,575,781,565,791,564,802,561,804,572,808,584,816,589,826,599,816,616,806,612,813,608,815,598,798,587" shape="poly">
-							<area target="" alt="Romania" title="Romania" href="#" coords="837,564,846,557,857,553,867,554,871,564,874,574,863,577,853,578,845,572" shape="poly">
-							<area target="" alt="India" title="India" href="#" coords="1049,666,1059,666,1066,657,1072,649,1079,637,1090,643,1096,653,1098,663,1106,670,1119,671,1129,674,1133,691,1124,695,1117,704,1098,719,1095,736,1085,758,1068,715,1065,688,1055,697,1045,684,1057,680" shape="poly">
-							<area target="" alt="Spain" title="Spain" href="#" coords="712,581,719,588,723,595,722,606,723,615,724,622,737,616,747,612,750,601,765,587,748,584,733,580" shape="poly">
-							<area target="" alt="United Arab Emirates" title="United Arab Emirates" href="#" coords="972,680,983,680,997,671,992,681,982,687" shape="poly">
-							<area target="" alt="United States" title="United States" href="#" coords="211,546,339,543,358,553,347,565,368,558,382,564,372,574,370,589,382,571,388,587,409,578,426,572,446,568,452,560,457,572,445,589,425,599,420,615,409,633,396,649,405,678,391,664,381,654,358,654,333,664,326,677,310,656,299,657,288,645,275,650,245,643,233,633,220,613,211,602" shape="poly">
-						</map>
-					</div>-->
-
-					
-					<!--div width="100%">
-					<script>
-					$(document).ready(function (e) {
-					$('img[usemap]').rwdImageMaps();
-					});
-					</script>
-
-					<script>
-						$("#barcelona").on("click", function(e){
-						e.preventDefault();
-						$(this).css('background-color', 'red');
-							debugger
-						});
-					</script>
-
-
-					<img src="../../../Content/images/grey-world-map.png"  style="width:1433px; height:632px;" usemap="#image-map" class="img-responsive">
-						
-
-					<map name="image-map">
-						<area id="barcelona" target="" alt="Barcelona-Spain" href="#" title="Barcelona-Spain" coords="610,176,613,186,611,198,616,205,630,203,639,196,641,187,650,181,636,177,623,176" shape="poly">
-						<area id="paris" target="" alt="Paris-France" title="Paris-France" href="#" coords="639,148,640,157,644,167,636,175,650,176,661,175,668,171,663,161,670,153,661,146,649,144" shape="poly">
-						<area id="bucharest" target="" alt="Bucharest-Romania" title="Bucharest-Romania" href="#" coords="717,163,726,168,736,166,744,162,737,156,725,155" shape="poly">
-						<area id="dubai" target="" alt="Dubai-United Arab Emirates" title="Dubai-United Arab Emirates" href="#" coords="853,265,861,269,867,261,864,252" shape="poly">
-						<area id="agra" target="" alt="Agra-India" title="Agra-India" href="#" coords="929,214,935,223,930,239,920,248,920,256,931,252,930,261,940,267,936,281,939,295,949,308,956,329,961,317,961,301,974,294,982,284,993,261,978,261,967,251,961,239,953,229,948,212,937,209" shape="poly">
-
-					</map>
-					</div>-->
-
-					
-
-					
-
-					<div class="heading text-center">
-						<h3>The World’s Most-visited Tourist Attractions</h3>
-					</div>
-
-					<div class="row portfolio no-space">
-						<div class="col-sm-4" ng-repeat="x in  $ctrl.Model.TouristAttractionList" ng-show="$index == 1">
-							<div class="box-image">
-								<div class="image">
-									<img ng-src="{{x.Image}}" alt="" class="img-responsive" />
-								</div>
-								<div class="bg"></div>
-								<div class="name">
-									<h3><a href="../../../Content/images/tour-eiffel.jpg">{{x.Name}}</a></h3>
-								</div>
-								<div class="text">
-									<p class="hidden-sm">"For heightened emotions, it all starts with the climb! From the very moment you climb the stairs to the first floor, you feel as if you’ve embarked on a fantastical journey. And what a way to end it, when you reach the top in the lift!"</p>
-									<!--<p class="buttons">
-										<a href="../../../Content/Theme/portfolio-detail.html" class="btn btn-template-transparent-primary">View</a>
-										<a href="#" class="btn btn-template-transparent-primary">Website</a>
-									</p>-->
-								</div>
-							</div>
-							<!-- /.box-image-->
-
-						</div>
-
-						<div class="col-sm-4" ng-repeat="x in  $ctrl.Model.TouristAttractionList" ng-show="$index == 2">
-							<div class="box-image">
-								<div class="image">
-									<img ng-src="{{x.Image}}" alt="" class="img-responsive" />
-								</div>
-								<div class="bg"></div>
-								<div class="name">
-									<h3><a href="../../../Content/images/tour-eiffel.jpg">{{x.Name}}</a></h3>
-								</div>
-								<div class="text">
-									<p class="hidden-sm">"The Sagrada Familia is a symbolic expression in stone of the Christian faith. In this temple, an exaltation of the Family of Nazareth as a<br /> model for a united family, Christians, especially Roman Catholics, can recognise the tenets of their faith"</p>
-									<!--<p class="buttons">
-										<a href="../../../Content/Theme/portfolio-detail.html" class="btn btn-template-transparent-primary">View</a>
-										<a href="#" class="btn btn-template-transparent-primary">Website</a>
-									</p>-->
-								</div>
-							</div>
-							<!-- /.box-image -->
-						</div>
-
-						<div class="col-sm-4" ng-repeat="x in  $ctrl.Model.TouristAttractionList" ng-show="$index == 3">
-							<div class="box-image">
-								<div class="image">
-									<img ng-src="{{x.Image}}" alt="" class="img-responsive" />
-								</div>
-								<div class="bg"></div>
-								<div class="name">
-									<h3><a href="../../../Content/images/tour-eiffel.jpg">{{x.Name}}</a></h3>
-								</div>
-								<div class="text">
-									<p class="hidden-sm">"World's tallest building. A living wonder. Stunning work of art. Incomparable feat of engineering. Burj Khalifa is all that. In concept and execution, Burj Khalifa has no peer." </p>
-									<!--<p class="buttons">
-										<a href="../../../Content/Theme/portfolio-detail.html" class="btn btn-template-transparent-primary">View</a>
-										<a href="#" class="btn btn-template-transparent-primary">Website</a>
-									</p>-->
-								</div>
-							</div>
-							<!-- /.box-image -->
-						</div>
-						<!--<div class="col-sm-4">-->
-					</div>
-
-					<div class="row portfolio no-space">
-						<div class="col-sm-4" ng-repeat="x in  $ctrl.Model.TouristAttractionList" ng-show="$index == 4">
-							<div class="box-image">
-								<div class="image">
-									<img ng-src="{{x.Image}}" alt="" class="img-responsive" />
-								</div>
-								<div class="bg"></div>
-								<div class="name">
-									<h3><a href="../../../Content/images/tour-eiffel.jpg">{{x.Name}}</a></h3>
-								</div>
-								<div class="text">
-									<p class="hidden-sm">""The Statue of Liberty Enlightening the World" was a gift of friendship from the people of France to the United States and is recognized as a universal symbol of freedom and democracy. "</p>
-									<!--<p class="buttons">
-										<a href="../../../Content/Theme/portfolio-detail.html" class="btn btn-template-transparent-primary">View</a>
-										<a href="#" class="btn btn-template-transparent-primary">Website</a>
-									</p>-->
-								</div>
-							</div>
-							<!-- /.box-image-->
-
-						</div>
-
-						<div class="col-sm-4" ng-repeat="x in  $ctrl.Model.TouristAttractionList" ng-show="$index == 5">
-							<div class="box-image">
-								<div class="image">
-									<img ng-src="{{x.Image}}" alt="" class="img-responsive" />
-								</div>
-								<div class="bg"></div>
-								<div class="name">
-									<h3><a href="../../../Content/images/tour-eiffel.jpg">{{x.Name}}</a></h3>
-								</div>
-								<div class="text">
-									<p class="hidden-sm">"Built at the special request of Nicolae Ceausescu, leader of Romania's Communist Party, the colossal Parliament Palace - formerly known as "People's House" ( Casa Poporului ) -is the world's second largest administrative building after the U. S. Pentagon."</p>
-									<!--<p class="buttons">
-										<a href="../../../Content/Theme/portfolio-detail.html" class="btn btn-template-transparent-primary">View</a>
-										<a href="#" class="btn btn-template-transparent-primary">Website</a>
-									</p>-->
-								</div>
-							</div>
-							<!-- /.box-image -->
-						</div>
-
-						<div class="col-sm-4" ng-repeat="x in  $ctrl.Model.TouristAttractionList" ng-show="$index == 6">
-							<div class="box-image">
-								<div class="image">
-									<img ng-src="{{x.Image}}" alt="" class="img-responsive" />
-								</div>
-								<div class="bg"></div>
-								<div class="name">
-									<h3><a href="../../../Content/images/tour-eiffel.jpg">{{x.Name}}</a></h3>
-								</div>
-								<div class="text">
-									<p class="hidden-sm">"Originally built by Emperor Shah Jahan to house the tomb his wife, the Taj Mahal remains an architectural marvel of the modern world."</p>
-									<!--<p class="buttons">
-										<a href="../../../Content/Theme/portfolio-detail.html" class="btn btn-template-transparent-primary">View</a>
-										<a href="#" class="btn btn-template-transparent-primary">Website</a>
-									</p>-->
-								</div>
-							</div>
-							<!-- /.box-image -->
-						</div>
-					</div>
-
-					<div class="see-more">
-						<a href="../../../Content/Theme/portfolio-4.html" class="btn btn-template-main">See more of our work</a>
-					</div>
-
-				</div>
-
-			</div>
-		</div>
-	</section>
-
-	<section class="bar background-pentagon no-mb">
-		<div class="container">
-			<div class="row showcase">
-				<div class="col-md-3 col-sm-6">
-					<div class="item">
-						<div class="icon">
-							<i class="fa fa-align-justify"></i>
-						</div>
-						<h4>
-							<span class="counter">580</span><br>
-
-							Websites
-						</h4>
-					</div>
-				</div>
-				<div class="col-md-3 col-sm-6">
-					<div class="item">
-						<div class="icon">
-							<i class="fa fa-users"></i>
-						</div>
-						<h4>
-							<span class="counter">100</span><br>
-
-							Satisfied Clients
-						</h4>
-					</div>
-				</div>
-				<div class="col-md-3 col-sm-6">
-					<div class="item">
-						<div class="icon">
-							<i class="fa fa-copy"></i>
-						</div>
-						<h4>
-							<span class="counter">320</span><br>
-
-							Projects
-						</h4>
-					</div>
-				</div>
-				<div class="col-md-3 col-sm-6">
-					<div class="item">
-						<div class="icon">
-							<i class="fa fa-font"></i>
-						</div>
-						<h4>
-							<span class="counter">923</span><br>
-
-							Magazines and Brochures
-						</h4>
-					</div>
-				</div>
-			</div>
-			<!-- /.row -->
-		</div>
-		<!-- /.container -->
-	</section>
-	<!-- /.bar -->
-
-	<section class="bar background-white no-mb">
-		<div class="container">
-
-			<div class="col-md-12">
-				<!--<div class="heading text-center">
-					<h2>From our blog</h2>
-				</div>-->
-
-				<!--<p class="lead">
-					Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies
-					mi vitae est. Mauris placerat eleifend leo. <span class="accent">Check our blog!</span>
-				</p>-->
-
-				<!-- *** BLOG HOMEPAGE ***
-				_________________________________________________________ -->
-
-				<!--<div class="row">
-					<div class="col-md-3 col-sm-6">
-						<div class="box-image-text blog">
-							<div class="top">
-								<div class="image">
-									<img src="../../../Content/Theme/img/portfolio-4.jpg" alt="" class="img-responsive">
-								</div>
-								<div class="bg"></div>
-								<div class="text">
-									<p class="buttons">
-										<a href="../../../Content/Theme/blog-post.html" class="btn btn-template-transparent-primary"><i class="fa fa-link"></i> Read more</a>
-									</p>
-								</div>
-							</div>
-							<div class="content">
-								<h4><a href="../../../Content/Theme/blog-post.html">Fashion now</a></h4>
-								<p class="author-category">
-									By <a href="#">John Snow</a> in <a href="../../../Content/Theme/blog.html">Webdesign</a>
-								</p>
-								<p class="intro">Fifth abundantly made Give sixth hath. Cattle creature i be don't them behold green moved fowl Moved life us beast good yielding. Have bring.</p>
-								<p class="read-more">
-									<a href="../../../Content/Theme/blog-post.html" class="btn btn-template-main">Continue reading</a>
-								</p>
-							</div>
-						</div>
-						<!-- /.box-image-text -->
-
-					</div>
-
-					<div class="col-md-3 col-sm-6">
-						<!--<div class="box-image-text blog">
-							<div class="top">
-								<div class="image">
-									<img src="../../../Content/Theme/img/portfolio-3.jpg" alt="" class="img-responsive">
-								</div>
-								<div class="bg"></div>
-								<div class="text">
-									<p class="buttons">
-										<a href="../../../Content/Theme/blog-post.html" class="btn btn-template-transparent-primary"><i class="fa fa-link"></i> Read more</a>
-									</p>
-								</div>
-							</div>
-							<div class="content">
-								<h4><a href="../../../Content/Theme/blog-post.html">Fashion now</a></h4>
-								<p class="author-category">
-									By <a href="#">John Snow</a> in <a href="../../../Content/Theme/blog.html">Webdesign</a>
-								</p>
-								<p class="intro">Fifth abundantly made Give sixth hath. Cattle creature i be don't them behold green moved fowl Moved life us beast good yielding. Have bring.</p>
-								<p class="read-more">
-									<a href="../../../Content/Theme/blog-post.html" class="btn btn-template-main">Continue reading</a>
-								</p>
-							</div>
-						</div>-->
-						<!-- /.box-image-text -->
-
-					</div
-
-					<div class="col-md-3 col-sm-6">
-						<!--<div class="box-image-text blog">
-							<div class="top">
-								<div class="image">
-									<img src="../../../Content/Theme/img/portfolio-5.jpg" alt="" class="img-responsive">
-								</div>
-								<div class="bg"></div>
-								<div class="text">
-									<p class="buttons">
-										<a href="../../../Content/Theme/blog-post.html" class="btn btn-template-transparent-primary"><i class="fa fa-link"></i> Read more</a>
-									</p>
-								</div>
-							</div>
-							<div class="content">
-								<h4><a href="../../../Content/Theme/blog-post.html">What to do</a></h4>
-								<p class="author-category">
-									By <a href="#">John Snow</a> in <a href="../../../Content/Theme/blog.html">Webdesign</a>
-								</p>
-								<p class="intro">Fifth abundantly made Give sixth hath. Cattle creature i be don't them behold green moved fowl Moved life us beast good yielding. Have bring.</p>
-								<p class="read-more">
-									<a href="../../../Content/Theme/blog-post.html" class="btn btn-template-main">Continue reading</a>
-								</p>
-							</div>
-						</div>-->
-						<!-- /.box-image-text -->
-
-					</div>
-
-					<div class="col-md-3 col-sm-6">
-						<!--<div class="box-image-text blog">
-							<div class="top">
-								<div class="image">
-									<img src="../../../Content/Theme/img/portfolio-6.jpg" alt="" class="img-responsive">
-								</div>
-								<div class="bg"></div>
-								<div class="text">
-									<p class="buttons">
-										<a href="../../../Content/Theme/blog-post.html" class="btn btn-template-transparent-primary"><i class="fa fa-link"></i> Read more</a>
-									</p>
-								</div>
-							</div>
-							<div class="content">
-								<h4><a href="../../../Content/Theme/blog-post.html">5 ways to look awesome</a></h4>
-								<p class="author-category">
-									By <a href="#">John Snow</a> in <a href="../../../Content/Theme/blog.html">Webdesign</a>
-								</p>
-								<p class="intro">Am terminated it excellence invitation projection as. She graceful shy believed distance use nay. Lively is people.</p>
-								<p class="read-more">
-									<a href="../../../Content/Theme/blog-post.html" class="btn btn-template-main">Continue reading</a>
-								</p>
-							</div>
-						</div>-->
-						<!-- /.box-image-text -->
-
-					</div>
-
-				</div>
-				<!-- /.row -->
-				<!-- *** BLOG HOMEPAGE END *** -->
-
-			</div>
-
-		</div>
-		<!-- /.container -->
-
-	</section>
-	<!-- /.bar -->
-
-    <section class="bar background-white no-mb">
-        <!-- /.container -->
-        <div id="dvMap" style="width: 100%; height:500px;">
-          
         </div>
-        <div class="center-block" style="padding-left:45%; height:50px; padding-top:10px;" >
-            <input onclick="" type=button class="btn btn-template-main" value="Save Route" style="height:80px; width:200px" ng-click="$ctrl.PostRouteClick()">
-             
-        </div>
-       
 
+        <!-- *** NAVBAR END *** -->
+
+    </header>
+
+    <!-- *** LOGIN MODAL ***
+    _________________________________________________________ -->
+
+    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="Login">Customer login</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="../../../Content/Theme/customer-orders.html" method="post">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="email_modal" placeholder="email">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" id="password_modal" placeholder="password">
+                        </div>
+
+                        <p class="text-center">
+                            <button class="btn btn-template-main"><i class="fa fa-sign-in"></i> Log in</button>
+                        </p>
+
+                    </form>
+
+                    <p class="text-center text-muted">Not registered yet?</p>
+                    <p class="text-center text-muted"><a href="../../../Content/Theme/customer-register.html"><strong>Register now</strong></a>! It is easy and done in 1&nbsp;minute and gives you access to special discounts and much more!</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- *** LOGIN MODAL END *** -->
+
+    <section>
+        <!-- *** HOMEPAGE CAROUSEL ***
+        _________________________________________________________ -->
+
+        <div class="home-carousel">
+
+            <!--<div class="dark-mask"></div>-->
+            <!--<div class="container">-->
+            <div class="homepage owl-carousel">
+                <div class="item">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-5 ">
+                                <h1>What to visit when in Paris?</h1>
+                                <p>
+                                    The Louvre Museum <br /> is definitely a must!
+                                </p>
+                            </div>
+                            <div class="col-sm-7">
+                                <img class="img-responsive" src="../../../Content/images/museum-louvre-carousel.jpg" style="height:400px; border:5px solid white;" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <h1>London is calling</h1>
+                                <ul class="list-style-none">
+                                    <li>Make sure you don't miss </li>
+                                    <li>one of the most prominent symbols</li>
+                                    <li>of the united kingdom-big ben</li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-7 ">
+                                <img class="img-responsive" src="../../../Content/images/big-ben-carousel.jpg" style="height:400px; border:5px solid white;" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <h1>Are you afraid of heights?</h1>
+                                <ul class="list-style-none">
+                                    <li>Burj Khalifa is currently the tallest</li>
+                                    <li>structure in the world since 2008</li>
+                                    <li>don't miss it!</li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-7">
+                                <img class="img-responsive" src="../../../Content/images/burj-khalifa-carousel.jpg" style="height:400px; border:5px solid white;" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <h1>Rialto Bridge</h1>
+                                <ul class="list-style-none">
+                                    <li>Is one of the four bridges spanning the</li>
+                                    <li>grand canal in Venice,Italy</li>
+                                    <li>You will love it!</li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-7">
+                                <img class="img-responsive" src="../../../Content/images/rialto-bridge.jpg" style="height:400px; border:5px solid white;" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.project owl-slider -->
+            <!--</div>-->
+        </div>
+
+        <!-- *** HOMEPAGE CAROUSEL END *** -->
     </section>
 
-	<section class="bar background-gray no-mb">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<ul class="owl-carousel customers">
-						<li class="item">
-							<img src="../../../Content/images/wizz.gif" alt="" class="img-responsive">
-						</li>
-						<li class="item">
-							<img src="../../../Content/images/aero.png" alt="" class="img-responsive" style="height:100px">
-						</li>
-						<li class="item">
-                            <img src="../../../Content/images/tarom.png" alt="" class="img-responsive">
-						</li>
-						<li class="item">
-							<img src="../../../Content/images/happy.gif" alt="" class="img-responsive" style="height:150px;width:150px">
-						</li>
-						<li class="item">
-							<img src="../../../Content/images/emirates.png" alt="" class="img-responsive">
-						</li>
-						<li class="item">
-                            <img src="../../../Content/images/blue.png" alt="" class="img-responsive" style="height:100px; width:300px">
-						</li>
-					</ul>
-					<!-- /.owl-carousel -->
-				</div>
+    <section class="bar background-white no-mb">
+        <div class="container" data-animate="fadeInUp">
+            <div class="row">
+                <div class="col-md-12">
 
-			</div>
+                    <div class="heading text-center">
+                        <h2>About Ingenious City Break</h2>
+                    </div>
+
+                    <div class="row">
+                        <div class="portfolio-showcase clearfix">
+                            <div class="col-sm-6">
+                                <div class="image">
+                                    <img src="../../../Content/images/travels.jpeg" alt="" class="img-responsive">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <h3><a href="../../../Content/Theme/portfolio-detail.html">Do you like to travel?</a></h3>
+                                <p class="lead"> If your answer is definitely yes, you are on the right page! Ingenious City Break is everything  you need for a perfect city break. We will take care of you and we will make sure that you will have the most wonderful holiday. Just tell us what cities you want to visit and we will show you the most visited tourist attractions from that area and we will also give you information about the schedule, the prices for the tickets and many more!  </p>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--<div width="100%">
+                        <script>
+                        $(document).ready(function (e) {
+                        $('img[usemap]').rwdImageMaps();
+                        });
+                        </script>
+
+                        <img src="../../../Content/images/world-map.png" style="width:1600px; height:1135px;" usemap="#image-map" class="img-responsive">
+
+                        <map name="image-map">
+                            <area target="" alt="France" title="France" href="#" coords="760,533,751,546,734,551,746,561,747,574,751,584,761,585,768,580,775,578,777,565,782,555,777,543" shape="poly">
+                            <area target="" alt="Italy" title="Italy" href="#" coords="782,575,781,565,791,564,802,561,804,572,808,584,816,589,826,599,816,616,806,612,813,608,815,598,798,587" shape="poly">
+                            <area target="" alt="Romania" title="Romania" href="#" coords="837,564,846,557,857,553,867,554,871,564,874,574,863,577,853,578,845,572" shape="poly">
+                            <area target="" alt="India" title="India" href="#" coords="1049,666,1059,666,1066,657,1072,649,1079,637,1090,643,1096,653,1098,663,1106,670,1119,671,1129,674,1133,691,1124,695,1117,704,1098,719,1095,736,1085,758,1068,715,1065,688,1055,697,1045,684,1057,680" shape="poly">
+                            <area target="" alt="Spain" title="Spain" href="#" coords="712,581,719,588,723,595,722,606,723,615,724,622,737,616,747,612,750,601,765,587,748,584,733,580" shape="poly">
+                            <area target="" alt="United Arab Emirates" title="United Arab Emirates" href="#" coords="972,680,983,680,997,671,992,681,982,687" shape="poly">
+                            <area target="" alt="United States" title="United States" href="#" coords="211,546,339,543,358,553,347,565,368,558,382,564,372,574,370,589,382,571,388,587,409,578,426,572,446,568,452,560,457,572,445,589,425,599,420,615,409,633,396,649,405,678,391,664,381,654,358,654,333,664,326,677,310,656,299,657,288,645,275,650,245,643,233,633,220,613,211,602" shape="poly">
+                        </map>
+                    </div>-->
+                    <!--div width="100%">
+                    <script>
+                    $(document).ready(function (e) {
+                    $('img[usemap]').rwdImageMaps();
+                    });
+                    </script>
+
+                    <script>
+                        $("#barcelona").on("click", function(e){
+                        e.preventDefault();
+                        $(this).css('background-color', 'red');
+                            debugger
+                        });
+                    </script>
+
+
+                    <img src="../../../Content/images/grey-world-map.png"  style="width:1433px; height:632px;" usemap="#image-map" class="img-responsive">
+
+
+                    <map name="image-map">
+                        <area id="barcelona" target="" alt="Barcelona-Spain" href="#" title="Barcelona-Spain" coords="610,176,613,186,611,198,616,205,630,203,639,196,641,187,650,181,636,177,623,176" shape="poly">
+                        <area id="paris" target="" alt="Paris-France" title="Paris-France" href="#" coords="639,148,640,157,644,167,636,175,650,176,661,175,668,171,663,161,670,153,661,146,649,144" shape="poly">
+                        <area id="bucharest" target="" alt="Bucharest-Romania" title="Bucharest-Romania" href="#" coords="717,163,726,168,736,166,744,162,737,156,725,155" shape="poly">
+                        <area id="dubai" target="" alt="Dubai-United Arab Emirates" title="Dubai-United Arab Emirates" href="#" coords="853,265,861,269,867,261,864,252" shape="poly">
+                        <area id="agra" target="" alt="Agra-India" title="Agra-India" href="#" coords="929,214,935,223,930,239,920,248,920,256,931,252,930,261,940,267,936,281,939,295,949,308,956,329,961,317,961,301,974,294,982,284,993,261,978,261,967,251,961,239,953,229,948,212,937,209" shape="poly">
+
+                    </map>
+                    </div>-->
+
+
+
+
+
+                    <div class="heading text-center">
+                        <h3>The World’s Most-visited Tourist Attractions</h3>
+                    </div>
+
+                    <div class="row portfolio no-space">
+                        <div class="col-sm-4" ng-repeat="x in  $ctrl.Model.TouristAttractionList" ng-show="$index == 1">
+                            <div class="box-image">
+                                <div class="image">
+                                    <img ng-src="{{x.Image}}" alt="" class="img-responsive" />
+                                </div>
+                                <div class="bg"></div>
+                                <div class="name">
+                                    <h3><a href="../../../Content/images/tour-eiffel.jpg">{{x.Name}}</a></h3>
+                                </div>
+                                <div class="text">
+                                    <p class="hidden-sm">"For heightened emotions, it all starts with the climb! From the very moment you climb the stairs to the first floor, you feel as if you’ve embarked on a fantastical journey. And what a way to end it, when you reach the top in the lift!"</p>
+                                </div>
+                            </div>
+                            <!-- /.box-image-->
+
+                        </div>
+
+                        <div class="col-sm-4" ng-repeat="x in  $ctrl.Model.TouristAttractionList" ng-show="$index == 2">
+                            <div class="box-image">
+                                <div class="image">
+                                    <img ng-src="{{x.Image}}" alt="" class="img-responsive" />
+                                </div>
+                                <div class="bg"></div>
+                                <div class="name">
+                                    <h3><a href="../../../Content/images/tour-eiffel.jpg">{{x.Name}}</a></h3>
+                                </div>
+                                <div class="text">
+                                    <p class="hidden-sm">"The Sagrada Familia is a symbolic expression in stone of the Christian faith. In this temple, an exaltation of the Family of Nazareth as a<br /> model for a united family, Christians, especially Roman Catholics, can recognise the tenets of their faith"</p>
+                                </div>
+                            </div>
+                            <!-- /.box-image -->
+                        </div>
+
+                        <div class="col-sm-4" ng-repeat="x in  $ctrl.Model.TouristAttractionList" ng-show="$index == 3">
+                            <div class="box-image">
+                                <div class="image">
+                                    <img ng-src="{{x.Image}}" alt="" class="img-responsive" />
+                                </div>
+                                <div class="bg"></div>
+                                <div class="name">
+                                    <h3><a href="../../../Content/images/tour-eiffel.jpg">{{x.Name}}</a></h3>
+                                </div>
+                                <div class="text">
+                                    <p class="hidden-sm">"World's tallest building. A living wonder. Stunning work of art. Incomparable feat of engineering. Burj Khalifa is all that. In concept and execution, Burj Khalifa has no peer." </p>
+                                </div>
+                            </div>
+                            <!-- /.box-image -->
+                        </div>
+                        <!--<div class="col-sm-4">-->
+                    </div>
+
+                    <div class="row portfolio no-space">
+                        <div class="col-sm-4" ng-repeat="x in  $ctrl.Model.TouristAttractionList" ng-show="$index == 4">
+                            <div class="box-image">
+                                <div class="image">
+                                    <img ng-src="{{x.Image}}" alt="" class="img-responsive" />
+                                </div>
+                                <div class="bg"></div>
+                                <div class="name">
+                                    <h3><a href="../../../Content/images/tour-eiffel.jpg">{{x.Name}}</a></h3>
+                                </div>
+                                <div class="text">
+                                    <p class="hidden-sm">""The Statue of Liberty Enlightening the World" was a gift of friendship from the people of France to the United States and is recognized as a universal symbol of freedom and democracy. "</p>
+                                </div>
+                            </div>
+                            <!-- /.box-image-->
+
+                        </div>
+
+                        <div class="col-sm-4" ng-repeat="x in  $ctrl.Model.TouristAttractionList" ng-show="$index == 5">
+                            <div class="box-image">
+                                <div class="image">
+                                    <img ng-src="{{x.Image}}" alt="" class="img-responsive" />
+                                </div>
+                                <div class="bg"></div>
+                                <div class="name">
+                                    <h3><a href="../../../Content/images/tour-eiffel.jpg">{{x.Name}}</a></h3>
+                                </div>
+                                <div class="text">
+                                    <p class="hidden-sm">"Built at the special request of Nicolae Ceausescu, leader of Romania's Communist Party, the colossal Parliament Palace - formerly known as "People's House" ( Casa Poporului ) -is the world's second largest administrative building after the U. S. Pentagon."</p>
+                                </div>
+                            </div>
+                            <!-- /.box-image -->
+                        </div>
+
+                        <div class="col-sm-4" ng-repeat="x in  $ctrl.Model.TouristAttractionList" ng-show="$index == 6">
+                            <div class="box-image">
+                                <div class="image">
+                                    <img ng-src="{{x.Image}}" alt="" class="img-responsive" />
+                                </div>
+                                <div class="bg"></div>
+                                <div class="name">
+                                    <h3><a href="../../../Content/images/tour-eiffel.jpg">{{x.Name}}</a></h3>
+                                </div>
+                                <div class="text">
+                                    <p class="hidden-sm">"Originally built by Emperor Shah Jahan to house the tomb his wife, the Taj Mahal remains an architectural marvel of the modern world."</p>
+                                </div>
+                            </div>
+                            <!-- /.box-image -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="bar background-pentagon no-mb">
+        <div class="container">
+            <div class="row showcase">
+                <div class="col-md-3 col-sm-6">
+                    <div class="item">
+                        <div class="icon">
+                            <i class="fa fa-align-justify"></i>
+                        </div>
+                        <h4>
+                            <span class="counter">580</span><br>
+
+                            Websites
+                        </h4>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="item">
+                        <div class="icon">
+                            <i class="fa fa-users"></i>
+                        </div>
+                        <h4>
+                            <span class="counter">100</span><br>
+
+                            Satisfied Clients
+                        </h4>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="item">
+                        <div class="icon">
+                            <i class="fa fa-copy"></i>
+                        </div>
+                        <h4>
+                            <span class="counter">320</span><br>
+
+                            Projects
+                        </h4>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="item">
+                        <div class="icon">
+                            <i class="fa fa-font"></i>
+                        </div>
+                        <h4>
+                            <span class="counter">923</span><br>
+
+                            Magazines and Brochures
+                        </h4>
+                    </div>
+                </div>
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container -->
+    </section>
+    <!-- /.bar -->
+
+    <section class="bar background-white no-mb">
+        <div class="container">
+
+            <div class="col-md-12">
+               
+            </div>
+
+            <div class="col-md-3 col-sm-6">
+              
+
+            </div>
+
+            <div class="col-md-3 col-sm-6">
+                
+            </div>
+
+            <div class="col-md-3 col-sm-6">
+
+            </div>
+
+        </div>
+        <!-- /.row -->
+        <!-- *** BLOG HOMEPAGE END *** -->
+
+</div>
+
 		</div>
+<!-- /.container -->
 	</section>
+<!-- /.bar -->
 
-	<!-- *** GET IT ***
-	_________________________________________________________ -->
+<section class="bar background-white no-mb">
+    <!-- /.container -->
+    <div id="dvMap" style="width: 100%; height:500px;">
 
-	<div id="get-it">
-		<div class="container">
-			<div class="col-md-8 col-sm-12">
-				<h3>Do you want cool website like this one?</h3>
-			</div>
-			<div class="col-md-4 col-sm-12">
-				<a href="#" class="btn btn-template-transparent-primary">Buy this template now</a>
-			</div>
-		</div>
-	</div>
+    </div>
+    <div class="center-block" style="padding-left:45%; height:50px; padding-top:10px;">
+        <input onclick="" type=button class="btn btn-template-main" value="Save Route" style="height:80px; width:200px" ng-click="$ctrl.PostRouteClick()">
+
+    </div>
 
 
-	<!-- *** GET IT END *** -->
-	<!-- *** FOOTER ***
-	_________________________________________________________ -->
+</section>
 
-	<footer id="footer">
-		<div class="container">
-			<div class="col-md-3 col-sm-6">
-				<h4>About us</h4>
+<section class="bar background-gray no-mb">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="owl-carousel customers">
+                    <li class="item">
+                        <img src="../../../Content/images/wizz.gif" alt="" class="img-responsive">
+                    </li>
+                    <li class="item">
+                        <img src="../../../Content/images/aero.png" alt="" class="img-responsive" style="height:100px">
+                    </li>
+                    <li class="item">
+                        <img src="../../../Content/images/tarom.png" alt="" class="img-responsive">
+                    </li>
+                    <li class="item">
+                        <img src="../../../Content/images/happy.gif" alt="" class="img-responsive" style="height:150px;width:150px">
+                    </li>
+                    <li class="item">
+                        <img src="../../../Content/images/emirates.png" alt="" class="img-responsive">
+                    </li>
+                    <li class="item">
+                        <img src="../../../Content/images/blue.png" alt="" class="img-responsive" style="height:100px; width:300px">
+                    </li>
+                </ul>
+                <!-- /.owl-carousel -->
+            </div>
 
-				<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+        </div>
+    </div>
+</section>
 
-				<hr>
+<!-- *** GET IT ***
+_________________________________________________________ -->
 
-				<h4>Join our monthly newsletter</h4>
-
-				<form>
-					<div class="input-group">
-
-						<input type="text" class="form-control">
-
-						<span class="input-group-btn">
-
-							<button class="btn btn-default" type="button"><i class="fa fa-send"></i></button>
-
-						</span>
-
-					</div>
-					<!-- /input-group -->
-				</form>
-
-				<hr class="hidden-md hidden-lg hidden-sm">
-
-			</div>
-			<!-- /.col-md-3 -->
-
-			<div class="col-md-3 col-sm-6">
-
-				<h4>Blog</h4>
-
-				<div class="blog-entries">
-					<div class="item same-height-row clearfix">
-						<div class="image same-height-always">
-							<a href="#">
-								<img class="img-responsive" src="../../../Content/Theme/img/detailsquare.jpg" alt="">
-							</a>
-						</div>
-						<div class="name same-height-always">
-							<h5><a href="#">Blog post name</a></h5>
-						</div>
-					</div>
-
-					<div class="item same-height-row clearfix">
-						<div class="image same-height-always">
-							<a href="#">
-								<img class="img-responsive" src="../../../Content/Theme/img/detailsquare.jpg" alt="">
-							</a>
-						</div>
-						<div class="name same-height-always">
-							<h5><a href="#">Blog post name</a></h5>
-						</div>
-					</div>
-
-					<div class="item same-height-row clearfix">
-						<div class="image same-height-always">
-							<a href="#">
-								<img class="img-responsive" src="../../../Content/Theme/img/detailsquare.jpg" alt="">
-							</a>
-						</div>
-						<div class="name same-height-always">
-							<h5><a href="#">Very very long blog post name</a></h5>
-						</div>
-					</div>
-				</div>
-
-				<hr class="hidden-md hidden-lg">
-
-			</div>
-			<!-- /.col-md-3 -->
-
-			<div class="col-md-3 col-sm-6">
-
-				<h4>Contact</h4>
-
-				<p>
-					<strong>Universal Ltd.</strong>
-					<br>13/25 New Avenue
-					<br>Newtown upon River
-					<br>45Y 73J
-					<br>England
-					<br>
-					<strong>Great Britain</strong>
-				</p>
-
-				<a href="../../../Content/Theme/contact.html" class="btn btn-small btn-template-main">Go to contact page</a>
-
-				<hr class="hidden-md hidden-lg hidden-sm">
-
-			</div>
-			<!-- /.col-md-3 -->
+<div id="get-it">
+    <div class="container">
+        <div class="col-md-8 col-sm-12">
+            <h3>Do you want cool website like this one?</h3>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <a href="#" class="btn btn-template-transparent-primary">Buy this template now</a>
+        </div>
+    </div>
+</div>
 
 
+<!-- *** GET IT END *** -->
+<!-- *** FOOTER ***
+_________________________________________________________ -->
 
-			<div class="col-md-3 col-sm-6">
+<footer id="footer">
+    <div class="container">
+        <div class="col-md-3 col-sm-6">
+            <h4>About us</h4>
 
-				<h4>Photostream</h4>
+            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
 
-				<div class="photostream">
-					<div>
-						<a href="#">
-							<img src="../../../Content/Theme/img/detailsquare.jpg" class="img-responsive" alt="#">
-						</a>
-					</div>
-					<div>
-						<a href="#">
-							<img src="../../../Content/Theme/img/detailsquare2.jpg" class="img-responsive" alt="#">
-						</a>
-					</div>
-					<div>
-						<a href="#">
-							<img src="../../../Content/Theme/img/detailsquare3.jpg" class="img-responsive" alt="#">
-						</a>
-					</div>
-					<div>
-						<a href="#">
-							<img src="../../../Content/Theme/img/detailsquare3.jpg" class="img-responsive" alt="#">
-						</a>
-					</div>
-					<div>
-						<a href="#">
-							<img src="../../../Content/Theme/img/detailsquare2.jpg" class="img-responsive" alt="#">
-						</a>
-					</div>
-					<div>
-						<a href="#">
-							<img src="../../../Content/Theme/img/detailsquare.jpg" class="img-responsive" alt="#">
-						</a>
-					</div>
-				</div>
+            <hr>
 
-			</div>
-			<!-- /.col-md-3 -->
-		</div>
-		<!-- /.container -->
-	</footer>
-	<!-- /#footer -->
-	<!-- *** FOOTER END *** -->
-	<!-- *** COPYRIGHT ***
-	_________________________________________________________ -->
+            <h4>Join our monthly newsletter</h4>
 
-	<div id="copyright">
-		<div class="container">
-			<div class="col-md-12">
-				<p class="pull-left">&copy; 2015. Your company / name goes here</p>
-				<p class="pull-right">
-					Template by <a href="https://bootstrapious.com">Bootstrapious</a> & <a href="https://remoteplease.com">Remote Please</a>
-					<!-- Not removing these links is part of the license conditions of the template. Thanks for understanding :) If you want to use the template without the attribution links, you can do so after supporting further themes development at https://bootstrapious.com/donate  -->
-				</p>
+            <form>
+                <div class="input-group">
 
-			</div>
-		</div>
-	</div>
-	<!-- /#copyright -->
-	<!-- *** COPYRIGHT END *** -->
+                    <input type="text" class="form-control">
+
+                    <span class="input-group-btn">
+
+                        <button class="btn btn-default" type="button"><i class="fa fa-send"></i></button>
+
+                    </span>
+
+                </div>
+                <!-- /input-group -->
+            </form>
+
+            <hr class="hidden-md hidden-lg hidden-sm">
+
+        </div>
+        <!-- /.col-md-3 -->
+
+        <div class="col-md-3 col-sm-6">
+
+            <h4>Blog</h4>
+
+            <div class="blog-entries">
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="#">
+                            <img class="img-responsive" src="../../../Content/Theme/img/detailsquare.jpg" alt="">
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="#">Blog post name</a></h5>
+                    </div>
+                </div>
+
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="#">
+                            <img class="img-responsive" src="../../../Content/Theme/img/detailsquare.jpg" alt="">
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="#">Blog post name</a></h5>
+                    </div>
+                </div>
+
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="#">
+                            <img class="img-responsive" src="../../../Content/Theme/img/detailsquare.jpg" alt="">
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="#">Very very long blog post name</a></h5>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="hidden-md hidden-lg">
+
+        </div>
+        <!-- /.col-md-3 -->
+
+        <div class="col-md-3 col-sm-6">
+
+            <h4>Contact</h4>
+
+            <p>
+                <strong>Universal Ltd.</strong>
+                <br>13/25 New Avenue
+                <br>Newtown upon River
+                <br>45Y 73J
+                <br>England
+                <br>
+                <strong>Great Britain</strong>
+            </p>
+
+            <a href="../../../Content/Theme/contact.html" class="btn btn-small btn-template-main">Go to contact page</a>
+
+            <hr class="hidden-md hidden-lg hidden-sm">
+
+        </div>
+        <!-- /.col-md-3 -->
 
 
 
+        <div class="col-md-3 col-sm-6">
+
+            <h4>Photostream</h4>
+
+            <div class="photostream">
+                <div>
+                    <a href="#">
+                        <img src="../../../Content/Theme/img/detailsquare.jpg" class="img-responsive" alt="#">
+                    </a>
+                </div>
+                <div>
+                    <a href="#">
+                        <img src="../../../Content/Theme/img/detailsquare2.jpg" class="img-responsive" alt="#">
+                    </a>
+                </div>
+                <div>
+                    <a href="#">
+                        <img src="../../../Content/Theme/img/detailsquare3.jpg" class="img-responsive" alt="#">
+                    </a>
+                </div>
+                <div>
+                    <a href="#">
+                        <img src="../../../Content/Theme/img/detailsquare3.jpg" class="img-responsive" alt="#">
+                    </a>
+                </div>
+                <div>
+                    <a href="#">
+                        <img src="../../../Content/Theme/img/detailsquare2.jpg" class="img-responsive" alt="#">
+                    </a>
+                </div>
+                <div>
+                    <a href="#">
+                        <img src="../../../Content/Theme/img/detailsquare.jpg" class="img-responsive" alt="#">
+                    </a>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.col-md-3 -->
+    </div>
+    <!-- /.container -->
+</footer>
+<!-- /#footer -->
+<!-- *** FOOTER END *** -->
+<!-- *** COPYRIGHT ***
+_________________________________________________________ -->
+
+<div id="copyright">
+    <div class="container">
+        <div class="col-md-12">
+            <p class="pull-left">&copy; 2015. Your company / name goes here</p>
+            <p class="pull-right">
+                Template by <a href="https://bootstrapious.com">Bootstrapious</a> & <a href="https://remoteplease.com">Remote Please</a>
+                <!-- Not removing these links is part of the license conditions of the template. Thanks for understanding :) If you want to use the template without the attribution links, you can do so after supporting further themes development at https://bootstrapious.com/donate  -->
+            </p>
+
+        </div>
+    </div>
+</div>
+<!-- /#copyright -->
+<!-- *** COPYRIGHT END *** -->
 </div>
 <!-- /#all -->

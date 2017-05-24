@@ -319,13 +319,26 @@ var RouteService = (function () {
                 var lng = routeDataModel[0].Long;
                 $http.get('http://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + lng + '&sensor=true')
                     .then(function (r) {
-                    debugger;
                     resp = r.data;
                     Model.RouteListString.push(resp.results[0].formatted_address);
                 })
                     .catch(function (r) {
                     console.log(r);
                 });
+                var len = routeDataModel.length;
+                len = len - 1;
+                var lat = routeDataModel[len].Lat;
+                var lng = routeDataModel[len].Long;
+                $http.get('http://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + lng + '&sensor=true')
+                    .then(function (r) {
+                    debugger;
+                    resp = r.data;
+                    Model.RouteListString2.push(resp.results[0].formatted_address);
+                })
+                    .catch(function (r) {
+                    console.log(r);
+                });
+                Model.RouteList.push(model);
             }
         });
     }

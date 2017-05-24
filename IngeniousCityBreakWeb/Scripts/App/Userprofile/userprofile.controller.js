@@ -58,18 +58,8 @@ var UserProfileController = (function (_super) {
     };
     return UserProfileController;
 }(BaseController));
-<<<<<<< .mine
-
-
-
-
-
-
-=======
 var UserProfileModel = (function () {
     function UserProfileModel() {
     }
     return UserProfileModel;
 }());
-//# sourceMappingURL=userprofile.controller.js.map
->>>>>>> .theirs
