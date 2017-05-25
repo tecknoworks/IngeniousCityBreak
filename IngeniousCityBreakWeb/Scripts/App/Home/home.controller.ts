@@ -57,9 +57,7 @@ class MapService {
             uniqueId++;
             this.markers.insertLink(marker);
             //Attach click event handler to the marker.
-
-            var latlng = location.lat() + "," + location.lng();
-            var url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' + location.lat() + ',' + location.lng() + '&sensor=true';
+           
             google.maps.event.addListener(marker, "click", (e) => {
                 var content = 'Latitude: ' + location.lat() + '<br />Longitude: ' + location.lng();
                 content += "<br /><input type = 'button' value = 'Delete' id='removeMarkerBtn1' marker='" + marker.id + "' value = 'Delete' />";
@@ -287,15 +285,12 @@ class HomeModel {
     public RouteList: Array<RouteModel>;
     public RouteListString: Array<string>;
     public RouteListString2: Array<string>;
-    public MapService: MapService;
-
-
+   
     constructor() {
         this.TouristAttractionList = new Array<TouristAttractionModel>();
         this.RouteList = new Array<RouteModel>();
         this.RouteListString = new Array<string>();
         this.RouteListString2 = new Array<string>();
-        this.MapService = new MapService();
     }
 }
 
@@ -360,62 +355,61 @@ class RouteService {
                     var model: RouteModel = new RouteModel();
                     model.FromRouteDto(data[i]);
                     var routeDataModel: Array<RouteDataItemModel> = <Array<RouteDataItemModel>>JSON.parse(model.RouteJson);
-                   debugger
-                  
-                        var lat = routeDataModel[0].Lat;
-                        var lng = routeDataModel[0].Long;
-                        $http.get('http://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + lng + '&sensor=true')
-                            .then((r) => {
-                                resp = r.data;    
-                                Model.RouteListString.push(resp.results[0].formatted_address);
-                            })
-                            .catch((r) => {
-                                console.log(r);
-                            });
-                        var len = routeDataModel.length;
-                        len = len - 1;
-                        var lat = routeDataModel[len].Lat;
-                        var lng = routeDataModel[len].Long;
-                        $http.get('http://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + lng + '&sensor=true')
-                            .then((r) => {
-                                debugger
-                                resp = r.data;
-                                Model.RouteListString2.push(resp.results[0].formatted_address);
-                            })
-                            .catch((r) => {
-                                console.log(r);
-                            });
+                    debugger
+
+                    var lat = routeDataModel[0].Lat;
+                    var lng = routeDataModel[0].Long;
+                    $http.get('http://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + lng + '&sensor=true')
+                        .then((r) => {
+                            resp = r.data;
+                            Model.RouteListString.push(resp.results[0].formatted_address);
+                        })
+                        .catch((r) => {
+                            console.log(r);
+                        });
+                    var len = routeDataModel.length;
+                    len = len - 1;
+                    var lat = routeDataModel[len].Lat;
+                    var lng = routeDataModel[len].Long;
+                    $http.get('http://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + lng + '&sensor=true')
+                        .then((r) => {
+                            debugger
+                            resp = r.data;
+                            Model.RouteListString2.push(resp.results[0].formatted_address);
+                        })
+                        .catch((r) => {
+                            console.log(r);
+                        });
                     Model.RouteList.push(model);
                 }
             });
 
-
     }
 
-    public geocodeLatLng(geocoder, map, infowindow, location): void {
-        debugger
-        var latlngStr = location.split(',', 2);
-        var latlng = { lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1]) };
-        geocoder.geocode({ 'location': latlng }, function (results, status) {
-            if (status === 'OK') {
-                if (results[1]) {
-                    // map.setZoom(11);
-                    var marker = new google.maps.Marker({
-                        position: latlng,
-                        map: map
-                    });
-                    debugger
-                    infowindow.setContent(results[1].formatted_address);
-                    infowindow.open(map, marker);
-                    debugger
-                } else {
-                    window.alert('No results found');
-                }
-            } else {
-                window.alert('Geocoder failed due to: ' + status);
-            }
-        });
-    }
+    //public geocodeLatLng(geocoder, map, infowindow, location): void {
+    //    debugger
+    //    var latlngStr = location.split(',', 2);
+    //    var latlng = { lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1]) };
+    //    geocoder.geocode({ 'location': latlng }, function (results, status) {
+    //        if (status === 'OK') {
+    //            if (results[1]) {
+    //                // map.setZoom(11);
+    //                var marker = new google.maps.Marker({
+    //                    position: latlng,
+    //                    map: map
+    //                });
+    //                debugger
+    //                infowindow.setContent(results[1].formatted_address);
+    //                infowindow.open(map, marker);
+    //                debugger
+    //            } else {
+    //                window.alert('No results found');
+    //            }
+    //        } else {
+    //            window.alert('Geocoder failed due to: ' + status);
+    //        }
+    //    });
+    //}
 }
 
 class HomeController extends BaseController {
@@ -466,6 +460,99 @@ class HomeController extends BaseController {
         }).catch(function (response) {
         });
 
+    }
+
+    public addRouteOnMap(lat: number, lng: number, map: google.maps.Map) {
+        debugger
+        var markers = new LinkedList(map);
+        var myLatLng = { lat: lat, lng: lng };
+        var uniqueId = 1;
+        var markerOptions: google.maps.MarkerOptions = <google.maps.MarkerOptions>{
+            position: myLatLng,
+            map: map
+        };
+        var marker = new MyMarker(markerOptions);
+        //Set unique id
+        marker.id = uniqueId;
+        uniqueId++;
+        markers.insertLink(marker);
+        //Attach click event handler to the marker.
+
+        google.maps.event.addListener(marker, "click", (e) => {
+            var content = 'Latitude: ' + lat + '<br />Longitude: ' + lng;
+            content += "<br /><input type = 'button' value = 'Delete' id='removeMarkerBtn1' marker='" + marker.id + "' value = 'Delete' />";
+            var infoWindow = new google.maps.InfoWindow({
+                content: content
+            });
+            infoWindow.open(map, marker);
+            setTimeout(() => {
+                $("#removeMarkerBtn1").click((e) => {
+                    var myMarker = markers.searchNode(marker);
+                    if ((myMarker == markers.first) && (markers.first == markers.last)) {
+                        markers.removeMarker(myMarker.value);
+                        myMarker.value.setMap(null);
+                    }
+                    else
+                        if ((myMarker == markers.first) && (markers.first != markers.last)) {
+                            markers.first.line.setMap(null);
+                            markers.removeMarker(myMarker.value);
+                            myMarker.value.setMap(null);
+                        }
+                        else if ((myMarker == markers.last) && (markers.last != markers.first)) {
+                            markers.last.prevNode.line.setMap(null);
+                            markers.removeMarker(myMarker.value);
+                            myMarker.value.setMap(null);
+                        }
+                        else {
+                            var startpoint = { "lat": myMarker.prevNode.value.getPosition().lat(), "long": myMarker.prevNode.value.getPosition().lng() };
+                            var endpoint = { "lat": myMarker.nextNode.value.getPosition().lat(), "long": myMarker.nextNode.value.getPosition().lng() };
+                            var locationlinks = [
+                                new google.maps.LatLng(startpoint.lat, startpoint.long),
+                                new google.maps.LatLng(endpoint.lat, endpoint.long)
+                            ];
+                            debugger
+                            var lineOptions: google.maps.PolylineOptions = <google.maps.PolylineOptions>{
+                                path: locationlinks,
+                                geodesic: true,
+                                strokeColor: '#FF0000',
+                                strokeOpacity: 1.0,
+                                strokeWeight: 2
+                            };
+                            var flightPath = new MyPolyline(lineOptions);
+                            var mark = myMarker;
+                            myMarker.prevNode.line.setMap(null);
+                            myMarker.line.setMap(null);
+                            markers.removeMarker(myMarker.value);
+                            mark.value.setMap(null);
+                            mark.prevNode.line = flightPath;
+                            mark.prevNode.line.setMap(map);
+                        }
+
+                });
+
+            }, 300);
+        });
+        var node = markers.last;
+        if (markers.first != markers.last) {
+            var node = markers.last.prevNode;
+            var startpoint = { "lat": node.value.getPosition().lat(), "long": node.value.getPosition().lng() };
+            var endpoint = { "lat": markers.last.value.getPosition().lat(), "long": markers.last.value.getPosition().lng() };
+            var locationlinks = [
+                new google.maps.LatLng(startpoint.lat, startpoint.long),
+                new google.maps.LatLng(endpoint.lat, endpoint.long)
+            ];
+            var lineOptions: google.maps.PolylineOptions = <google.maps.PolylineOptions>{
+                path: locationlinks,
+                geodesic: true,
+                strokeColor: '#FF0000',
+                strokeOpacity: 1.0,
+                strokeWeight: 2
+            };
+            var flightPath = new MyPolyline(lineOptions);
+            markers.last.prevNode.line = flightPath;
+            markers.last.prevNode.line.setMap(map);
+        }
+        
     }
 
 

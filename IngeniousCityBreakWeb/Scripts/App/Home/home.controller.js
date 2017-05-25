@@ -53,8 +53,6 @@ var MapService = (function () {
             uniqueId++;
             _this.markers.insertLink(marker);
             //Attach click event handler to the marker.
-            var latlng = location.lat() + "," + location.lng();
-            var url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' + location.lat() + ',' + location.lng() + '&sensor=true';
             google.maps.event.addListener(marker, "click", function (e) {
                 var content = 'Latitude: ' + location.lat() + '<br />Longitude: ' + location.lng();
                 content += "<br /><input type = 'button' value = 'Delete' id='removeMarkerBtn1' marker='" + marker.id + "' value = 'Delete' />";
@@ -263,7 +261,6 @@ var HomeModel = (function () {
         this.RouteList = new Array();
         this.RouteListString = new Array();
         this.RouteListString2 = new Array();
-        this.MapService = new MapService();
     }
     return HomeModel;
 }());
@@ -343,32 +340,6 @@ var RouteService = (function () {
             }
         });
     }
-    RouteService.prototype.geocodeLatLng = function (geocoder, map, infowindow, location) {
-        debugger;
-        var latlngStr = location.split(',', 2);
-        var latlng = { lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1]) };
-        geocoder.geocode({ 'location': latlng }, function (results, status) {
-            if (status === 'OK') {
-                if (results[1]) {
-                    // map.setZoom(11);
-                    var marker = new google.maps.Marker({
-                        position: latlng,
-                        map: map
-                    });
-                    debugger;
-                    infowindow.setContent(results[1].formatted_address);
-                    infowindow.open(map, marker);
-                    debugger;
-                }
-                else {
-                    window.alert('No results found');
-                }
-            }
-            else {
-                window.alert('Geocoder failed due to: ' + status);
-            }
-        });
-    };
     return RouteService;
 }());
 var HomeController = (function (_super) {
@@ -409,6 +380,93 @@ var HomeController = (function (_super) {
             alert("Your route has been saved successfully");
         }).catch(function (response) {
         });
+    };
+    HomeController.prototype.addRouteOnMap = function (lat, lng, map) {
+        debugger;
+        var markers = new LinkedList(map);
+        var myLatLng = { lat: lat, lng: lng };
+        var uniqueId = 1;
+        var markerOptions = {
+            position: myLatLng,
+            map: map
+        };
+        var marker = new MyMarker(markerOptions);
+        //Set unique id
+        marker.id = uniqueId;
+        uniqueId++;
+        markers.insertLink(marker);
+        //Attach click event handler to the marker.
+        google.maps.event.addListener(marker, "click", function (e) {
+            var content = 'Latitude: ' + lat + '<br />Longitude: ' + lng;
+            content += "<br /><input type = 'button' value = 'Delete' id='removeMarkerBtn1' marker='" + marker.id + "' value = 'Delete' />";
+            var infoWindow = new google.maps.InfoWindow({
+                content: content
+            });
+            infoWindow.open(map, marker);
+            setTimeout(function () {
+                $("#removeMarkerBtn1").click(function (e) {
+                    var myMarker = markers.searchNode(marker);
+                    if ((myMarker == markers.first) && (markers.first == markers.last)) {
+                        markers.removeMarker(myMarker.value);
+                        myMarker.value.setMap(null);
+                    }
+                    else if ((myMarker == markers.first) && (markers.first != markers.last)) {
+                        markers.first.line.setMap(null);
+                        markers.removeMarker(myMarker.value);
+                        myMarker.value.setMap(null);
+                    }
+                    else if ((myMarker == markers.last) && (markers.last != markers.first)) {
+                        markers.last.prevNode.line.setMap(null);
+                        markers.removeMarker(myMarker.value);
+                        myMarker.value.setMap(null);
+                    }
+                    else {
+                        var startpoint = { "lat": myMarker.prevNode.value.getPosition().lat(), "long": myMarker.prevNode.value.getPosition().lng() };
+                        var endpoint = { "lat": myMarker.nextNode.value.getPosition().lat(), "long": myMarker.nextNode.value.getPosition().lng() };
+                        var locationlinks = [
+                            new google.maps.LatLng(startpoint.lat, startpoint.long),
+                            new google.maps.LatLng(endpoint.lat, endpoint.long)
+                        ];
+                        debugger;
+                        var lineOptions = {
+                            path: locationlinks,
+                            geodesic: true,
+                            strokeColor: '#FF0000',
+                            strokeOpacity: 1.0,
+                            strokeWeight: 2
+                        };
+                        var flightPath = new MyPolyline(lineOptions);
+                        var mark = myMarker;
+                        myMarker.prevNode.line.setMap(null);
+                        myMarker.line.setMap(null);
+                        markers.removeMarker(myMarker.value);
+                        mark.value.setMap(null);
+                        mark.prevNode.line = flightPath;
+                        mark.prevNode.line.setMap(map);
+                    }
+                });
+            }, 300);
+        });
+        var node = markers.last;
+        if (markers.first != markers.last) {
+            var node = markers.last.prevNode;
+            var startpoint = { "lat": node.value.getPosition().lat(), "long": node.value.getPosition().lng() };
+            var endpoint = { "lat": markers.last.value.getPosition().lat(), "long": markers.last.value.getPosition().lng() };
+            var locationlinks = [
+                new google.maps.LatLng(startpoint.lat, startpoint.long),
+                new google.maps.LatLng(endpoint.lat, endpoint.long)
+            ];
+            var lineOptions = {
+                path: locationlinks,
+                geodesic: true,
+                strokeColor: '#FF0000',
+                strokeOpacity: 1.0,
+                strokeWeight: 2
+            };
+            var flightPath = new MyPolyline(lineOptions);
+            markers.last.prevNode.line = flightPath;
+            markers.last.prevNode.line.setMap(map);
+        }
     };
     HomeController.prototype.Initialize = function () {
         var _this = this;
