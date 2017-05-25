@@ -13,7 +13,13 @@ namespace BusinessLayer
         {
             var res = new UserDetails()
             {
+                Email = dto.Email,
+                FirstName=dto.FirstName,
+                LastName=dto.LastName,
+                Country=dto.Country,
+                City=dto.City,
                 Address = dto.Address,
+                Telephone=dto.Telephone
             };
 
             if (dto.Id.HasValue)
@@ -24,12 +30,30 @@ namespace BusinessLayer
             return res;
         }
 
+        public static void FromDto(UserDetails entity, UserDetailsDto dto)
+        {
+
+            entity.Email = dto.Email;
+            entity.FirstName = dto.FirstName;
+            entity.LastName = dto.LastName;
+            entity.Country = dto.Country;
+            entity.City = dto.City;
+            entity.Address = dto.Address;
+            entity.Telephone = dto.Telephone;
+        }
+
         public static UserDetailsDto ToDto(UserDetails entity)
         {
             var res = new UserDetailsDto()
             {
                 Id = entity.Id,
-                Address = entity.Address
+                Email=entity.Email,
+                FirstName=entity.FirstName,
+                LastName=entity.LastName,
+                Country=entity.Country,
+                City=entity.City,
+                Address = entity.Address,
+                Telephone=entity.Telephone
             };
 
             return res;
@@ -74,7 +98,13 @@ namespace BusinessLayer
             var res = userDetails.Select(p => new UserDetailsDto()
             {
                 Id = p.Id,
-                Address = p.Address
+                Email=p.Email,
+                FirstName=p.FirstName,
+                LastName=p.LastName,
+                Country=p.Country,
+                City=p.City,
+                Address = p.Address,
+                Telephone=p.Telephone
             });
             return res;
         }
@@ -82,9 +112,31 @@ namespace BusinessLayer
         {
             var dto = new UserDetailsDto();
             dto.Id = userDetails.Id;
+            dto.Email = userDetails.Email;
+            dto.FirstName = userDetails.FirstName;
+            dto.LastName = userDetails.LastName;
+            dto.Country = userDetails.Country;
+            dto.City = userDetails.City;
             dto.Address = userDetails.Address;
+            dto.Telephone = userDetails.Telephone;
 
             return dto;
+        }
+
+        public static UserDetailsDto ToUserDetailsEmailDto(UserDetails userDetails)
+        {
+            var dto = new UserDetailsDto();
+            dto.Id = userDetails.Id;
+            dto.Email = userDetails.Email;
+            dto.FirstName = userDetails.FirstName;
+            dto.LastName = userDetails.LastName;
+            dto.Country = userDetails.Country;
+            dto.City = userDetails.City;
+            dto.Address = userDetails.Address;
+            dto.Telephone = userDetails.Telephone;
+
+            return dto;
+
         }
 
         public static City FromCityDto(CityDto cityDto)

@@ -11,6 +11,8 @@ namespace DataAccessLayer
     {
         IEnumerable<T> GetAll();
         T GetById(object Id);
+
+        T GetByEmail(object Email);
         void Insert(T obj);
         void Update(T obj);
         void Delete(object Id);
@@ -34,6 +36,11 @@ namespace DataAccessLayer
         public T GetById(object Id)
         {
             return dbSet.Find(Id);
+        }
+
+        public T GetByEmail(object Email)
+        {
+            return dbSet.Find(Email);
         }
 
         public void Insert(T obj)

@@ -80,7 +80,7 @@ class UserProfileModel {
 	public Country: string;
 	public City: string;
 	public Address: string;
-	public Telephone: number;
+	public Telephone: string;
 
 	public ErrorMessage: string;
 	public ErrorAlert: boolean;

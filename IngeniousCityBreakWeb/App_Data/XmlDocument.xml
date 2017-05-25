@@ -541,5 +541,12 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="M:IngeniousCityBreakWeb.Controllers.UserDetailsController.GetByEmail(System.String)">
+            <summary>
+            Get user by email
+            </summary>
+            <param name="email"></param>
+            <returns></returns>
+        </member>
     </members>
 </doc>

@@ -23,7 +23,7 @@ namespace BusinessLayer
         public string City { get; set; }
 
         public string Address { get; set; }
-        public long Telephone { get; set; }
+        public string Telephone { get; set; }
 
         [Required]
         public ApplicationUser ApplicationUser { get; set; }
