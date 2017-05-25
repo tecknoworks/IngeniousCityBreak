@@ -263,6 +263,7 @@ var HomeModel = (function () {
         this.RouteList = new Array();
         this.RouteListString = new Array();
         this.RouteListString2 = new Array();
+        this.MapService = new MapService();
     }
     return HomeModel;
 }());
@@ -445,4 +446,3 @@ var HomeController = (function (_super) {
     };
     return HomeController;
 }(BaseController));
-//# sourceMappingURL=home.controller.js.map

@@ -287,6 +287,7 @@ class HomeModel {
     public RouteList: Array<RouteModel>;
     public RouteListString: Array<string>;
     public RouteListString2: Array<string>;
+    public MapService: MapService;
 
 
     constructor() {
@@ -294,6 +295,7 @@ class HomeModel {
         this.RouteList = new Array<RouteModel>();
         this.RouteListString = new Array<string>();
         this.RouteListString2 = new Array<string>();
+        this.MapService = new MapService();
     }
 }
 
