@@ -2,9 +2,21 @@
     Lat: number;
     Long: number;
 
-    constructor(lat, long) {
+    constructor(lat = 0, long = 0) {
         this.Lat = lat;
         this.Long = long;
+    }
+}
+
+class RouteDataItemModelDisplay {
+    LatF: number;
+    LongF: number;
+    From: string;
+    To: string;
+    LatL: number;
+    LongL: number;
+
+    constructor() {
     }
 }
 
@@ -27,62 +39,48 @@ class MyPolyline extends google.maps.Polyline {
 }
 
 class MapService {
-    protected myMap: google.maps.Map;
-    markers: LinkedList;
-    constructor() {
+
+    constructor(myMap: google.maps.Map, markers: LinkedList) {
         var self = this;
-
-        var mapOptions: google.maps.MapOptions = <google.maps.MapOptions>{
-            center: new google.maps.LatLng(21.0000, 78.0000),
-            zoom: 2,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-
         var uniqueId = 1; //sus
-        this.myMap = new google.maps.Map(document.getElementById("dvMap"), mapOptions);
-        this.markers = new LinkedList(this.myMap);
-
-        google.maps.event.addListener(this.myMap, 'click', (e) => {
+        markers = new LinkedList(myMap);
+        google.maps.event.addListener(myMap, 'click', (e) => {
             //Determine the location where the user has clicked.
             var location = e.latLng;
-
             //Create a marker and placed it on the map.
             var markerOptions: google.maps.MarkerOptions = <google.maps.MarkerOptions>{
                 position: location,
-                map: this.myMap
+                map: myMap
             };
             var marker = new MyMarker(markerOptions);
             //Set unique id
             marker.id = uniqueId;
             uniqueId++;
-            this.markers.insertLink(marker);
+            markers.insertLink(marker);
             //Attach click event handler to the marker.
-
-            var latlng = location.lat() + "," + location.lng();
-            var url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' + location.lat() + ',' + location.lng() + '&sensor=true';
             google.maps.event.addListener(marker, "click", (e) => {
                 var content = 'Latitude: ' + location.lat() + '<br />Longitude: ' + location.lng();
                 content += "<br /><input type = 'button' value = 'Delete' id='removeMarkerBtn1' marker='" + marker.id + "' value = 'Delete' />";
                 var infoWindow = new google.maps.InfoWindow({
                     content: content
                 });
-                infoWindow.open(this.myMap, marker);
+                infoWindow.open(myMap, marker);
                 setTimeout(() => {
                     $("#removeMarkerBtn1").click((e) => {
-                        var myMarker = this.markers.searchNode(marker);
-                        if ((myMarker == this.markers.first) && (this.markers.first == this.markers.last)) {
-                            this.markers.removeMarker(myMarker.value);
+                        var myMarker = markers.searchNode(marker);
+                        if ((myMarker == markers.first) && (markers.first == markers.last)) {
+                            markers.removeMarker(myMarker.value);
                             myMarker.value.setMap(null);
                         }
                         else
-                            if ((myMarker == this.markers.first) && (this.markers.first != this.markers.last)) {
-                                this.markers.first.line.setMap(null);
-                                this.markers.removeMarker(myMarker.value);
+                            if ((myMarker == markers.first) && (markers.first != markers.last)) {
+                                markers.first.line.setMap(null);
+                                markers.removeMarker(myMarker.value);
                                 myMarker.value.setMap(null);
                             }
-                            else if ((myMarker == this.markers.last) && (this.markers.last != this.markers.first)) {
-                                this.markers.last.prevNode.line.setMap(null);
-                                this.markers.removeMarker(myMarker.value);
+                            else if ((myMarker == markers.last) && (markers.last != markers.first)) {
+                                markers.last.prevNode.line.setMap(null);
+                                markers.removeMarker(myMarker.value);
                                 myMarker.value.setMap(null);
                             }
                             else {
@@ -104,21 +102,20 @@ class MapService {
                                 var mark = myMarker;
                                 myMarker.prevNode.line.setMap(null);
                                 myMarker.line.setMap(null);
-                                this.markers.removeMarker(myMarker.value);
+                                markers.removeMarker(myMarker.value);
                                 mark.value.setMap(null);
                                 mark.prevNode.line = flightPath;
-                                mark.prevNode.line.setMap(this.myMap);
+                                mark.prevNode.line.setMap(myMap);
                             }
-
                     });
 
                 }, 300);
             });
-            var node = this.markers.last;
-            if (this.markers.first != this.markers.last) {
-                var node = this.markers.last.prevNode;
+            var node = markers.last;
+            if (markers.first != markers.last) {
+                var node = markers.last.prevNode;
                 var startpoint = { "lat": node.value.getPosition().lat(), "long": node.value.getPosition().lng() };
-                var endpoint = { "lat": this.markers.last.value.getPosition().lat(), "long": this.markers.last.value.getPosition().lng() };
+                var endpoint = { "lat": markers.last.value.getPosition().lat(), "long": markers.last.value.getPosition().lng() };
                 var locationlinks = [
                     new google.maps.LatLng(startpoint.lat, startpoint.long),
                     new google.maps.LatLng(endpoint.lat, endpoint.long)
@@ -131,15 +128,15 @@ class MapService {
                     strokeWeight: 2
                 };
                 var flightPath = new MyPolyline(lineOptions);
-                this.markers.last.prevNode.line = flightPath;
-                this.markers.last.prevNode.line.setMap(this.myMap);
+                markers.last.prevNode.line = flightPath;
+                markers.last.prevNode.line.setMap(myMap);
             }
         });
     }
 
-    public GetRouteDataModel(): RouteModel {
+    public GetRouteDataModel(markers: LinkedList): RouteModel {
         var routeDataModel: Array<RouteDataItemModel> = new Array<RouteDataItemModel>();
-        var item = this.markers.first;
+        var item = markers.first;
         var hasNext: boolean = true;
         do {
             routeDataModel.push(item.value.GetRouteDataItemModel());
@@ -152,6 +149,15 @@ class MapService {
         var routeModel: RouteModel = new RouteModel();
         routeModel.RouteJson = JSON.stringify(routeDataModel);
         return routeModel;
+    }
+
+    public DeleteMarkers(markers: LinkedList): void {
+        //TO DO
+        var crt = markers.first;
+        while (markers.first != null) {
+            markers.first = markers.first.nextNode;
+            markers.first.prevNode = null;
+        }
     }
 }
 
@@ -219,9 +225,7 @@ class LinkedList {
                 return crt;
             }
         }
-
     }
-
 
     public removeMarker(myMarker: MyMarker): boolean {
         var nodeToBeDeleted;
@@ -277,6 +281,12 @@ class LinkedList {
 
 }
 
+class RouteList {
+    public First: string;
+    public Last: string;
+    public Id: number;
+}
+
 class HomeModel {
     public Afisare: string;
     public Display: string;
@@ -287,15 +297,16 @@ class HomeModel {
     public RouteList: Array<RouteModel>;
     public RouteListString: Array<string>;
     public RouteListString2: Array<string>;
-    public MapService: MapService;
+    public RouteDisplayList: Array<RouteDataItemModelDisplay>;
 
-
+    public Route: Array<RouteList>;
     constructor() {
         this.TouristAttractionList = new Array<TouristAttractionModel>();
         this.RouteList = new Array<RouteModel>();
         this.RouteListString = new Array<string>();
         this.RouteListString2 = new Array<string>();
-        this.MapService = new MapService();
+        this.Route = new Array<RouteList>();
+        this.RouteDisplayList = new Array<RouteDataItemModelDisplay>();
     }
 }
 
@@ -303,7 +314,6 @@ class HomeModel {
 class RouteDto {
     IdRoute: number;
     RouteJson: string;
-
     constructor() {
     }
 }
@@ -315,7 +325,6 @@ class TouristAttractionDto {
     PriceAdult: number;
     PriceChild: number;
     Schedule: string;
-
     constructor() {
     }
 }
@@ -334,7 +343,6 @@ class TouristAttractionModel extends TouristAttractionDto {
     constructor() {
         super();
     }
-
     public FromDto(dto: TouristAttractionDto): void {
         this.IdTouristAttraction = dto.IdTouristAttraction;
         this.Name = dto.Name;
@@ -349,73 +357,78 @@ class RouteService {
     public bonus;
     constructor($window: ng.IWindowService, $http: ng.IHttpService, Model: HomeModel) {
         var self = this;
-
-
         $http.get("/api/Route")
             .then((response) => {
                 var data: Array<RouteDto> = <Array<RouteDto>>response.data;
                 var resp;
                 var rr;
-                for (var i: number = 0; i < data.length; i++) {
-                    var model: RouteModel = new RouteModel();
-                    model.FromRouteDto(data[i]);
-                    var routeDataModel: Array<RouteDataItemModel> = <Array<RouteDataItemModel>>JSON.parse(model.RouteJson);
-                   debugger
-                  
-                        var lat = routeDataModel[0].Lat;
-                        var lng = routeDataModel[0].Long;
-                        $http.get('http://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + lng + '&sensor=true')
-                            .then((r) => {
-                                resp = r.data;    
-                                Model.RouteListString.push(resp.results[0].formatted_address);
-                            })
-                            .catch((r) => {
-                                console.log(r);
-                            });
-                        var len = routeDataModel.length;
-                        len = len - 1;
-                        var lat = routeDataModel[len].Lat;
-                        var lng = routeDataModel[len].Long;
-                        $http.get('http://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + lng + '&sensor=true')
-                            .then((r) => {
-                                debugger
-                                resp = r.data;
-                                Model.RouteListString2.push(resp.results[0].formatted_address);
-                            })
-                            .catch((r) => {
-                                console.log(r);
-                            });
-                    Model.RouteList.push(model);
-                }
+
+                this.displayRoutes(0, data, $http, Model);
             });
-
-
     }
 
-    public geocodeLatLng(geocoder, map, infowindow, location): void {
-        debugger
-        var latlngStr = location.split(',', 2);
-        var latlng = { lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1]) };
-        geocoder.geocode({ 'location': latlng }, function (results, status) {
-            if (status === 'OK') {
-                if (results[1]) {
-                    // map.setZoom(11);
-                    var marker = new google.maps.Marker({
-                        position: latlng,
-                        map: map
-                    });
-                    debugger
-                    infowindow.setContent(results[1].formatted_address);
-                    infowindow.open(map, marker);
-                    debugger
-                } else {
-                    window.alert('No results found');
-                }
-            } else {
-                window.alert('Geocoder failed due to: ' + status);
-            }
-        });
+    displayRoutes(i: number, data: Array<RouteDto>, $http: ng.IHttpService, Model: HomeModel): void {
+
+        if (i < data.length) {
+            var model: RouteModel = new RouteModel();
+            model.FromRouteDto(data[i]);
+            debugger
+            var routeDataModel: Array<RouteDataItemModel> = <Array<RouteDataItemModel>>JSON.parse(model.RouteJson)
+            var lat = routeDataModel[0].Lat
+            var lng = routeDataModel[0].Long;
+            $http.get('http://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + lng + '&sensor=true')
+                .then((r) => {
+                    var resp: any = r.data;
+                    var a: RouteDataItemModelDisplay = new RouteDataItemModelDisplay();
+                    a.LatF = lat; a.LongF = lng; a.From = resp.results[0].formatted_address
+                    var len = routeDataModel.length;
+                    len = len - 1;
+                    lat = routeDataModel[len].Lat;
+                    lng = routeDataModel[len].Long;
+                    $http.get('http://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + lng + '&sensor=true')
+                        .then((rsp) => {
+                            resp = rsp.data;
+                            a.LatL = lat; a.LongL = lng; a.To = resp.results[0].formatted_address
+                            Model.RouteDisplayList.push(a);
+
+                        })
+                        .catch((r) => {
+                            console.log(r);
+                        });
+                })
+                .catch((r) => {
+                    console.log(r);
+                });
+
+            Model.RouteList.push(model);
+            this.displayRoutes(i + 1, data, $http, Model);
+        }
     }
+
+    //public geocodeLatLng(geocoder, map, infowindow, location): void {
+    //    debugger
+    //    var latlngStr = location.split(',', 2);
+    //    var latlng = { lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1]) };
+    //    geocoder.geocode({ 'location': latlng }, function (results, status) {
+    //        if (status === 'OK') {
+    //            if (results[1]) {
+    //                // map.setZoom(11);
+    //                var marker = new google.maps.Marker({
+    //                    position: latlng,
+    //                    map: map
+    //                });
+    //                debugger
+    //                infowindow.setContent(results[1].formatted_address);
+    //                infowindow.open(map, marker);
+    //                debugger
+    //            } else {
+    //                window.alert('No results found');
+    //            }
+    //        } else {
+    //            window.alert('Geocoder failed due to: ' + status);
+    //        }
+    //    });
+    //}
 }
 
 class HomeController extends BaseController {
@@ -424,17 +437,23 @@ class HomeController extends BaseController {
     protected httpService: ng.IHttpService;
     protected mapService: MapService;
     protected routeService: RouteService;
+    protected myMap: google.maps.Map;
+    protected markers: LinkedList;
+
     constructor($window: ng.IWindowService, $http: ng.IHttpService) {
         super($window);
         var self = this;
         this.httpService = $http;
         this.windowService = $window;
-
         this.Model = new HomeModel();
-
+        var mapOptions: google.maps.MapOptions = <google.maps.MapOptions>{
+            center: new google.maps.LatLng(21.0000, 78.0000),
+            zoom: 2,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        this.myMap = new google.maps.Map(document.getElementById("dvMap"), mapOptions);
         this.Model.Display = "Can't change";
         this.Model.Edit = "Do change";
-
         this.httpService.get("/api/TouristAttraction")
             .then((response) => {
                 var data: Array<TouristAttractionDto> = <Array<TouristAttractionDto>>response.data;
@@ -444,9 +463,8 @@ class HomeController extends BaseController {
                     self.Model.TouristAttractionList.push(model);
                 }
             });
-
         this.Initialize();
-        this.mapService = new MapService();
+        this.mapService = new MapService(this.myMap, this.markers);
         this.routeService = new RouteService(this.windowService, this.httpService, this.Model);
     }
 
@@ -461,11 +479,125 @@ class HomeController extends BaseController {
         };
         debugger
         var routeModel = new RouteModel();
-        self.httpService.post('api/InsertRoute', this.mapService.GetRouteDataModel()).then(function (response) {
+        self.httpService.post('api/InsertRoute', this.mapService.GetRouteDataModel(this.markers)).then(function (response) {
             alert("Your route has been saved successfully");
         }).catch(function (response) {
         });
 
+    }
+
+    public addRoute(index: number) {
+        var map = this.myMap;
+        var markers = this.markers;
+        debugger
+        this.addRouteOnMapIndex(index, map, markers);
+
+    }
+
+    public addRouteOnMapIndex(index: number, myMap: google.maps.Map, markers: LinkedList): void {
+        this.mapService.DeleteMarkers(markers);
+        this.markers = new LinkedList(myMap);
+
+        this.Model.RouteDisplayList[index];
+        this.Model.RouteList[index];
+        var model: RouteModel = new RouteModel();
+        var routeJson: Array<RouteDataItemModel> = <Array<RouteDataItemModel>>JSON.parse(this.Model.RouteList[index].RouteJson);
+        for (var i: number = 0; i < routeJson.length; i++) {
+            var lat = routeJson[i].Lat;
+            var long = routeJson[i].Long;
+            var self = this;
+            debugger
+            var uniqueId = 1; //sus
+
+            var location = { lat: lat, lng: long };
+            //Create a marker and placed it on the map.
+            var markerOptions: google.maps.MarkerOptions = <google.maps.MarkerOptions>{
+                position: location,
+                map: myMap
+            };
+            var marker = new MyMarker(markerOptions);
+            //Set unique id
+            marker.id = uniqueId;
+            uniqueId++;
+            this.markers.insertLink(marker);
+            //Attach click event handler to the marker.
+
+            google.maps.event.addListener(marker, "click", (e) => {
+                var content = 'Latitude: ' + lat + '<br />Longitude: ' + long;
+                content += "<br /><input type = 'button' value = 'Delete' id='removeMarkerBtn1' marker='" + marker.id + "' value = 'Delete' />";
+                var infoWindow = new google.maps.InfoWindow({
+                    content: content
+                });
+                infoWindow.open(myMap, marker);
+                setTimeout(() => {
+                    $("#removeMarkerBtn1").click((e) => {
+                        var myMarker = this.markers.searchNode(marker);
+                        if ((myMarker == this.markers.first) && (this.markers.first == this.markers.last)) {
+                            this.markers.removeMarker(myMarker.value);
+                            myMarker.value.setMap(null);
+                        }
+                        else
+                            if ((myMarker == this.markers.first) && (this.markers.first != this.markers.last)) {
+                                this.markers.first.line.setMap(null);
+                                this.markers.removeMarker(myMarker.value);
+                                myMarker.value.setMap(null);
+                            }
+                            else if ((myMarker == this.markers.last) && (this.markers.last != this.markers.first)) {
+                                this.markers.last.prevNode.line.setMap(null);
+                                this.markers.removeMarker(myMarker.value);
+                                myMarker.value.setMap(null);
+                            }
+                            else {
+                                var startpoint = { "lat": myMarker.prevNode.value.getPosition().lat(), "long": myMarker.prevNode.value.getPosition().lng() };
+                                var endpoint = { "lat": myMarker.nextNode.value.getPosition().lat(), "long": myMarker.nextNode.value.getPosition().lng() };
+                                var locationlinks = [
+                                    new google.maps.LatLng(startpoint.lat, startpoint.long),
+                                    new google.maps.LatLng(endpoint.lat, endpoint.long)
+                                ];
+                                var lineOptions: google.maps.PolylineOptions = <google.maps.PolylineOptions>{
+                                    path: locationlinks,
+                                    geodesic: true,
+                                    strokeColor: '#FF0000',
+                                    strokeOpacity: 1.0,
+                                    strokeWeight: 2
+                                };
+                                var flightPath = new MyPolyline(lineOptions);
+                                var mark = myMarker;
+                                myMarker.prevNode.line.setMap(null);
+                                myMarker.line.setMap(null);
+                                this.markers.removeMarker(myMarker.value);
+                                mark.value.setMap(null);
+                                mark.prevNode.line = flightPath;
+                                mark.prevNode.line.setMap(myMap);
+                            }
+
+                    });
+
+                }, 300);
+            });
+            var node = this.markers.last;
+            if (this.markers.first != this.markers.last) {
+                debugger
+                var node = this.markers.last.prevNode;
+                var startpoint = { "lat": node.value.getPosition().lat(), "long": node.value.getPosition().lng() };
+                var endpoint = { "lat": this.markers.last.value.getPosition().lat(), "long": this.markers.last.value.getPosition().lng() };
+                var locationlinks = [
+                    new google.maps.LatLng(startpoint.lat, startpoint.long),
+                    new google.maps.LatLng(endpoint.lat, endpoint.long)
+                ];
+                var lineOptions: google.maps.PolylineOptions = <google.maps.PolylineOptions>{
+                    path: locationlinks,
+                    geodesic: true,
+                    strokeColor: '#FF0000',
+                    strokeOpacity: 1.0,
+                    strokeWeight: 2
+                };
+                var flightPath = new MyPolyline(lineOptions);
+                debugger
+                this.markers.last.prevNode.line = flightPath;
+                this.markers.last.prevNode.line.setMap(myMap);
+            }
+        }
     }
 
 

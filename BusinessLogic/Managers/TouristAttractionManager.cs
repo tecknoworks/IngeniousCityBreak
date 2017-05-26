@@ -17,6 +17,7 @@ namespace BusinessLogic
 
         public TouristAttractionManager(IDbRepository<BusinessLayer.TouristAttraction> touristAttractionRepository)
         {
+           
             _touristAttractionRepository = touristAttractionRepository;
         }
 

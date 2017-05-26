@@ -87,7 +87,8 @@
                                             <div class="row">
                                                 <div class="col-sm-3">
                                                     <ul>
-                                                        <li ng-repeat="x in  $ctrl.Model.RouteListString" style="width:500px">{{x}} <p style="display:inline"><img src="../../../Content/images/to.png" style="width:30px;height:20px;" /></p></li>
+                                                        <li ng-repeat="x in  $ctrl.Model.RouteDisplayList" style="width:1000px">{{x.From}} <p style="display:inline"><img src="../../../Content/images/to.png" style="width:30px;height:20px;" /></p>{{x.To}}
+                                                        <input type="radio" id="myRatio" id="mapService" ng-click="$ctrl.addRoute($index)" name="foo" style="margin-right:10px; position:fixed; left:1340px" /></li>
 
                                                     </ul>
 
@@ -98,9 +99,7 @@
 
                                                 </div>
                                                 <div class="col-sm-3">
-                                                    <ul>
-                                                        <li ng-repeat="x in $ctrl.Model.RouteListString2" style="width:500px">{{x}}<input type="radio" id="myRatio" id="mapService" ng-model="$ctrl.Model.MapService" name="foo" style="margin-right:10px; position:fixed; left:1340px" /></li>
-                                                    </ul>
+                                                    
                                                 </div>
                                                 <div class="col-sm-3">
 
