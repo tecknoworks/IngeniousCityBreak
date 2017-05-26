@@ -6,4 +6,3 @@ angular.
     templateUrl: 'scripts/app/Home/home.template.html',
     controller: ['$window', '$http', HomeController],
 });
-//# sourceMappingURL=home.component.js.map

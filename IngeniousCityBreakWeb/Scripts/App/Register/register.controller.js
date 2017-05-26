@@ -104,4 +104,3 @@ var RegisterModel = (function () {
     }
     return RegisterModel;
 }());
-//# sourceMappingURL=register.controller.js.map

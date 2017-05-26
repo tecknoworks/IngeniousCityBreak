@@ -20,4 +20,3 @@ angular.
             otherwise('/home');
     }
 ]);
-//# sourceMappingURL=app.config.js.map

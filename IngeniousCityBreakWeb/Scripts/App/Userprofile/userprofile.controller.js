@@ -116,4 +116,3 @@ var UserProfileModel = (function () {
     }
     return UserProfileModel;
 }());
-//# sourceMappingURL=userprofile.controller.js.map
