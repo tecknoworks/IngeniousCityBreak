@@ -24,7 +24,8 @@ namespace IngeniousCityBreakWeb.Controllers
         [HttpPost]
         public IHttpActionResult Create(UserDetailsDto usersDetailsDto) {
             var userName = RequestContext.Principal.Identity.Name;
-            usersDetailsDto.UserName = userName;
+            //usersDetailsDto.UserName = userName;
+            usersDetailsDto.Email = userName;
             var manager = DiContainer.Resolve<IUserManager>();
             manager.Update(usersDetailsDto);
             return Ok();
@@ -55,7 +56,7 @@ namespace IngeniousCityBreakWeb.Controllers
         /// </summary>
         /// <param name="email"></param>
         /// <returns></returns>
-        [Route("api/UserDetails")]
+        
         public UserDetailsDto GetByEmail(string email)
         {
             var manager = UserManager.GetByEmailUser(email);

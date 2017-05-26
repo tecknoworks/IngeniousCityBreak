@@ -26,6 +26,6 @@ namespace BusinessLayer
         public string Telephone { get; set; }
 
         [Required]
-        public ApplicationUser ApplicationUser { get; set; }
+        public virtual ApplicationUser ApplicationUser { get; set; }
     }
 }

@@ -21,6 +21,6 @@ namespace BusinessLayer
 
         public bool Active { get; set; }
 
-        public UserDetails UserDetails { get; set; }
+        public virtual  UserDetails UserDetails { get; set; }
     }
 }

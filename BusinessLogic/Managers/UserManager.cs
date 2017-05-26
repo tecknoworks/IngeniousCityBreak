@@ -29,8 +29,8 @@ namespace BusinessLogic
 
         public void Update(UserDetailsDto userDetailsDto)
         {
-            //var entity = Mapper.FromDto(userDetailsDto);
-            var userEntity = _userRepository.GetAll().First(it => it.UserName == userDetailsDto.UserName);
+            var entity = Mapper.FromDto(userDetailsDto);
+            var userEntity = _userRepository.GetAll().First(it => it.Email == userDetailsDto.Email);
             Mapper.FromDto(userEntity.UserDetails, userDetailsDto);
 
             //UserDetailsRepository.Insert(entity);

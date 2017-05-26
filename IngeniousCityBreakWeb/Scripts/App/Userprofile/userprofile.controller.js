@@ -48,21 +48,21 @@ var UserProfileController = (function (_super) {
             headers: {
                 "dataType": "json",
                 "contentType": "application/json",
-                "Authorization": self.currentUser.TokenType + self.currentUser.AccessToken,
+                "Authorization": self.currentUser.TokenType + " " + self.currentUser.AccessToken,
             }
         };
         debugger;
         this.HttpService.post('api/UserDetails', {
             "Id": 5,
             "Email": self.UPModel.Email,
-            "Username": self.UPModel.Email,
+            //"Username": self.UPModel.Email,
             "FirstName": self.UPModel.FirstName,
             "LastName": self.UPModel.LastName,
             "Country": self.UPModel.Country,
             "City": self.UPModel.City,
             "Address": self.UPModel.Address,
             "Telephone": self.UPModel.Telephone,
-        }).then(function (response) {
+        }, config).then(function (response) {
             self.UPModel.ErrorMessage = "";
             console.log(response.data);
         }).catch(function (response) {
@@ -116,4 +116,3 @@ var UserProfileModel = (function () {
     }
     return UserProfileModel;
 }());
-//# sourceMappingURL=userprofile.controller.js.map
